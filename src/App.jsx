@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import NavBar from './components/NavBar';
+import NavBar from './components/NavBar/NavBar';
 import Home from './pages/Home/Home';
 import Blogs from './pages/Blogs/Blogs';
 import About from './pages/About/About';
@@ -16,11 +16,11 @@ function App() {
         <Routes>
 	         	<Route path="/" element={<Home/ >}/>
 	        	<Route path="/blogs"  element={<Blogs/ >}/>
-	          <Route path="/About" element={<About/ >}/>
-	        	<Route path="/Team" element={<Team/ >}/>
-		        <Route path="/Careers" element={<Careers/ >}/>
-            <Route path="/Contact" element={<Contact/ >}/>
-            <Route path="/LogIn" element={<LogIn/ >}/> 
+	          <Route path="/about" element={<About/ >}/>
+	        	<Route path="/team" element={<Team/ >}/>
+		        <Route path="/careers" element={<Careers/ >}/>
+            <Route path="/contact" element={<Contact/ >}/>
+            <Route path="/login" element={<LogIn/ >}/> 
        </Routes>
     </div>
   );

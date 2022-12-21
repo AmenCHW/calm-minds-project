@@ -5,7 +5,7 @@ import DropDownMenuItems from "./DropDownMenuItems";
 function DropDown( { setshowDropDownMenu } ){
 
     return(
-        <ul className='lg:w-[160px] lg:absolute lg:top-20 lg:text-start lg:mt-8 lg:-ml-4'>
+        <ul className='lg:w-[160px] lg:absolute lg:top-20 lg:text-start lg:mt-9 lg:-ml-4'>
 
         {DropDownMenuItems.map((item) => {
           return (
@@ -13,7 +13,7 @@ function DropDown( { setshowDropDownMenu } ){
               <Link
                 to={item.path}
                 onClick={() =>setshowDropDownMenu(false)}
-                className="block h-full w-full p-4 text-black bg-[#EAF8F9] hover:bg-[#FEE89E]"
+                className="block h-full w-full p-4 text-black bg-[#EAF8F9] hover:bg-[#FEE89E] focus:text-white"
               >
                 {item.title}
               </Link>
