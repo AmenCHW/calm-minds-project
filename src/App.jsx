@@ -1,5 +1,6 @@
 import React from 'react';
-import Home from './pages/Home/Home';
+ import Home from './pages/Home/Home';
+
 
 function App() {
   return (
@@ -7,6 +8,8 @@ function App() {
       <header className="App-header">
        <h1>crazy minds</h1>
        <Home/>
+       
+       
       </header>
     </div>
   );
