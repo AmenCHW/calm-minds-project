@@ -18,31 +18,37 @@ function NavBar() {
   return (
     <nav className="flex px-8 lg:px-20 py-6 bg-[#EAF8F9] justify-between items-center">
       <div className="justify-between flex md:justify-start">
+
         <img
           src={NavBarIcon}
           alt="navbar icon"
           className="w-7 h-10 md:h-full md:w-full"
         />
+
         <Link
           to="/"
           className="text-3xl md:text-4xl lg:text-5xl pl-3 font-normal"
         >
           Healing
         </Link>
+
       </div>
 
       { /* Deskop Menu */ }
       <ul className="hidden lg:flex text-2xl">
+
         <li className="p-4 hover:text-[#2DD3E3] ">
           <Link to="/" className="focus:text-[#FEE89E]">
             Home
           </Link>
         </li>
+
         <li className="p-4 hover:text-[#2DD3E3]">
           <Link to="/blogs" className="focus:text-[#FEE89E]">
             Blogs
           </Link>
         </li>
+
         <li className="p-4 hover:text-[#2DD3E3] focus:text-[#FEE89E]">
           <button
             type="button"
@@ -55,11 +61,13 @@ function NavBar() {
             ) : null}
           </button>
         </li>
+
         <li className="p-4 hover:text-[#2DD3E3]">
           <Link to="/contact" className="focus:text-[#FEE89E]">
             Contact Us
           </Link>
         </li>
+
         <li className="p-4 ">
           <Link to="/login" className="focus:text-[#FEE89E]">
             <button
@@ -70,9 +78,10 @@ function NavBar() {
             </button>
           </Link>
         </li>
+
       </ul>
 
-      { /* Mobile & Tablet Menu */ }
+      { /* Mobile & Tablet Menus */ }
       <button
         type="button"
         className="block lg:hidden"
@@ -93,6 +102,7 @@ function NavBar() {
         }
       >
         <ul className="pt-24 mx-auto text-center">
+
           <li className="p-4 hover:text-[#2DD3E3]">
             <Link
               to="/"
@@ -102,6 +112,7 @@ function NavBar() {
               Home
             </Link>
           </li>
+
           <li className="p-4 hover:text-[#2DD3E3]">
             <Link
               to="/blogs"
@@ -111,13 +122,14 @@ function NavBar() {
               Blogs
             </Link>
           </li>
-          <li className="p-4 hover:text-[#2DD3E3] focus:text-[#FEE89E]">
-            <button type="button" onClick={handleDropDownMenuClick}>
-              {' '}
+
+          <li className="p-4 hover:text-[#2DD3E3]">
+             <button type="button" onClick={handleDropDownMenuClick}>
               About <i className={arrowIcon} />
-              {showDropDownMenu ? <DropDown /> : null}
-            </button>
+              {showDropDownMenu ? <DropDown setshowDropDownMenu={setshowDropDownMenu} closeMobileMenu={closeMobileMenu} /> : null}
+            </button>  
           </li>
+
           <li className="p-4 hover:text-[#2DD3E3]">
             <Link
               to="/contact"
@@ -127,6 +139,7 @@ function NavBar() {
               Contact Us
             </Link>
           </li>
+
           <li className="p-4 hover:text-[#2DD3E3]">
             <Link
               to="/login"
@@ -141,6 +154,7 @@ function NavBar() {
               </button>
             </Link>
           </li>
+
         </ul>
       </div>
     </nav>
