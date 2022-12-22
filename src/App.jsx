@@ -12,16 +12,16 @@ import LogIn from './pages/LogIn/LogIn';
 function App() {
   return (
     <div className="App">
-       <NavBar /> 
-        <Routes>
-	         	<Route path="/" element={<Home/ >}/>
-	        	<Route path="/blogs"  element={<Blogs/ >}/>
-	          <Route path="/about" element={<About/ >}/>
-	        	<Route path="/team" element={<Team/ >}/>
-		        <Route path="/careers" element={<Careers/ >}/>
-            <Route path="/contact" element={<Contact/ >}/>
-            <Route path="/login" element={<LogIn/ >}/> 
-       </Routes>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/blogs" element={<Blogs />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/team" element={<Team />} />
+        <Route path="/careers" element={<Careers />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/login" element={<LogIn />} />
+      </Routes>
     </div>
   );
 }
