@@ -9,6 +9,8 @@ import Careers from './pages/Careers/Careers';
 import Contact from './pages/Contact/Contact';
 import LogIn from './pages/LogIn/LogIn';
 import Footer from './Footer'
+import BookingPage from './pages/Booking/BookingPage';
+
 
 function App() {
   return (
@@ -22,6 +24,7 @@ function App() {
         <Route path="/careers" element={<Careers />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<LogIn />} />
+        <Route path="/bookingPage" element={<BookingPage />} />
       </Routes>
       <Footer />
     </div>
