@@ -34,7 +34,7 @@ function NavBar() {
 
       </div>
 
-      { /* Deskop Menu */ }
+      {/* Deskop Menu */}
       <ul className="hidden lg:flex text-2xl">
 
         <li className="p-4 hover:text-[#2DD3E3] ">
@@ -81,7 +81,9 @@ function NavBar() {
 
       </ul>
 
+
       { /* Mobile & Tablet Menus */ }
+
       <button
         type="button"
         className="block lg:hidden"
