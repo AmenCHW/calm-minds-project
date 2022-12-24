@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from '@firebase/firestore'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDY-EfG2iUbCSILU2iQCAVXYjLmLCI4Pao",
+    apiKey: `${process.env.REACT_APP_UNSPLASH_KEY}`,
     authDomain: "calm-minds-project.firebaseapp.com",
     projectId: "calm-minds-project",
     storageBucket: "calm-minds-project.appspot.com",
