@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import DropDownMenuItems from './DropDownMenuItems';
 
-function DropDown({ setshowDropDownMenu }) {
+function DropDown({ setshowDropDownMenu, setShowMobileMenu }) {
 
-  const handlePreventRefreshAndHideDropDownMenu = (e) => {
-    e.preventDefault();
-    setshowDropDownMenu(false)
+  const handlePreventRefreshAndHideDropDownMenu = () => {
+    setshowDropDownMenu(false);
+    setShowMobileMenu(false);
   }
 
   return (
@@ -16,7 +16,7 @@ function DropDown({ setshowDropDownMenu }) {
           <li key={item.id}>
             <Link
               to={item.path}
-              onClick={() => handlePreventRefreshAndHideDropDownMenu}
+              onClick={handlePreventRefreshAndHideDropDownMenu}
               className="block h-full w-full p-4 text-black bg-[#EAF8F9] hover:bg-[#FEE89E] focus:text-white"
             >
               {item.title}

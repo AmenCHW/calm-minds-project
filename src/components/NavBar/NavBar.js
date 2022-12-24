@@ -56,9 +56,7 @@ function NavBar() {
             onClick={handleDropDownMenuClick}
           >
             About <i className={arrowIcon} />
-            {showDropDownMenu ? (
-              <DropDown setshowDropDownMenu={setshowDropDownMenu} />
-            ) : null}
+            {showDropDownMenu && <DropDown setshowDropDownMenu={setshowDropDownMenu} setShowMobileMenu={setShowMobileMenu}/>}
           </button>
         </li>
 
@@ -128,7 +126,7 @@ function NavBar() {
           <li className="p-4 hover:text-[#2DD3E3]">
              <button type="button" onClick={handleDropDownMenuClick}>
               About <i className={arrowIcon} />
-              {showDropDownMenu ? <DropDown setshowDropDownMenu={setshowDropDownMenu} closeMobileMenu={closeMobileMenu} /> : null}
+              {showDropDownMenu && <DropDown setshowDropDownMenu={setshowDropDownMenu} setShowMobileMenu={setShowMobileMenu} />}
             </button>  
           </li>
 
