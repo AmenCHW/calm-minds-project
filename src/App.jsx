@@ -12,6 +12,7 @@ import Footer from './Footer'
 import BookingPage from './pages/Booking/BookingPage';
 
 
+
 function App() {
   return (
     <div className="App">
@@ -25,6 +26,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/bookingPage" element={<BookingPage />} />
+        
       </Routes>
       <Footer />
     </div>
