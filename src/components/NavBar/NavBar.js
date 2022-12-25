@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import DropDown from "./DropDown";
+import DropDown from './DropDown';
 import NavBarIcon from './NavBarIcon.png';
 
 function NavBar() {
