@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import image from '../../img/image5.svg';
 import image2 from '../../img/image1.svg';
 
@@ -12,10 +13,17 @@ export default function welcome() {
         <div className="md:flex hidden items-center lg:w-full h-screen justify-evenly ">
           <div>
             <h1 className="lg:text-[2vw]  text-[1vw]">We are Here to </h1>
-            <h1 className="lg:text-[6vw]  text-[3vw] mb-20">HELP</h1>
-            <button type="button" className="btn btn-blue">
-              Button
-            </button>
+            <h1 className="lg:text-[6vw]  text-[3vw] ">HELP</h1>
+
+            <Link to="/bookingPage" className="focus:text-[#FEE89E]">
+              <button
+                className="mt-20 bg-[#2DD3E3] hover:bg-blue-400 text-white 
+                  font-bold py-2 px-4 border-b-4 border-[#2DD3E3] hover:border-blue-500 rounded"
+                type="button"
+              >
+                Book an appointment
+              </button>
+            </Link>
           </div>
           <img
             src={image2}
