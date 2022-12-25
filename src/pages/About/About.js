@@ -1,7 +1,7 @@
 import React from 'react';
 import AboutText from './components/AboutText';
 import Founder from './components/Founder';
-import image from './components/images/adilimam.jpg';
+import image from './components/images/therapist.jpg';
 
 function About() {
 
