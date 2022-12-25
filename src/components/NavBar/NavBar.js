@@ -11,11 +11,17 @@ function NavBar() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const handleShowMobileMenu = () => setShowMobileMenu(!showMobileMenu);
   const closeMobileMenu = () => setShowMobileMenu(false);
-  
+
   const [showDropDownMenu, setshowDropDownMenu] = useState(false);
   const handleDropDownMenuClick = () => setshowDropDownMenu(!showDropDownMenu);
 
   const [active, setActive] = useState('');
+
+  const onDropMenuLinkClick = (item) => {
+    setshowDropDownMenu(false);
+    setShowMobileMenu(false);
+    setActive(item.active);
+  }
 
   return (
     <nav className="flex px-8 lg:px-20 py-6 bg-[#EAF8F9] justify-between items-center">
@@ -36,19 +42,19 @@ function NavBar() {
 
       </div>
 
-      {/* Deskop Menu */}
+      { /* Deskop Menu */}
       <ul className="hidden lg:flex text-2xl">
 
         <li className="p-4 hover:text-[#2DD3E3] ">
           <Link to="/" className={active === '' ? 'text-[#FEE89E]' : 'text-black'}
-          onClick={() => setActive('')}>
+            onClick={() => setActive('')}>
             Home
           </Link>
         </li>
 
         <li className="p-4 hover:text-[#2DD3E3]">
           <Link to="/blogs" className={active === 'blogs' ? 'text-[#FEE89E]' : 'text-black'}
-          onClick={() => setActive('blogs')}>
+            onClick={() => setActive('blogs')}>
             Blogs
           </Link>
         </li>
@@ -60,20 +66,20 @@ function NavBar() {
             onClick={handleDropDownMenuClick}
           >
             About <i className={arrowIcon} />
-            {showDropDownMenu && <DropDown setshowDropDownMenu={setshowDropDownMenu} setShowMobileMenu={setShowMobileMenu} active={active} setActive={setActive}/>}
+            {showDropDownMenu && <DropDown onDropMenuLinkClick={onDropMenuLinkClick} active={active} />}
           </button>
         </li>
 
         <li className="p-4 hover:text-[#2DD3E3]">
           <Link to="/contact" className={active === 'contact' ? 'text-[#FEE89E]' : 'text-black'}
-          onClick={() => setActive('contact')}>
+            onClick={() => setActive('contact')}>
             Contact Us
           </Link>
         </li>
 
         <li className="p-4 ">
           <Link to="/login" className={active === 'login' ? 'text-white bg-[#FEE89E]' : 'text-black bg-[#2DD3E3]'}
-          onClick={() => setActive('login')}>
+            onClick={() => setActive('login')}>
             <button
               type="button"
               className="rounded-md px-5 py-1 -mt-2"
@@ -85,9 +91,7 @@ function NavBar() {
 
       </ul>
 
-
-      { /* Mobile & Tablet Menus */ }
-
+      { /* Mobile & Tablet Menus */}
       <button
         type="button"
         className="block lg:hidden"
@@ -112,8 +116,11 @@ function NavBar() {
           <li className="p-4 hover:text-[#2DD3E3]">
             <Link
               to="/"
-              className="focus:text-[#FEE89E]"
-              onClick={closeMobileMenu}
+              className={active === '' ? 'text-[#FEE89E]' : 'text-black'}
+              onClick={() => {
+                closeMobileMenu();
+                setActive('');
+              }}
             >
               Home
             </Link>
@@ -122,25 +129,35 @@ function NavBar() {
           <li className="p-4 hover:text-[#2DD3E3]">
             <Link
               to="/blogs"
-              className="focus:text-[#FEE89E]"
-              onClick={closeMobileMenu}
+              className={active === 'blogs' ? 'text-[#FEE89E]' : 'text-black'}
+              onClick={() => {
+                closeMobileMenu();
+                setActive('blogs');
+              }}
             >
               Blogs
             </Link>
           </li>
 
           <li className="p-4 hover:text-[#2DD3E3]">
-             <button type="button" onClick={handleDropDownMenuClick}>
+            <button
+              type="button"
+              className={active === 'about' || active === 'team' || active === 'careers' ? 'text-[#FEE89E]' : 'text-black'}
+              onClick={handleDropDownMenuClick}
+            >
               About <i className={arrowIcon} />
-              {showDropDownMenu && <DropDown setshowDropDownMenu={setshowDropDownMenu} setShowMobileMenu={setShowMobileMenu} />}
-            </button>  
+              {showDropDownMenu && <DropDown onDropMenuLinkClick={onDropMenuLinkClick} active={active} />}
+            </button>
           </li>
 
           <li className="p-4 hover:text-[#2DD3E3]">
             <Link
               to="/contact"
-              className="focus:text-[#FEE89E]"
-              onClick={closeMobileMenu}
+              className={active === 'contact' ? 'text-[#FEE89E]' : 'text-black'}
+              onClick={() => {
+                closeMobileMenu();
+                setActive('contact');
+              }}
             >
               Contact Us
             </Link>
@@ -149,8 +166,11 @@ function NavBar() {
           <li className="p-4 hover:text-[#2DD3E3]">
             <Link
               to="/login"
-              className="focus:text-[#FEE89E]"
-              onClick={closeMobileMenu}
+              className={active === 'login' ? 'text-[#FEE89E]' : 'text-black'}
+              onClick={() => {
+                closeMobileMenu();
+                setActive('login');
+              }}
             >
               <button
                 type="button"
