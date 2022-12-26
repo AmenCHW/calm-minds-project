@@ -1,9 +1,9 @@
-import img1 from './img/Rectangle1.png';
-import img2 from './img/Rectangle2.png';
-import img3 from './img/Rectangle3.png';
-import img4 from './img/Rectangle4.png';
-import img5 from './img/Rectangle 5.png';
-import img6 from './img/Rectangle.png';
+import img1 from './img/Rectangle.png';
+import img2 from './img/Rectangle1.png';
+import img3 from './img/Rectangle2.png';
+import img4 from './img/Rectangle3.png';
+import img5 from './img/Rectangle4.png';
+import img6 from './img/Rectangle 5.png';
 
 const constTeam = [
   {
