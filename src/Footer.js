@@ -5,7 +5,6 @@ import { ReactComponent as TwitterIcon } from './icons/twitter.svg';
 import { ReactComponent as FacebookIcon } from './icons/google.svg';
 import { ReactComponent as GoogleIcon } from './icons/facebook.svg';
 
-
 function Footer() {
   return (
     <div className="w-full place-items-center py-10 flex flex-col bg-[#FEE89E]  sm:flex-row sm:p-10 sm:pl-20 sm:pr-8">
@@ -30,23 +29,35 @@ function Footer() {
       </div>
       <div className="w-1/2 text-center place-content-evenly">
         <div className="h-1/2 flex place-content-around gap-1 mt-4 sm:mt-0">
-          <Link to="/" className="text-xl text-[#718096] font-normal hover:text-[#AAC1E3]">
+          <Link
+            to="/"
+            className="text-xl text-[#718096] font-normal hover:text-[#AAC1E3]"
+          >
             Home
           </Link>
-          <Link to="/blogs" className="text-xl text-[#718096] font-normal hover:text-[#AAC1E3]">
+          <Link
+            to="/blogs"
+            className="text-xl text-[#718096] font-normal hover:text-[#AAC1E3]"
+          >
             Blogs
           </Link>
-          <Link to="/about" className="text-xl text-[#718096] font-normal hover:text-[#AAC1E3]">
+          <Link
+            to="/about"
+            className="text-xl text-[#718096] font-normal hover:text-[#AAC1E3]"
+          >
             About
           </Link>
-          <Link to="/contact" className="text-xl text-[#718096] font-normal hover:text-[#AAC1E3]">
+          <Link
+            to="/contact"
+            className="text-xl text-[#718096] font-normal hover:text-[#AAC1E3]"
+          >
             Contact
           </Link>
         </div>
         <div className="h-1/2 flex place-content-evenly  mt-8 sm:px-14">
-          <TwitterIcon className='cursor-pointer' />
-          <FacebookIcon className='cursor-pointer'/>
-          <GoogleIcon className='cursor-pointer'/>
+          <TwitterIcon className="cursor-pointer" />
+          <FacebookIcon className="cursor-pointer" />
+          <GoogleIcon className="cursor-pointer" />
         </div>
       </div>
     </div>

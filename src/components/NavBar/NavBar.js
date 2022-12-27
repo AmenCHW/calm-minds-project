@@ -18,7 +18,6 @@ function NavBar() {
   return (
     <nav className="flex px-8 lg:px-20 py-6 bg-[#EAF8F9] justify-between items-center">
       <div className="justify-between flex md:justify-start">
-
         <img
           src={NavBarIcon}
           alt="navbar icon"
@@ -31,12 +30,10 @@ function NavBar() {
         >
           Healing
         </Link>
-
       </div>
 
       {/* Deskop Menu */}
       <ul className="hidden lg:flex text-2xl">
-
         <li className="p-4 hover:text-[#2DD3E3] ">
           <Link to="/" className="focus:text-[#FEE89E]">
             Home
@@ -78,11 +75,9 @@ function NavBar() {
             </button>
           </Link>
         </li>
-
       </ul>
 
-
-      { /* Mobile & Tablet Menus */ }
+      {/* Mobile & Tablet Menus */}
 
       <button
         type="button"
@@ -104,7 +99,6 @@ function NavBar() {
         }
       >
         <ul className="pt-24 mx-auto text-center">
-
           <li className="p-4 hover:text-[#2DD3E3]">
             <Link
               to="/"
@@ -126,10 +120,15 @@ function NavBar() {
           </li>
 
           <li className="p-4 hover:text-[#2DD3E3]">
-             <button type="button" onClick={handleDropDownMenuClick}>
+            <button type="button" onClick={handleDropDownMenuClick}>
               About <i className={arrowIcon} />
-              {showDropDownMenu ? <DropDown setshowDropDownMenu={setshowDropDownMenu} closeMobileMenu={closeMobileMenu} /> : null}
-            </button>  
+              {showDropDownMenu ? (
+                <DropDown
+                  setshowDropDownMenu={setshowDropDownMenu}
+                  closeMobileMenu={closeMobileMenu}
+                />
+              ) : null}
+            </button>
           </li>
 
           <li className="p-4 hover:text-[#2DD3E3]">
@@ -156,7 +155,6 @@ function NavBar() {
               </button>
             </Link>
           </li>
-
         </ul>
       </div>
     </nav>
