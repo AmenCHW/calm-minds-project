@@ -26,7 +26,6 @@ function NavBar() {
   return (
     <nav className="flex px-8 lg:px-20 py-6 bg-[#EAF8F9] justify-between items-center">
       <div className="justify-between flex md:justify-start">
-
         <img
           src={NavBarIcon}
           alt="navbar icon"
@@ -39,12 +38,10 @@ function NavBar() {
         >
           Healing
         </Link>
-
       </div>
 
       { /* Deskop Menu */}
       <ul className="hidden lg:flex text-2xl">
-
         <li className="p-4 hover:text-[#2DD3E3] ">
           <Link to="/" className={active === '' ? 'text-[#FEE89E]' : 'text-black'}
             onClick={() => setActive('')}>
@@ -88,8 +85,8 @@ function NavBar() {
             </button>
           </Link>
         </li>
-
       </ul>
+
 
       { /* Mobile & Tablet Menus */}
       <button
@@ -112,7 +109,6 @@ function NavBar() {
         }
       >
         <ul className="pt-24 mx-auto text-center">
-
           <li className="p-4 hover:text-[#2DD3E3]">
             <Link
               to="/"
@@ -180,7 +176,6 @@ function NavBar() {
               </button>
             </Link>
           </li>
-
         </ul>
       </div>
     </nav>
