@@ -45,80 +45,83 @@ export default function Contact() {
         help!
       </p>
 
-      <div className="flex flex-wrap pt-14 justify-center lg:justify-between">
+      <div className='flex flex-wrap justify-center lg:flex-nowrap lg:justify-between mt-8 md:mt-16'>
+
         <div>
-          <p className="text-2xl font-semibold mb-4">Type of contact</p>
-          <div className="flex flex-col">
-            {checkboxObject.map((item) => {
-              return (
-                <label key={item.id} className="py-3 text-xl" htmlFor="for">
-                  <input type="checkbox" id="for" name="type" value="" />
-                  <span className="ml-2">{item.text}</span>
-                </label>
-              );
-            })}
-          </div>
+          <form>
+            <p className="text-2xl font-semibold mb-4">Type of contact</p>
+            <div className="flex flex-col">
+              {checkboxObject.map((item) => {
+                return (
+                  <label key={item.id} className="py-3 text-xl" htmlFor="for">
+                    <input type="checkbox" id="for" name="type" value="" />
+                    <span className="ml-2">{item.text}</span>
+                  </label>
+                );
+              })}
+            </div>
+
+
+            <label className=" flex flex-col mt-8 lg:mt-20" htmlFor="name">
+              <span className="mb-5 text-2xl font-normal">Full Name:</span>
+              <input
+                type="text"
+                id="name"
+                placeholder="Enter your full name here..."
+                className="border-2 rounded-lg h-16 w-auto border-[#E5E5E5] pl-4
+           placeholder:pl-1 "
+              />
+            </label>
+
+            <label className=" flex flex-col" htmlFor="email">
+              <span className="mb-5 text-2xl font-normal pt-5">Email:</span>
+              <input
+                type="text"
+                id="email"
+                placeholder="Enter your email address here..."
+                className="border-2 rounded-lg h-16 w-auto border-[#E5E5E5] pl-4
+           placeholder:pl-1"
+              />
+            </label>
+
+            <label className=" flex flex-col" htmlFor="details">
+              <span className="mb-5 text-2xl font-normal pt-5">Details:</span>
+              <input
+                type="text"
+                id="details"
+                placeholder="Enter your details here..."
+                className="border-2 rounded-lg h-40 w-auto sm:w-[500px] lg:w-[604px] border-[#E5E5E5] pl-4
+           placeholder:pl-1"
+              />
+            </label>
+
+            <button
+              type="submit"
+              value="Submit"
+              className="bg-[#2DD3E3] my-5 border-2 rounded-md px-10 py-2 border-[#2DD3E3] text-xl font-normal"
+            >
+              SUBMIT
+            </button>
+          </form>
         </div>
 
-        <img
-          className="mt-3 md:mt-0 w-auto h-auto lg:pl-3"
-          src={contactimage}
-          alt="contactimage"
-        />
-      </div>
+        <div className="flex flex-col">
 
-      <div className="flex flex-wrap justify-center lg:justify-between mt-12">
-        <form>
-          <label className=" flex flex-col" htmlFor="name">
-            <span className="mb-5 text-2xl font-normal">Full Name:</span>
-            <input
-              type="text"
-              id="name"
-              placeholder="Enter your full name here..."
-              className="border-2 rounded-lg h-16 w-auto border-[#E5E5E5] pl-4
-           placeholder:pl-1 "
-            />
-          </label>
+          <img
+            className="mt-3 md:mt-0 h-auto lg:h-96 xl:h-auto xl:w-auto"
+            src={contactimage}
+            alt="contactimage"
+          />
 
-          <label className=" flex flex-col" htmlFor="email">
-            <span className="mb-5 text-2xl font-normal pt-5">Email:</span>
-            <input
-              type="text"
-              id="email"
-              placeholder="Enter your email address here..."
-              className="border-2 rounded-lg h-16 w-auto border-[#E5E5E5] pl-4
-           placeholder:pl-1"
-            />
-          </label>
-
-          <label className=" flex flex-col" htmlFor="details">
-            <span className="mb-5 text-2xl font-normal pt-5">Details:</span>
-            <input
-              type="text"
-              id="details"
-              placeholder="Enter your details here..."
-              className="border-2 rounded-lg h-40 w-[260px] sm:w-[500px] lg:w-[604px] border-[#E5E5E5] pl-4
-           placeholder:pl-1"
-            />
-          </label>
-
-          <button
-            type="submit"
-            value="Submit"
-            className="bg-[#2DD3E3] my-5 border-2 rounded-md px-10 py-2 border-[#2DD3E3] text-xl font-normal"
-          >
-            SUBMIT
-          </button>
-        </form>
-
-        <div className="mx-auto my-auto flex justify-center">
-          <div className="flex flex-col bg-[#EAF8F9] border-2 border-[#EAF8F9] rounded-xl h-70 lg:h-auto p-8 w-auto sm:w-96 text-2xl sm:ml-2 ">
-            <h1 className="font-normal">Find Us At:</h1>
-            <p className="text-gray-500 pt-3">Nergiz Plaza</p>
-            <p className="text-gray-500">3rd Floor</p>
-            <p className="text-gray-500">Bakhtiyari Street 40m</p>
-            <p className="text-gray-500">Erbil, Iraq</p>
-            <p className="text-gray-500">44001</p>
+          <div className="mx-auto mt-9 lg:my-auto lg:align-middle">
+            <div className="flex flex-col bg-[#EAF8F9] border-2 border-[#EAF8F9] rounded-xl h-70 lg:h-auto p-8 w-auto sm:w-96 lg:w-80 xl:w-96 text-2xl sm:ml-2 ">
+              <h1 className="font-normal pb-3">Find Us At:</h1>
+              <p className="text-gray-500">Nergiz Plaza</p>
+              <p className="text-gray-500">3rd Floor</p>
+              <p className="text-gray-500">Bakhtiyari Street 40m</p>
+              <p className="text-gray-500">Erbil, Iraq</p>
+              <p className="text-gray-500">44001</p>
+            </div>
           </div>
         </div>
       </div>
