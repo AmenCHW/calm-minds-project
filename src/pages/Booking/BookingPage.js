@@ -19,7 +19,7 @@ function Booking() {
             What Type Of Counseling Are You Looking For?
           </h1>
 
-          <div className='text-3xl font-normal border-2 border-[#E5E5E5] rounded-md py-3'>
+          {/* <div className='text-3xl font-normal border-2 border-[#E5E5E5] rounded-md py-3'>
             <label htmlFor="exampleRadios1">
               <input
                 type="radio"
@@ -41,6 +41,11 @@ function Booking() {
               />
               Teen Counseling (For My Child)
             </label>
+          </div> */}
+
+          <div className='flex mt-10'>
+            <input type="radio" htmlFor="for" id="for" name="type" value="" className='' />
+            <p className="text-3xl">Individual Counseling</p>
           </div>
 
         </form>
