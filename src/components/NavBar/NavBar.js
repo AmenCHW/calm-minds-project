@@ -109,7 +109,6 @@ function NavBar() {
         </li>
       </ul>
 
-
       {/* Mobile & Tablet Menus */}
       <button
         type="button"
