@@ -22,7 +22,7 @@ function EditProfile() {
                     <div className="px-2 sm:px-0">
                         <form>
 
-                            <label className="flex flex-wrap justify-center sm:justify-between mt-10" htmlFor="name">
+                            <label className="flex flex-col items-center sm:flex-row sm:flex-wrap justify-center sm:justify-between mt-10" htmlFor="name">
                                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">Full Name</span>
                                 <input
                                     type="text"
@@ -31,7 +31,7 @@ function EditProfile() {
                                 />
                             </label>
 
-                            <div className=" flex flex-wrap justify-center mt-6 sm:justify-between">
+                            <div className=" flex flex-col items-center sm:flex-row sm:flex-wrap justify-center mt-6 sm:justify-between">
                                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">Education Level</span>
                                 <select className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md text-xl">
                                     <option value="select....">select...</option>
@@ -41,7 +41,7 @@ function EditProfile() {
                                 </select>
                             </div>
 
-                            <label className="flex flex-wrap justify-center sm:justify-between mt-6" htmlFor="hobbies">
+                            <label className="flex flex-col items-center sm:flex-row sm:flex-wrap justify-center sm:justify-between mt-6" htmlFor="hobbies">
                                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">Hobbies</span>
                                 <input
                                     type="text"
@@ -50,9 +50,9 @@ function EditProfile() {
                                 />
                             </label>
 
-                            <label className="flex flex-wrap justify-center sm:justify-between mt-6" htmlFor="family-size">
+                            <label className="flex flex-col items-center sm:flex-row sm:flex-wrap justify-center sm:justify-between mt-6" htmlFor="family-size">
                                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">Family Size</span>
-                                <div className="flex flex-wrap sm:flex-start w-1/2 lg:w-[470px]">
+                                <div className="flex sm:flex-wrap sm:flex-start w-1/2 lg:w-[470px]">
                                     <input
                                         type="number"
                                         id="family-size"
@@ -62,7 +62,7 @@ function EditProfile() {
                                 </div>
                             </label>
 
-                            <div className=" flex flex-wrap justify-center mt-6 sm:justify-between">
+                            <div className=" flex flex-col items-center sm:flex-row sm:flex-wrap justify-center mt-6 sm:justify-between">
                                 <span className=" mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">Gender</span>
                                 <select className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md text-xl">
                                     <option value="select....">select...</option>
@@ -71,7 +71,7 @@ function EditProfile() {
                                 </select>
                             </div>
 
-                            <label className="flex flex-wrap justify-center sm:justify-between mt-6" htmlFor="date">
+                            <label className="flex flex-col items-center justify-center sm:flex-row sm:flex-wrap sm:justify-between mt-6" htmlFor="date">
                                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">Birth Date</span>
                                 <input
                                     type="date"
@@ -80,7 +80,7 @@ function EditProfile() {
                                 />
                             </label>
 
-                            <label className="flex flex-wrap justify-center sm:justify-between mt-6" htmlFor="email">
+                            <label className="flex flex-col items-center justify-center sm:flex-row sm:flex-wrap sm:justify-between mt-6" htmlFor="email">
                                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">Email</span>
                                 <input
                                     type="email"
@@ -89,7 +89,7 @@ function EditProfile() {
                                 />
                             </label>
 
-                            <label className="flex flex-wrap justify-center sm:justify-between mt-6" htmlFor="phone">
+                            <label className="flex flex-col items-center sm:flex-row sm:flex-wrap justify-center sm:justify-between mt-6" htmlFor="phone">
                                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">Phone Number</span>
                                 <input
                                     type="tel"
@@ -98,7 +98,7 @@ function EditProfile() {
                                 />
                             </label>
 
-                            <label className="flex flex-wrap justify-center sm:justify-between mt-6" htmlFor="image">
+                            <label className="flex flex-col items-center sm:flex-row sm:flex-wrap justify-center sm:justify-between mt-6" htmlFor="image">
                                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">Upload ID</span>
                                 <input
                                     type="file"
@@ -111,7 +111,7 @@ function EditProfile() {
                                 Security
                             </h1>
 
-                            <label className="flex flex-wrap justify-center sm:justify-between mt-10" htmlFor="password">
+                            <label className="flex flex-col items-center sm:flex-row sm:flex-wrap justify-center sm:justify-between mt-10" htmlFor="password">
                                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">Password</span>
                                 <input
                                     type="password"
@@ -120,7 +120,7 @@ function EditProfile() {
                                 />
                             </label>
 
-                            <label className="flex flex-wrap justify-center sm:justify-between mt-6" htmlFor="password">
+                            <label className="flex flex-col items-center sm:flex-row sm:flex-wrap justify-center sm:justify-between mt-6" htmlFor="password">
                                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">Confirm Password</span>
                                 <input
                                     type="password"
@@ -145,6 +145,34 @@ function EditProfile() {
 
                         </form>
                     </div>
+
+                    <div>
+                        <h1 className="pt-16 text-3xl md:text-5xl format-normal leading-normal text-center md:text-left">
+                            Payment Methods & Tickets
+                        </h1>
+
+                        <div className="flex flex-col items-center sm:flex-row sm:flex-wrap pt-10 justify-center md:justify-start">
+
+                            <div className="flex flex-col">
+                                <p className="pb-3 text-xl text-center sm:text-start">
+                                    3 Cards Added
+                                </p>
+                                <button type="button" className="bg-[#2DD3E3] py-3 text-2xl border-2 rounded-lg border-[#2DD3E3] px-3 lg:px-0 lg:w-[220px]">
+                                    SHOW CARDS
+                                </button>
+                            </div>
+
+                            <div className="flex flex-col sm:ml-5 pt-5 sm:pt-0">
+                                <p className="pb-3 text-xl text-center sm:text-start">
+                                    10 Tickets Remaining
+                                </p>
+                                <button type="button" className="bg-[#2DD3E3] py-3 text-2xl border-2 rounded-lg border-[#2DD3E3] px-3 lg:px-0 lg:w-[220px]">
+                                    BUY TICKETS
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
