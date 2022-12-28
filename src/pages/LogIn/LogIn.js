@@ -1,6 +1,7 @@
 import React from 'react';
 import img from "./image 1.png"
 import fb from "./Style.png"
+import google from "./google.svg"
 
 function LogIn() {
   return (
@@ -9,9 +10,9 @@ function LogIn() {
         LOGIN
       </h1>
       
-      <div className='flex flex-wrap  mb-14 '>
+      <div className='flex flex-wrap  lg:my-10 '>
         <div>
-        <form className='shadow-lg  border-2 rounded-lg h-72 max-w-sm  px-4 py-3  '>
+        <form className='shadow-lg  border-2  border-t-none rounded-lg h-72 max-w-sm  px-4 py-3  '>
           <input
             type="text"
             placeholder=" Your Email "
@@ -25,11 +26,11 @@ function LogIn() {
             className="border-2 rounded h-14  border-[#E5E5E5]  my-5 mb-8 px-20 max-w-lg
            placeholder:pl-1"
           />
-          <button type='button' className="shadow-lg  bg-[#2DD3E3] hover:bg-blue-700 text-[#000000] 
+          <button type='button' className="shadow-lg bg-[#2DD3E3] hover:bg-[#66e0eb] border-[#2DD3E3] hover:border-[#41d6e4] text-[#000000] 
           border-2 font-bold mx-1 mb-5 py-2 px-14 rounded">
           Login
         </button>
-        <button  type='button' className="shadow-lg  bg-[#FFFFFF] hover:bg-blue-700 text-[#2DD3E3] 
+        <button  type='button' className="shadow-lg  bg-[#FFFFFF] hover:bg-[#aaf1f7] border-[#a2f4fb] hover:border-[#96eff7] text-[#2DD3E3] 
          border-2 font-bold mx-1 mb-5 py-2 px-14 rounded">
         Signup
       </button>
@@ -42,10 +43,10 @@ function LogIn() {
         
         <div className='flex justify-center '>
         <img src={fb} alt='loading' className='mr-6' />
-        <img src={fb} alt='loading' className='ml-6' />
+        <img src={google} alt='loading' className='ml-6' />
         </div>
         </div>
-        <div className='md:my-16'><img src={img} alt='loading' className='lg:ml-24 mb-36 max-w-xs lg:max-w-lg md:max-w-md' /></div>
+        <div className='md:mb-20 '><img src={img} alt='loading' className='lg:ml-32 mx-2 lg:mb-36 max-w-xs lg:max-w-5xl lg:h-96 md:max-w-md' /></div>
       </div>
     </div>
   );
