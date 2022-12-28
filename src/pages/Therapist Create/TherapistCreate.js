@@ -2,7 +2,7 @@ import React from 'react'
 
 function TherapistCreate() {
   return (
-    <div className='m-8 sm:m-8 flex-col'>
+    <div className=' flex-col mx-auto lg:max-w-7xl px-10 py-10'>
         <h2 className='mb-8 font-normal text-3xl text-center sm:text-left sm:text-5xl'>CREATE AN ACCOUNT</h2>
         <div>
             <div className='mb-4'>
