@@ -11,9 +11,11 @@ function DropDown({ onDropMenuLinkClick, active }) {
             <Link
               to={item.path}
               onClick={() => onDropMenuLinkClick(item)}
-              className={active === item.active ?
-                'block h-full w-full p-4 hover:bg-[#FEE89E] hover:text-white bg-[#EAF8F9] text-[#FEE89E]'
-                : 'block h-full w-full p-4 hover:bg-[#FEE89E] hover:text-white bg-[#EAF8F9] text-black'}
+              className={
+                active === item.active
+                  ? 'block h-full w-full p-4 hover:bg-[#FEE89E] hover:text-white bg-[#EAF8F9] text-[#FEE89E]'
+                  : 'block h-full w-full p-4 hover:bg-[#FEE89E] hover:text-white bg-[#EAF8F9] text-black'
+              }
             >
               {item.title}
             </Link>

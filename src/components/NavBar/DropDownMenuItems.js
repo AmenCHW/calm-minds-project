@@ -3,19 +3,19 @@ const DropDownMenuItems = [
     id: 1,
     title: 'About Us',
     path: '/about',
-    active: 'about'
+    active: 'about',
   },
   {
     id: 2,
     title: 'Team',
     path: '/team',
-    active: 'team'
+    active: 'team',
   },
   {
     id: 3,
     title: 'Careers',
     path: '/careers',
-    active: 'careers'
+    active: 'careers',
   },
 ];
 

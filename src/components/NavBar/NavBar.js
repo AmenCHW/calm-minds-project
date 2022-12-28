@@ -21,12 +21,11 @@ function NavBar() {
     setshowDropDownMenu(false);
     setShowMobileMenu(false);
     setActive(item.active);
-  }
+  };
 
   return (
     <nav className="flex px-8 lg:px-20 py-6 bg-[#EAF8F9] justify-between items-center">
       <div className="justify-between flex md:justify-start">
-
         <img
           src={NavBarIcon}
           alt="navbar icon"
@@ -39,22 +38,26 @@ function NavBar() {
         >
           Healing
         </Link>
-
       </div>
 
-      { /* Deskop Menu */}
+      {/* Deskop Menu */}
       <ul className="hidden lg:flex text-2xl">
-
         <li className="p-4 hover:text-[#2DD3E3] ">
-          <Link to="/" className={active === '' ? 'text-[#FEE89E]' : 'text-black'}
-            onClick={() => setActive('')}>
+          <Link
+            to="/"
+            className={active === '' ? 'text-[#FEE89E]' : 'text-black'}
+            onClick={() => setActive('')}
+          >
             Home
           </Link>
         </li>
 
         <li className="p-4 hover:text-[#2DD3E3]">
-          <Link to="/blogs" className={active === 'blogs' ? 'text-[#FEE89E]' : 'text-black'}
-            onClick={() => setActive('blogs')}>
+          <Link
+            to="/blogs"
+            className={active === 'blogs' ? 'text-[#FEE89E]' : 'text-black'}
+            onClick={() => setActive('blogs')}
+          >
             Blogs
           </Link>
         </li>
@@ -62,36 +65,51 @@ function NavBar() {
         <li className="p-4 hover:text-[#2DD3E3]">
           <button
             type="button"
-            className={active === 'about' || active === 'team' || active === 'careers' ? 'text-[#FEE89E]' : 'text-black'}
+            className={
+              active === 'about' || active === 'team' || active === 'careers'
+                ? 'text-[#FEE89E]'
+                : 'text-black'
+            }
             onClick={handleDropDownMenuClick}
           >
             About <i className={arrowIcon} />
-            {showDropDownMenu && <DropDown onDropMenuLinkClick={onDropMenuLinkClick} active={active} />}
+            {showDropDownMenu && (
+              <DropDown
+                onDropMenuLinkClick={onDropMenuLinkClick}
+                active={active}
+              />
+            )}
           </button>
         </li>
 
         <li className="p-4 hover:text-[#2DD3E3]">
-          <Link to="/contact" className={active === 'contact' ? 'text-[#FEE89E]' : 'text-black'}
-            onClick={() => setActive('contact')}>
+          <Link
+            to="/contact"
+            className={active === 'contact' ? 'text-[#FEE89E]' : 'text-black'}
+            onClick={() => setActive('contact')}
+          >
             Contact Us
           </Link>
         </li>
 
         <li className="p-4 ">
-          <Link to="/login" className={active === 'login' ? 'text-white bg-[#FEE89E]' : 'text-black bg-[#2DD3E3]'}
-            onClick={() => setActive('login')}>
-            <button
-              type="button"
-              className="rounded-md px-5 py-1 -mt-2"
-            >
+          <Link
+            to="/login"
+            className={
+              active === 'login'
+                ? 'text-white bg-[#FEE89E]'
+                : 'text-black bg-[#2DD3E3]'
+            }
+            onClick={() => setActive('login')}
+          >
+            <button type="button" className="rounded-md px-5 py-1 -mt-2">
               Log in
             </button>
           </Link>
         </li>
-
       </ul>
 
-      { /* Mobile & Tablet Menus */}
+      {/* Mobile & Tablet Menus */}
       <button
         type="button"
         className="block lg:hidden"
@@ -112,7 +130,6 @@ function NavBar() {
         }
       >
         <ul className="pt-24 mx-auto text-center">
-
           <li className="p-4 hover:text-[#2DD3E3]">
             <Link
               to="/"
@@ -142,11 +159,20 @@ function NavBar() {
           <li className="p-4 hover:text-[#2DD3E3]">
             <button
               type="button"
-              className={active === 'about' || active === 'team' || active === 'careers' ? 'text-[#FEE89E]' : 'text-black'}
+              className={
+                active === 'about' || active === 'team' || active === 'careers'
+                  ? 'text-[#FEE89E]'
+                  : 'text-black'
+              }
               onClick={handleDropDownMenuClick}
             >
               About <i className={arrowIcon} />
-              {showDropDownMenu && <DropDown onDropMenuLinkClick={onDropMenuLinkClick} active={active} />}
+              {showDropDownMenu && (
+                <DropDown
+                  onDropMenuLinkClick={onDropMenuLinkClick}
+                  active={active}
+                />
+              )}
             </button>
           </li>
 
@@ -180,7 +206,6 @@ function NavBar() {
               </button>
             </Link>
           </li>
-
         </ul>
       </div>
     </nav>

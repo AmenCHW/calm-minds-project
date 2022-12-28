@@ -9,7 +9,7 @@ function Communicate() {
       </h1>
 
       <div className="flex flex-wrap">
-        {CommunicateObject.map( item => {
+        {CommunicateObject.map((item) => {
           return (
             <div
               key={item.id}
