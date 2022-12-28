@@ -8,8 +8,8 @@ import { ReactComponent as GoogleIcon } from '../../icons/googleBlue.svg';
 
 function Signup() {
   return (
-    <div className="flex flex-col place-items-center  p-6 lg:flex-row lg:pt-24">
-      <img src={Image} alt="signup" className=" w-full lg:w-1/2 p-2 lg:p-6" />
+    <div className="flex flex-wrap-reverse place-items-center p-6 lg:flex-row lg:pt-24 mx-auto lg:max-w-7xl px-10 py-10">
+      <img src={Image} alt="signup" className=" w-full lg:w-1/2 p-2 lg:p-6 pt-12 lg:pt-0" />
       <div className='w-full lg:w-1/2 p-2 lg:p-6'>
         <h2 className='font-normal text-5xl text-center lg:text-left mb-8'>SIGNUP NOW</h2>
         <form className="lg:w-full px-8 py-10 flex flex-col bg-white rounded-md drop-shadow-xl">
