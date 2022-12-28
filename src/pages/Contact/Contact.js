@@ -35,25 +35,25 @@ const radioObject = [
 const addressObject = [
   {
     id: 1,
-    text: "Nergiz Plaza"
+    text: 'Nergiz Plaza',
   },
   {
     id: 2,
-    text: "3rd Floor"
+    text: '3rd Floor',
   },
   {
     id: 3,
-    text: "Bakhtiyari Street 40m"
+    text: 'Bakhtiyari Street 40m',
   },
   {
     id: 4,
-    text: "Erbil, Iraq"
+    text: 'Erbil, Iraq',
   },
   {
     id: 5,
-    text: 44001
-  }
-]
+    text: 44001,
+  },
+];
 
 export default function Contact() {
   return (
@@ -68,23 +68,27 @@ export default function Contact() {
         help!
       </p>
 
-      <div className='flex flex-wrap justify-center lg:flex-nowrap lg:justify-between mt-8 md:mt-16'>
-
+      <div className="flex flex-wrap justify-center lg:flex-nowrap lg:justify-between mt-8 md:mt-16">
         <div>
           <form>
             <p className="text-2xl font-semibold mb-4">Type of contact</p>
             <div className="flex flex-col">
-
               {radioObject.map((item) => {
                 return (
-                  <div className='flex py-3'>
-                    <input key={item.id} type="radio" htmlFor="for" id="for" name="type" value="" />
+                  <div className="flex py-3">
+                    <input
+                      key={item.id}
+                      type="radio"
+                      htmlFor="for"
+                      id="for"
+                      name="type"
+                      value=""
+                    />
                     <p className="ml-3 text-xl">{item.text}</p>
                   </div>
                 );
               })}
             </div>
-
 
             <label className=" flex flex-col mt-8 lg:mt-20" htmlFor="name">
               <span className="mb-5 text-2xl font-normal">Full Name:</span>
@@ -130,7 +134,6 @@ export default function Contact() {
         </div>
 
         <div className="flex flex-col">
-
           <img
             className="mt-3 md:mt-0 h-auto lg:h-96 xl:h-auto xl:w-auto"
             src={contactimage}
@@ -142,12 +145,13 @@ export default function Contact() {
               <h1 className="font-normal pb-3">Find Us At:</h1>
               {addressObject.map((address) => {
                 return (
-                  <p key={address.id} className="text-gray-500">{address.text}</p>
-                )
+                  <p key={address.id} className="text-gray-500">
+                    {address.text}
+                  </p>
+                );
               })}
             </div>
           </div>
-
         </div>
       </div>
     </div>

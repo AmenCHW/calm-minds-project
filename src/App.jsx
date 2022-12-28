@@ -10,6 +10,7 @@ import Contact from './pages/Contact/Contact';
 import LogIn from './pages/LogIn/LogIn';
 import Footer from './Footer';
 import BookingPage from './pages/Booking/BookingPage';
+import CounselorRequirement from './pages/Requirement/RequirementPage';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/bookingPage" element={<BookingPage />} />
+        <Route path="/RequirementPage" element={<CounselorRequirement />} />
       </Routes>
       <Footer />
     </div>
