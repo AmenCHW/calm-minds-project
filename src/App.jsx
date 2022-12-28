@@ -12,6 +12,7 @@ import Footer from './Footer';
 import BookingPage from './pages/Booking/BookingPage';
 import Signup from './pages/Signup/Signup';
 
+
 function App() {
   return (
     <div className="App">

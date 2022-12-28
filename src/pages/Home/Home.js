@@ -9,7 +9,6 @@ function Home() {
       <h1 className="mx-auto text-center text-7xl">Home</h1>
       <BookingSection />
       <Communicate />
-      <RecentBlogs />
     </div>
   );
 }
