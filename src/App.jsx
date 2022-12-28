@@ -10,12 +10,16 @@ import Contact from './pages/Contact/Contact';
 import LogIn from './pages/LogIn/LogIn';
 import Footer from './Footer';
 import BookingPage from './pages/Booking/BookingPage';
+import Signup from './pages/Signup/Signup';
+import CounselorRequirement from './pages/Requirement/RequirementPage';
+
 
 function App() {
   return (
     <div className="App">
       <NavBar />
       <Routes>
+        <Route path="/signup" element={<Signup />} />
         <Route path="/" element={<Home />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/about" element={<About />} />
@@ -24,6 +28,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/bookingPage" element={<BookingPage />} />
+        <Route path="/RequirementPage" element={<CounselorRequirement />} />
       </Routes>
       <Footer />
     </div>
