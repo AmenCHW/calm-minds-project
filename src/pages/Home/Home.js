@@ -4,6 +4,7 @@ import BookingSection from '../Booking/BookingSectionHome';
 import Counselor from './Counselor';
 import Ticket from './Ticket';
 
+
 function Home() {
   return (
     <div>
