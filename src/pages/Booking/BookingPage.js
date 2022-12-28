@@ -1,6 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
+import "./BookingRadioButtonStyle.css"
 
 function Booking() {
+  const [checked, setChecked] = useState('')
+  const isChecked = (value) => value === checked;
+  const onSelect = ({ target: { value } }) => {
+    // eslint-disable-next-line
+    console.log(value)
+    setChecked(value)
+  }
+
+  const radioButtons = [{
+    id: 'exampleRadios1',
+    value: 'option1',
+    label: 'Individual Counseling'
+  },
+  {
+    id: 'exampleRadios2',
+    value: 'option2',
+    label: 'Teen Counseling (For My Child)'
+  },
+  ]
+
   return (
     <div className='mx-auto lg:max-w-7xl px-10 py-10'>
 
@@ -13,40 +34,30 @@ function Booking() {
         to deal with in online therapy. It would help us match you with the most suitable therapist for you.
       </p>
 
-      <div className='p-6 mt-9 mb-12 mx-auto w-[700px] h-[557px] border-2 border-[#E5E5E5] rounded-md shadow-lg bg-white'>
+      <div className='p-6 mt-9 mb-12 mx-auto w-[700px] h-[500px] border-2 border-[#E5E5E5] rounded-md shadow-lg bg-white'>
         <form >
-          <h1 className='text-3xl font-normal pb-12 text-center'>
+          <h1 className='text-3xl font-normal pb-8 text-center'>
             What Type Of Counseling Are You Looking For?
           </h1>
 
-          {/* <div className='text-3xl font-normal border-2 border-[#E5E5E5] rounded-md py-3'>
-            <label htmlFor="exampleRadios1">
-              <input
-                type="radio"
-                name=""
-                id=""
-                value=""
-              />
-              Individual Counseling
-            </label>
-          </div>
-
-          <div className='text-3xl font-normal border-2 border-[#E5E5E5] rounded-md py-3 mt-5'>
-            <label htmlFor="exampleRadios1">
-              <input
-                type="radio"
-                name=""
-                id=""
-                value=""
-              />
-              Teen Counseling (For My Child)
-            </label>
-          </div> */}
-
-          <div className='flex mt-10'>
-            <input type="radio" htmlFor="for" id="for" name="type" value="" className='' />
-            <p className="text-3xl">Individual Counseling</p>
-          </div>
+          {radioButtons.map(({ id, value, label }) => {
+            return (
+              <div className="form-check pt-4 text-3xl font-normal" key={id}>
+                <input
+                  className='checked:bg-[#2DD3E3] checked:text-white checked:border-[#2DD3E3]'
+                  type="radio"
+                  name="exampleRadios"
+                  id={id}
+                  value={value}
+                  checked={isChecked(value)}
+                  onChange={onSelect}
+                />
+                <label className="form-check-label" htmlFor={id}>
+                  {label}
+                </label>
+              </div>
+            )
+          })}
 
         </form>
       </div>
