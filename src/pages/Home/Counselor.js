@@ -16,8 +16,8 @@ export default function Counselor() {
 
         <Link to="/RequirementPage" className="focus:text-[#FEE89E]">
           <button
-            className="my-4 bg-[#2DD3E3] hover:bg-blue-400 text-white 
-                  font-bold py-2 px-4 border-b-4 border-[#2DD3E3] hover:border-blue-500 rounded"
+            className="my-4 bg-[#2DD3E3] hover:bg-[#66e0eb] text-white 
+                  font-bold py-2 px-4 border-b-4 border-[#2DD3E3] hover:border-[#41d6e4] rounded"
             type="button"
           >
             Learn More

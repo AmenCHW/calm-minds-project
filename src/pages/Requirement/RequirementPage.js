@@ -6,7 +6,7 @@ const RequiredsObject = [
     id: 1,
     header:'RELIABLE INCOME',
     text: 'Over 10,000 people sign up on BetterHelp every day looking for a counselor to help with life’s challenges. BetterHelp can be your main source of income ("full time") or a supplement to your current work.',
-
+  },
   {
     id: 2,
     header:'FOCUS ON COUNSELING',
@@ -39,8 +39,8 @@ export default function Requirement() {
             <li className=" mt-2 text-xs  text-gray-500 ">Currently residing in the US</li>
             </ul>
             <button
-            className="my-4 bg-[#2DD3E3] hover:bg-blue-400 text-white 
-                  font-bold py-2 px-4 border-b-4 border-[#2DD3E3] hover:border-blue-500 rounded"
+            className="my-4 bg-[#2DD3E3] hover:bg-[#6ae8f3] text-white 
+                  font-bold py-2 px-4 border-b-4 border-[#2DD3E3] hover:border-[#54deeb] rounded"
             type="button"
           >
            GET STARTED

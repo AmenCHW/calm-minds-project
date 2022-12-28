@@ -17,8 +17,8 @@ export default function Ticket() {
           </h1>
           <p className="pt-5 text-gray-500"> 10 $</p>
           <button
-            className="my-4 bg-[#2DD3E3] hover:bg-blue-400 text-black 
-                  font-bold py-2 px-4 border-b-4 border-[#2DD3E3] hover:border-blue-500 rounded"
+            className="my-4 bg-[#2DD3E3] hover:bg-[#7decf6] text-black 
+                  font-bold py-2 px-4 border-b-4 border-[#2DD3E3] hover:border-[#42e4f3] rounded"
             type="button"
           >
             PURCHASE
@@ -31,9 +31,9 @@ export default function Ticket() {
           </h1>
           <p className="pt-5 text-gray-500"> 40 $</p>
           <button
-            className="my-4 bg-[#2DD3E3] hover:bg-blue-400 text-black 
-                  font-bold py-2 px-4 border-b-4 border-[#2DD3E3] hover:border-blue-500 rounded"
-            type="button"
+            className="my-4 bg-[#2DD3E3] hover:bg-[#7decf6] text-black 
+            font-bold py-2 px-4 border-b-4 border-[#2DD3E3] hover:border-[#42e4f3] rounded"
+      type="button"
           >
             PURCHASE
           </button>
@@ -45,9 +45,9 @@ export default function Ticket() {
           </h1>
           <p className="pt-5 text-gray-500"> 70 $</p>
           <button
-            className="my-4 bg-[#2DD3E3] hover:bg-blue-400 tex-black  
-                  font-bold py-2 px-4 border-b-4 border-[#2DD3E3] hover:border-blue-500 rounded"
-            type="button"
+            className="my-4 bg-[#2DD3E3] hover:bg-[#7decf6] text-black 
+            font-bold py-2 px-4 border-b-4 border-[#2DD3E3] hover:border-[#42e4f3] rounded"
+      type="button"
           >
             PURCHASE
           </button>
