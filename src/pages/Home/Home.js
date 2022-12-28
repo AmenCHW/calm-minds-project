@@ -1,7 +1,7 @@
 import React from 'react';
 import Communicate from './Communicate';
 import BookingSection from '../Booking/BookingSectionHome';
-import RecentBlogs from './RecentBlogs';
+
 
 function Home() {
   return (
