@@ -5,8 +5,6 @@ function Booking() {
   const [checked, setChecked] = useState('')
   const isChecked = (value) => value === checked;
   const onSelect = ({ target: { value } }) => {
-    // eslint-disable-next-line
-    console.log(value)
     setChecked(value)
   }
 
@@ -34,31 +32,35 @@ function Booking() {
         to deal with in online therapy. It would help us match you with the most suitable therapist for you.
       </p>
 
-      <div className='p-6 mt-9 mb-12 mx-auto w-[700px] h-[500px] border-2 border-[#E5E5E5] rounded-md shadow-lg bg-white'>
+      <div className='p-6 mt-9 mb-12 mx-auto w-auto sm:w-[700px] h-[500px] border-2 border-[#E5E5E5] rounded-md shadow-lg bg-white'>
         <form >
-          <h1 className='text-3xl font-normal pb-8 text-center'>
+          <h1 className='text-2xl sm:text-3xl font-normal pb-8 text-center'>
             What Type Of Counseling Are You Looking For?
           </h1>
 
-          {radioButtons.map(({ id, value, label }) => {
-            return (
-              <div className="form-check pt-4 text-3xl font-normal" key={id}>
-                <input
-                  className='checked:bg-[#2DD3E3] checked:text-white checked:border-[#2DD3E3]'
-                  type="radio"
-                  name="exampleRadios"
-                  id={id}
-                  value={value}
-                  checked={isChecked(value)}
-                  onChange={onSelect}
-                />
-                <label className="form-check-label" htmlFor={id}>
-                  {label}
-                </label>
-              </div>
-            )
-          })}
+          <div className='flex flex-col'>
+            {radioButtons.map(({ id, value, label }) => {
+              return (
+                <div className="form-check pt-4 text-2xl sm:text-3xl font-normal" key={id}>
+                  <input
+                    type="radio"
+                    name="exampleRadios"
+                    id={id}
+                    value={value}
+                    checked={isChecked(value)}
+                    onChange={onSelect}
+                  />
+                  <label className="form-check-label" htmlFor={id}>
+                    {label}
+                  </label>
+                </div>
+              )
+            })}
 
+            <button type="submit" className='bg-[#2DD3E3] text-2xl px-6 py-3 font-normal border-2 border-[#2DD3E3] rounded-md place-self-start'>
+              NEXT
+            </button>
+          </div>
         </form>
       </div>
 
