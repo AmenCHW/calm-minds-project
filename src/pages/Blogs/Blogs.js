@@ -7,7 +7,7 @@ function Blogs() {
       <EditProfile />
       <h1 className="mx-auto text-center text-7xl">Blogs</h1>
     </>
-  )
+  );
   // return <h1 className="mx-auto text-center text-7xl">Blogs</h1>;
 }
 

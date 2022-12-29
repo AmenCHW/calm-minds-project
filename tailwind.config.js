@@ -4,8 +4,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        poppins: "'Bitter', serif"
-      }
+        poppins: "'Bitter', serif",
+      },
     },
   },
   plugins: [],
