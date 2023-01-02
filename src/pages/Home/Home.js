@@ -5,11 +5,9 @@ import Counselor from './Counselor';
 import Ticket from './Ticket';
 import Welcome from '../Welcome/welcome';
 
-
 function Home() {
   return (
     <div>
-      <h1 className="mx-auto text-center text-7xl">Home</h1>
       <Welcome />
       <BookingSection />
       <Communicate />
