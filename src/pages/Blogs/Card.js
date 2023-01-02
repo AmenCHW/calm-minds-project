@@ -11,7 +11,8 @@ function Card({ image, title }) {
         p-2 w-50 h-50  w-3/4 lg:w-60 sm:h-auto bg-blue-200
         items-center
         drop-shadow-md	
-        rounded-md"
+        rounded-md
+        hover:shadow-lg"
     >
       <div  className="flex-col">
         <img src={image} alt="blog" />
