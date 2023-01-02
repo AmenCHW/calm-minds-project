@@ -7,26 +7,26 @@ import google from "./google.svg"
 
 function LogIn() {
   return (
-    <div className="mx-24 my-10  pl-3 ">
-      <h1 className="mx-24 my-10 text-3xl md:text-4xl lg:text-5xl pl-3 font-normal  sm:justify-center">
+    <div className="lg:mx-24 mx-1 my-10  pl-3  ">
+      <h1 className="lg:mx-24 mx-3 my-10 text-3xl md:text-4xl lg:text-5xl pl-3 font-normal  ">
         LOGIN
       </h1>
       
       <div className='flex flex-wrap  lg:my-10 '>
         <div>
-        <form className='shadow-lg  border-2  rounded-lg h-72 max-w-sm  px-4 py-3  border-t-0 '>
+        <form className='shadow-lg  border-2  rounded-lg h-72 max-w-sm  px-4 py-3  border-t-0 mr-4 '>
           <input
             type="text"
-            placeholder=" Your Email "
-            className="border-2 rounded h-14  border-[#E5E5E5]  my-4 px-20 max-w-lg
-           placeholder:pl-1"
+            placeholder="Your Email "
+            className="border-2 rounded h-14  border-[#E5E5E5]  my-4 px-20 max-w-lg 
+           placeholder:pl-0"
           />
 
           <input
             type="text"
-            placeholder=" Your Password "
-            className="border-2 rounded h-14  border-[#E5E5E5]  my-5 mb-8 px-20 max-w-lg
-           placeholder:pl-1"
+            placeholder="Your Password "
+            className="border-2 rounded h-14  border-[#E5E5E5]  my-5 mb-8 px-20 max-w-lg 
+           placeholder:pl-0"
           />
           <button type='button' className="shadow-lg bg-[#2DD3E3] hover:bg-[#66e0eb] border-[#2DD3E3] hover:border-[#41d6e4] text-[#000000] 
           border-2 font-bold mx-1 mb-5 py-2 px-14 rounded">
@@ -49,10 +49,12 @@ function LogIn() {
         <img src={google} alt='loading' className='ml-6' />
         </div>
         </div>
-        <div className='md:mb-20  '><img src={img} alt='loading' className='lg:ml-32  lg:mb-36 max-w-xs lg:max-w-5xl lg:h-96 md:max-w-md' /></div>
+        <div className='  '><img src={img} alt='loading' className='lg:ml-2  ml-0 w-full   lg:h-96' /></div>
       </div>
     </div>
   );
 }
 
 export default LogIn;
+
+// lg:max-w-5xl  md:max-w-[30%]
