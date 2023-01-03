@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar';
 import Home from './pages/Home/Home';
 import Blogs from './pages/Blogs/Blogs';
+import Resources from './pages/Blogs/Resources';
 import About from './pages/About/About';
 import Team from './pages/Team/Team';
 import Careers from './pages/Careers/Careers';
@@ -14,13 +15,12 @@ import TherapistCreate from './pages/Therapist Create/TherapistCreate';
 import Signup from './pages/Signup/Signup';
 import CounselorRequirement from './pages/Requirement/RequirementPage';
 
-
-
 function App() {
   return (
     <div className="App">
       <NavBar />
       <Routes>
+        <Route path="/resources" element={<Resources />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/" element={<Home />} />
         <Route path="/blogs" element={<Blogs />} />
@@ -32,7 +32,6 @@ function App() {
         <Route path="/bookingPage" element={<BookingPage />} />
         <Route path="/therapist/create" element={<TherapistCreate />} />
         <Route path="/RequirementPage" element={<CounselorRequirement />} />
-
       </Routes>
       <Footer />
     </div>

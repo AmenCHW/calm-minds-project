@@ -1,9 +1,9 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from '@firebase/firestore';
-import 'firebase/auth'
+import 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDY-EfG2iUbCSILU2iQCAVXYjLmLCI4Pao",
+  apiKey: 'AIzaSyDY-EfG2iUbCSILU2iQCAVXYjLmLCI4Pao',
   authDomain: 'calm-minds-project.firebaseapp.com',
   projectId: 'calm-minds-project',
   storageBucket: 'calm-minds-project.appspot.com',
@@ -11,12 +11,11 @@ const firebaseConfig = {
   appId: '1:717780488615:web:36b6d97999c5170e8c2682',
   measurementId: 'G-QXZEMXZ3BL',
 };
-
 const app = initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
 const googleAuthProvider = new firebase.auth.googleAuthProvider();
 const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
 
-export { auth, googleAuthProvider, facebookAuthProvider }
+export { auth, googleAuthProvider, facebookAuthProvider };
 export const db = getFirestore(app);
