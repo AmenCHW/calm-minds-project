@@ -7,8 +7,8 @@ import Ticket from './Ticket';
 import Welcome from '../Welcome/welcome';
 
 function Home() {
-  const { typBtn } = useSelector((state) => state);
-  console.log(typBtn);
+  const { paragraph } = useSelector((state) => state);
+  console.log(paragraph);
   return (
     <div>
       <Welcome />
