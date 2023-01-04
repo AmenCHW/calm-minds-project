@@ -14,8 +14,6 @@ import TherapistCreate from './pages/Therapist Create/TherapistCreate';
 import Signup from './pages/Signup/Signup';
 import CounselorRequirement from './pages/Requirement/RequirementPage';
 
-
-
 function App() {
   return (
     <div className="App">
@@ -32,7 +30,6 @@ function App() {
         <Route path="/bookingPage" element={<BookingPage />} />
         <Route path="/therapist/create" element={<TherapistCreate />} />
         <Route path="/RequirementPage" element={<CounselorRequirement />} />
-
       </Routes>
       <Footer />
     </div>
