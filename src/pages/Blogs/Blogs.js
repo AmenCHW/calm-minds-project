@@ -10,7 +10,7 @@ function Blogs() {
   const handleOnChange = (event) => {
     const {target: {name: keyName, value}} = event;
 
-    console.log('handleOnChange:', keyName);
+    // console.log('handleOnChange:', keyName);
 
     setNewEmailInput((prev) => {
       // Copy the previous object (state) and only change the keyName that I want
@@ -22,7 +22,7 @@ function Blogs() {
   const handleSubmit = async (event) => {
     event.preventDefault();
    
-    console.log(newEmailInput);
+    // console.log(newEmailInput);
 
     await addDoc(collection(db, "subscribed-emails"), {
       ...newEmailInput // { "": muslim@gmail.com } => { "email": "muslim@gmail.com" }
