@@ -1,12 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Image from './SignupImage.png';
+import { UserAuth } from '../../context/AuthContext';
 import { ReactComponent as FacebookIcon } from '../../icons/facebookBlue.svg';
 import { ReactComponent as GoogleIcon } from '../../icons/googleBlue.svg';
 // import YearSelect from './YearSelect';
 // import MonthSelect from './MonthSelect';
 
 function Signup() {
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [, setError] = useState('')
+
+  const { createUser } = UserAuth();
+
+ const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    try {
+      await createUser(email, password);
+    } catch (error) {
+      setError(error.message);
+      console.log(error.message);
+    }
+  };
   return (
     <div className="flex flex-wrap-reverse place-items-center p-6 lg:flex-row lg:pt-24 mx-auto lg:max-w-7xl px-10 py-10">
       <img
@@ -18,7 +36,7 @@ function Signup() {
         <h2 className="font-normal text-5xl text-center lg:text-left mb-8">
           SIGNUP NOW
         </h2>
-        <form className="lg:w-full px-8 py-10 flex flex-col bg-white rounded-md drop-shadow-xl">
+        <form onSubmit={handleSubmit} className="lg:w-full px-8 py-10 flex flex-col bg-white rounded-md drop-shadow-xl">
           <div className="flex flex-col place-items-center lg:flex-row m-1">
             <input
               className="border border-[#D1DBE3] py-4 px-3.5  w-full mb-2 lg:mb-0 lg:mr-1"
@@ -32,8 +50,9 @@ function Signup() {
             />
           </div>
           <input
+            onChange={(e) => setEmail(e.target.value)}
             className="border border-[#D1DBE3] py-4 px-3.5 m-1"
-            type="text"
+            type="email"
             placeholder="Your Email"
           />
           <input
@@ -43,9 +62,10 @@ function Signup() {
           />
           <div className="flex flex-col place-items-center lg:flex-row m-1">
             <input
+            onChange={(e) => setPassword(e.target.value)}
               className="border border-[#D1DBE3] py-4 px-3.5  w-full mb-2 lg:mb-0 lg:mr-1"
-              type="text"
-              placeholder="Pssword"
+              type="password"
+              placeholder="Password"
             />
             <input
               className="border border-[#D1DBE3] py-4 px-3.5  w-full lg:ml-1"
@@ -74,14 +94,12 @@ function Signup() {
                 Log In
               </button>
             </Link>
-            <Link to="/signup">
               <button
                 className="w-28 h-12 md:w-48 md:h-16 border border-[#2DD3E3] font-medium text-2xl text-[#2DD3E3] rounded-md  hover:bg-cyan-100 focus:bg-[#2DD3E3] focus:text-black focus:shadow-xl"
-                type="button"
+                type="submit"
               >
                 Sign Up
               </button>
-            </Link>
           </div>
         </form>
         <div className="w-full flex mt-10 px-10">
