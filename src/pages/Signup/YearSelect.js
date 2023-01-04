@@ -15,7 +15,10 @@ function YearSelect() {
   };
   return (
     <div>
-      <select className="form--dob-year border border-[#D1DBE3] py-4 px-3.5" name="year">
+      <select
+        className="form--dob-year border border-[#D1DBE3] py-4 px-3.5"
+        name="year"
+      >
         <option value="0">Year</option>
         {generateYearOptions()}
       </select>
