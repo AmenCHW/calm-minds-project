@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Image from './SignupImage.png';
 import { UserAuth } from '../../context/AuthContext';
 import { ReactComponent as FacebookIcon } from '../../icons/facebookBlue.svg';
@@ -11,15 +11,16 @@ function Signup() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [, setError] = useState('')
-
+  const [, setError] = useState('');
   const { createUser } = UserAuth();
+  const navigate = useNavigate();
 
  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     try {
       await createUser(email, password);
+      navigate('/')
     } catch (error) {
       setError(error.message);
       console.log(error.message);
@@ -95,7 +96,7 @@ function Signup() {
               </button>
             </Link>
               <button
-                className="w-28 h-12 md:w-48 md:h-16 border border-[#2DD3E3] font-medium text-2xl text-[#2DD3E3] rounded-md  hover:bg-cyan-100 focus:bg-[#2DD3E3] focus:text-black focus:shadow-xl"
+                className="w-28 h-12 md:w-48 md:h-16 border border-[#2DD3E3] font-medium text-2xl rounded-md  hover:bg-[#aaf1f7] bg-[#2DD3E3] text-black focus:shadow-xl"
                 type="submit"
               >
                 Sign Up
