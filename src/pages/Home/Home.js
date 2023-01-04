@@ -6,7 +6,6 @@ import RecentBlogs from '../Blogs/RecentBlogs';
 import Counselor from './Counselor';
 import Ticket from './Ticket';
 
-
 function Home() {
   return (
     <div>
