@@ -1,10 +1,29 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { UserAuth } from '../../context/AuthContext';
 import img from './image 1.png';
 import fb from './Style.png';
 import google from './google.svg';
 
 function LogIn() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [, setError] = useState('');
+  const {signIn} = UserAuth();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('')
+    try{
+      await signIn(email, password)
+      navigate('/')
+    } catch (error){
+      setError(error.message);
+    }
+  }
+
+
   return (
     <div className="lg:mx-24 mx-1 my-10  pl-3  ">
       <h1 className="lg:mx-24 mx-3 my-10 text-3xl md:text-4xl lg:text-5xl pl-3 font-normal  ">
@@ -13,8 +32,9 @@ function LogIn() {
 
       <div className="flex flex-wrap  lg:my-10 ">
         <div>
-          <form className="shadow-lg  border-2  rounded-lg h-72 max-w-sm  px-4 py-3  border-t-0 mr-4 ">
+          <form onSubmit={handleSubmit} className="shadow-lg  border-2  rounded-lg h-72 max-w-sm  px-4 py-3  border-t-0 mr-4 ">
             <input
+            onChange={(e)=> setEmail(e.target.value)}
               type="text"
               placeholder="Your Email "
               className="border-2 rounded h-14  border-[#E5E5E5]  my-4 px-20 max-w-lg 
@@ -22,13 +42,14 @@ function LogIn() {
             />
 
             <input
+            onChange={(e) => setPassword(e.target.value)}
               type="text"
               placeholder="Your Password "
               className="border-2 rounded h-14  border-[#E5E5E5]  my-5 mb-8 px-20 max-w-lg 
            placeholder:pl-0"
             />
             <button
-              type="button"
+              type="submit"
               className="shadow-lg bg-[#2DD3E3] hover:bg-[#66e0eb] border-[#2DD3E3] hover:border-[#41d6e4] text-[#000000] 
           border-2 font-bold mx-1 mb-5 py-2 px-14 rounded"
             >
