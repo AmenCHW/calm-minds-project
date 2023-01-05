@@ -1,14 +1,23 @@
-import { createContext, useContext} from 'react';
+import { createContext, useContext } from 'react';
 import {
-  createUserWithEmailAndPassword, signInWithEmailAndPassword
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    GoogleAuthProvider,
+    signInWithPopup,
 } from 'firebase/auth';
 import { auth } from '../firebase-config';
 
-// ,signOut, onAuthStateChanged,
+// signInWithRedirect, signOut, onAuthStateChanged
 
 const UserContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
+
+    const googleSignIn = () => {
+        const provider = new GoogleAuthProvider();
+        signInWithPopup(auth, provider);
+        // signInWithRedirect(auth, provider)
+    };
 
     /* eslint-disable */
     const createUser = (email, password) => {
@@ -20,7 +29,7 @@ export const AuthContextProvider = ({ children }) => {
     }
 
     return (
-        <UserContext.Provider value={{createUser, signIn}}>
+        <UserContext.Provider value={{ createUser, signIn, googleSignIn }}>
             {children}
         </UserContext.Provider>
     )

@@ -9,19 +9,30 @@ function LogIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [, setError] = useState('');
-  const {signIn} = UserAuth();
+  const { signIn } = UserAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('')
-    try{
+    try {
       await signIn(email, password)
       navigate('/')
-    } catch (error){
+    } catch (error) {
       setError(error.message);
     }
   }
+
+  const { googleSignIn } = UserAuth();
+
+  const handleGoogleSignIn = async () => {
+    try {
+      await googleSignIn();
+    } catch (error) {
+      // eslint-disable-next-line
+      console.log(error);
+    }
+  };
 
 
   return (
@@ -34,7 +45,7 @@ function LogIn() {
         <div>
           <form onSubmit={handleSubmit} className="shadow-lg  border-2  rounded-lg h-72 max-w-sm  px-4 py-3  border-t-0 mr-4 ">
             <input
-            onChange={(e)=> setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               type="text"
               placeholder="Your Email "
               className="border-2 rounded h-14  border-[#E5E5E5]  my-4 px-20 max-w-lg 
@@ -42,7 +53,7 @@ function LogIn() {
             />
 
             <input
-            onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
               type="text"
               placeholder="Your Password "
               className="border-2 rounded h-14  border-[#E5E5E5]  my-5 mb-8 px-20 max-w-lg 
@@ -73,7 +84,7 @@ function LogIn() {
 
           <div className="flex justify-center ">
             <img src={fb} alt="loading" className="mr-6" />
-            <img src={google} alt="loading" className="ml-6" />
+            <button type="button" onClick={handleGoogleSignIn} ><img src={google} alt="loading" className="ml-6" /> </button>
           </div>
         </div>
         <div className="  ">
