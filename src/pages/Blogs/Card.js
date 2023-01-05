@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
+import { ref, listAll, getDownloadURL } from 'firebase/storage';
+import { storage } from '../../firebase-config';
 
-function Card({ image, title }) {
- 
+function Card({ title }) {
+  const [imageList, setImageList] = useState([]);
+  const imagesListRef = ref(storage, 'blogImages/');
+  useEffect(() => {
+    listAll(imagesListRef).then((response) => {
+      response.items.forEach((item) => {
+        getDownloadURL(item).then((url) => {
+          setImageList((prev) => [...prev, url]);
+        });
+      });
+    });
+  }, []);
+
   return (
     <div
       className="
@@ -14,10 +27,18 @@ function Card({ image, title }) {
         rounded-md
         hover:shadow-lg"
     >
-      <div  className="flex-col">
-        <img src={image} alt="blog" />
+      <div className="flex-col">
+        {imageList.map((image) => {
+          return (
+            <img
+              src={image}
+              alt=""
+              className="object-cover h-48 w-96 rounded-lg"
+            />
+          );
+        })}
         <h2 className="text-sm text-center mt-6">{title}</h2>
-        <div className="text-sm hover:cursor-pointer text-gray-500"/>
+        <div className="text-sm hover:cursor-pointer text-gray-500" />
       </div>
     </div>
   );
