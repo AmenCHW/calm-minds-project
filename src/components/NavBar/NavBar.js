@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+// import { UserAuth } from '../../context/AuthContext';
 import DropDown from './DropDown';
 import NavBarIcon from './NavBarIcon.png';
 
@@ -22,6 +23,18 @@ function NavBar() {
     setShowMobileMenu(false);
     setActive(item.active);
   };
+
+  // const { user, logOut } = UserAuth();
+  // eslint-disable-next-line
+  // console.log(UserAuth())
+
+  // const handleSignOut = async () => {
+  //   try {
+  //     await logOut()
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
 
   return (
     <nav className="flex px-8 lg:px-20 py-6 bg-[#EAF8F9] justify-between items-center">
@@ -107,7 +120,18 @@ function NavBar() {
             </button>
           </Link>
         </li>
+
+        {/* {user && <li className="p-4 hover:text-[#2DD3E3]">
+          <Link
+            to="/profile"
+            className={active === 'profile' ? 'text-[#FEE89E]' : 'text-black'}
+            onClick={() => setActive('profile')}
+          >
+            Profile
+          </Link>
+        </li>} */}
       </ul>
+
 
       {/* Mobile & Tablet Menus */}
       <button

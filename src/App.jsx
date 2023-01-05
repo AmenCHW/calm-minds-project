@@ -14,6 +14,7 @@ import TherapistCreate from './pages/Therapist Create/TherapistCreate';
 import Signup from './pages/Signup/Signup';
 import CounselorRequirement from './pages/Requirement/RequirementPage';
 import { AuthContextProvider } from './context/AuthContext';
+import EditProfile from './pages/EditProfile/EditProfile';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/bookingPage" element={<BookingPage />} />
           <Route path="/therapist/create" element={<TherapistCreate />} />
           <Route path="/RequirementPage" element={<CounselorRequirement />} />
+          <Route path="/profile" element={<EditProfile />} />
         </Routes> 
       </AuthContextProvider>
       

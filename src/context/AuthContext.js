@@ -1,22 +1,29 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     GoogleAuthProvider,
-    signInWithPopup,
+    signInWithPopup, signInWithRedirect,
+    onAuthStateChanged,
+    signOut
 } from 'firebase/auth';
 import { auth } from '../firebase-config';
-
-// signInWithRedirect, signOut, onAuthStateChanged
 
 const UserContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
 
+    const [user, setUser] = useState({});
+
     const googleSignIn = () => {
         const provider = new GoogleAuthProvider();
-        signInWithPopup(auth, provider);
-        // signInWithRedirect(auth, provider)
+
+        if ((window.innerWidth > 1024)) {
+            signInWithPopup(auth, provider);
+        } else {
+            signInWithRedirect(auth, provider);
+        }
+
     };
 
     /* eslint-disable */
@@ -28,8 +35,22 @@ export const AuthContextProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
 
+    const logOut = () => {
+        signOut(auth)
+    }
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
+            console.log('User', currentUser)
+        });
+        return () => {
+            unsubscribe();
+        };
+    }, []);
+
     return (
-        <UserContext.Provider value={{ createUser, signIn, googleSignIn }}>
+        <UserContext.Provider value={{ createUser, signIn, googleSignIn, user, logOut }}>
             {children}
         </UserContext.Provider>
     )

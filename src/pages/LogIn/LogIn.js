@@ -54,7 +54,7 @@ function LogIn() {
 
             <input
               onChange={(e) => setPassword(e.target.value)}
-              type="text"
+              type="password"
               placeholder="Your Password "
               className="border-2 rounded h-14  border-[#E5E5E5]  my-5 mb-8 px-20 max-w-lg 
            placeholder:pl-0"
