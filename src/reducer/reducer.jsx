@@ -3,7 +3,8 @@ const initalState = {
   paragraph: 'hogr',
 };
 
-const reducer = (action,state = initalState ) => {
+const reducer = (state = initalState, action = {}) => {
+  
   return state;
 };
 
