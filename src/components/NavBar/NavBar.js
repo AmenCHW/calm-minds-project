@@ -4,6 +4,7 @@ import DropDown from './DropDown';
 import NavBarIcon from './NavBarIcon.png';
 
 function NavBar() {
+
   const xIcon = 'fas fa-2x fa-times';
   const burgerMenuIcon = 'fas fa-2x fa-bars';
   const arrowIcon = 'fas fa-caret-down';
@@ -107,6 +108,7 @@ function NavBar() {
             </button>
           </Link>
         </li>
+
 
         <li className="p-4">
           <Link
