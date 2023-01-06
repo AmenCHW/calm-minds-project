@@ -15,7 +15,7 @@ function Signup() {
   const { createUser } = UserAuth();
   const navigate = useNavigate();
 
- const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     try {
@@ -25,6 +25,18 @@ function Signup() {
       setError(error.message);
     }
   };
+
+  const { googleSignIn } = UserAuth();
+
+  const handleGoogleSignIn = async () => {
+    try {
+      await googleSignIn();
+    } catch (error) {
+      // eslint-disable-next-line
+      console.log(error);
+    }
+  };
+
   return (
     <div className="flex flex-wrap-reverse place-items-center p-6 lg:flex-row lg:pt-24 mx-auto lg:max-w-7xl px-10 py-10">
       <img
@@ -62,7 +74,7 @@ function Signup() {
           />
           <div className="flex flex-col place-items-center lg:flex-row m-1">
             <input
-            onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
               className="border border-[#D1DBE3] py-4 px-3.5  w-full mb-2 lg:mb-0 lg:mr-1"
               type="password"
               placeholder="Password"
@@ -94,12 +106,12 @@ function Signup() {
                 Log In
               </button>
             </Link>
-              <button
-                className="w-28 h-12 md:w-48 md:h-16 border border-[#2DD3E3] font-medium text-2xl rounded-md  hover:bg-[#aaf1f7] bg-[#2DD3E3] text-black focus:shadow-xl"
-                type="submit"
-              >
-                Sign Up
-              </button>
+            <button
+              className="w-28 h-12 md:w-48 md:h-16 border border-[#2DD3E3] font-medium text-2xl rounded-md  hover:bg-[#aaf1f7] bg-[#2DD3E3] text-black focus:shadow-xl"
+              type="submit"
+            >
+              Sign Up
+            </button>
           </div>
         </form>
         <div className="w-full flex mt-10 px-10">
@@ -111,7 +123,7 @@ function Signup() {
         </div>
         <div className="w-full flex place-content-center gap-12 mt-4">
           <FacebookIcon className="cursor-pointer" />
-          <GoogleIcon className="cursor-pointer" />
+          <GoogleIcon className="cursor-pointer" onClick={handleGoogleSignIn} />
         </div>
       </div>
     </div>
