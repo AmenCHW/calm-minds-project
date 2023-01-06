@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar';
 import Home from './pages/Home/Home';
 import Blogs from './pages/Blogs/Blogs';
@@ -17,6 +17,7 @@ import CounselorRequirement from './pages/Requirement/RequirementPage';
 function App() {
   return (
     <div className="App">
+      <BrowserRouter>
       <NavBar />
       <Routes>
         <Route path="/signup" element={<Signup />} />
@@ -32,6 +33,7 @@ function App() {
         <Route path="/RequirementPage" element={<CounselorRequirement />} />
       </Routes>
       <Footer />
+      </BrowserRouter>
     </div>
   );
 }
