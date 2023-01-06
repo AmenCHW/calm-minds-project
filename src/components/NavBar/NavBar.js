@@ -4,7 +4,6 @@ import DropDown from './DropDown';
 import NavBarIcon from './NavBarIcon.png';
 
 function NavBar() {
-
   const xIcon = 'fas fa-2x fa-times';
   const burgerMenuIcon = 'fas fa-2x fa-bars';
   const arrowIcon = 'fas fa-caret-down';
@@ -93,7 +92,7 @@ function NavBar() {
           </Link>
         </li>
 
-        <li className="p-4">
+        <li className="p-4 ">
           <Link
             to="/login"
             className={
@@ -109,16 +108,15 @@ function NavBar() {
           </Link>
         </li>
 
-
         <li className="p-4">
           <Link
             to="/therapist/create"
             className={
-              active === 'therapist-create'
+              active === 'therapist/create'
                 ? 'text-white bg-[#FEE89E]'
                 : 'text-black bg-[#2DD3E3]'
             }
-            onClick={() => setActive('therapist-create')}
+            onClick={() => setActive('therapist/create')}
           >
             <button type="button" className="rounded-md px-5 py-1 -mt-2">
               Join our Therapists
@@ -228,10 +226,10 @@ function NavBar() {
           <li className="p-4 hover:text-[#2DD3E3]">
             <Link
               to="/therapist/create"
-              className={active === 'therapist-create' ? 'text-[#FEE89E]' : 'text-black'}
+              className={active === 'therapist/create' ? 'text-[#FEE89E]' : 'text-black'}
               onClick={() => {
                 closeMobileMenu();
-                setActive('therapist-create');
+                setActive('therapist/create');
               }}
             >
               <button
