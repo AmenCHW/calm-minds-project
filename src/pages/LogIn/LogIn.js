@@ -34,6 +34,19 @@ function LogIn() {
     }
   };
 
+  const { facebookSignIn } = UserAuth();
+  
+  const handleFacebookSignIn = async () => {
+    try {
+      await facebookSignIn();
+    } catch (error) {
+      // eslint-disable-next-line
+      alert("This account already exists")
+
+    }
+  };
+
+
 
   return (
     <div className="lg:mx-24 mx-1 my-10  pl-3  ">
@@ -83,7 +96,7 @@ function LogIn() {
           </div>
 
           <div className="flex justify-center ">
-            <img src={fb} alt="loading" className="mr-6" />
+           <button type='button' onClick={handleFacebookSignIn}> <img src={fb} alt="loading" className="mr-6"  /></button>
             <button type="button" onClick={handleGoogleSignIn} ><img src={google} alt="loading" className="ml-6" /> </button>
           </div>
         </div>
