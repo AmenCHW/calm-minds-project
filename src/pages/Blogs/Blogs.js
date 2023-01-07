@@ -1,15 +1,26 @@
-
 import React, { useEffect, useState } from "react"; 
 import { collection, addDoc,getDocs} from "firebase/firestore"; 
 import { ref, listAll, getDownloadURL } from 'firebase/storage';
 import { ReactComponent as SendIcon } from '../../icons/send.svg';
-import { db } from '../../firebase-config';
-//import { storage } from '../../firebase-config';
+import { db,storage } from '../../firebase-config';
+
 
 function Blogs() {
-
+  const [newEmailInput, setNewEmailInput] = useState({});
   const [imageList, setImageList] = useState([]);
   const imagesListRef = ref(storage, 'blogImages/');
+  const [blog, setBlog] = useState([]);
+  const userCollectionRef = collection(db, 'blogCollection');
+
+  useEffect(() => {
+    const fetchBlogImage = async () => {
+      const data = await getDocs(userCollectionRef);
+      setBlog(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
+
+    fetchBlogImage();
+  }, []);
+  // _________________showing Recommended blog images using List All and reference___________________________
   useEffect(() => {
     listAll(imagesListRef).then((response) => {
       response.items.forEach((item) => {
@@ -19,37 +30,21 @@ function Blogs() {
       });
     });
   }, []);
-  const [blog, setBlog] = useState([]);
-  const userCollectionRef = collection(db, 'blogCollection');
-  useEffect(() => {
-    const fetchBlogImage = async () => {
-      const data = await getDocs(userCollectionRef);
-      setBlog(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
+  
 
-    fetchBlogImage();
-  }, []);
-
-  const [newEmailInput, setNewEmailInput] = useState({});
+  // __________this handling subscribtion email input___________________
   const handleOnChange = (event) => {
     const {target: {name: keyName, value}} = event;
-
     // console.log('handleOnChange:', keyName);
-
-    setNewEmailInput((prev) => {
-      // Copy the previous object (state) and only change the keyName that I want
-      // prev is aka newMovieInput
+     setNewEmailInput((prev) => {
       return { ...prev, [keyName]: value };
     });
   };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
-   
     // console.log(newEmailInput);
-
     await addDoc(collection(db, "subscribed-emails"), {
-      ...newEmailInput // { "": muslim@gmail.com } => { "email": "muslim@gmail.com" }
+      ...newEmailInput // { "": muslim@gmail.com } => { "email": "muslim@gmail.com" }  key value shouldnot be empty so in email input we have name=email 
     });
     // Clear the form
     setNewEmailInput({
@@ -57,10 +52,10 @@ function Blogs() {
       
     });
   };
-
+   
   return (
-    <div>
-    <div className="mx-auto lg:max-w-7xl px-10 py-10">
+    <div className="mx-auto  px-10 py-10">
+    <div className="mx-auto lg:max-w-7xl ">
       <div className="rounded-lg bg-cover bg-center ">
         <img
           src="https://firebasestorage.googleapis.com/v0/b/calm-minds-project.appspot.com/o/blogImages%2FRectangle45.svg?alt=media&token=9eaa7a99-680b-4734-868c-cdf5899133e9"
@@ -86,12 +81,12 @@ function Blogs() {
     </div>
     
       {/* <EditProfile /> */}
-      <div className=' mx-4 my-10'>
-      <div className='py-10 px-2'>                                                                              
+      
+      <div className='py-10 px-10 ml-10'>                                                                              
        <h3 className='text-xl sm:text-xl md:text-3xl  pt-5 items-start '>SIGN UP FOR THE HEALING BLOG</h3>
        <p>A weekly, ad-free Blog that helps you stay in the know.</p>
       {/* _____________________subscribtion__________________________________________________________________________________________________- */}
-       <div className="mt-4 flex  sm:ml-0  justify-center">
+       <div className="mt-4 flex mx-2 ">
         <form  className='flex' onSubmit={handleSubmit}>
           <input
             className="p-2 border-2 lg:px-3 px-0 border-[#718096] rounded-l-md"
@@ -111,28 +106,25 @@ function Blogs() {
           </button>
           </form>
         </div>
-         {/* _____________________subscribtion___________________________________________________________________________________________________________ -*/}
-        <div> 
+         {/* _____________________Recommended blog images _________________________________________________________________________________ -*/}
+        <div className="mx-2"> 
           <h3 className='text-xl sm:text-xl md:text-3xl format-normal leading-normal pt-5 my-10'>RECOMMENED FOR YOU  </h3>
-          <div className="flex">
-        {imageList.map((image) => {
+          <div className="flex flex-wrap pr-5 py-2">
+          {imageList.slice(1, 3).map((image) => {
           return (
             <img
               src={image}
               alt=""
-              className="object-cover h-48 w-96 rounded-lg"
+              className="object-cover h-48 w-96 rounded-lg mr-3 mb-4"
             />
           );
         })}
-        {/* <h2 className="text-sm text-center mt-6">{title}</h2>
-        <div className="text-sm hover:cursor-pointer text-gray-500"/>
-        <div className="text-sm hover:cursor-pointer text-gray-500" /> */}
-      </div>
+          </div>
         </div>
       </div>
       </div>
       
-    </div>
+    
   );
   
 }
