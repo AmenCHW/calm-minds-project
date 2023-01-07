@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { UserAuth } from '../../context/AuthContext';
+import { UserAuth } from '../../context/AuthContext';  // TherapistAuth,
 import DropDown from './DropDown';
 import NavBarIcon from './NavBarIcon.png';
 
@@ -25,6 +25,7 @@ function NavBar() {
   };
 
   const { user, logOut } = UserAuth();
+  // const { therapist } = TherapistAuth();
   // eslint-disable-next-line 
   console.log(UserAuth())
 
@@ -145,6 +146,37 @@ function NavBar() {
               </button>
             </Link>
           </li>}
+
+        {/* {therapist ?
+          <li className="p-4"> <Link
+            to="/login"
+            className={
+              active === 'login'
+                ? 'text-white bg-[#FEE89E]'
+                : 'text-black bg-[#2DD3E3]'
+            }
+            onClick={() => setActive('login')}
+          > <button type="button"
+            onClick={handleLogOut}
+            className="rounded-md px-5 py-1 -mt-2 text-black bg-[#2DD3E3]">
+              Log out
+            </button></Link> </li>
+          :
+          <li className="p-4">
+            <Link
+              to="/therapist/create"
+              className={
+                active === 'therapist/create'
+                  ? 'text-white bg-[#FEE89E]'
+                  : 'text-black bg-[#2DD3E3]'
+              }
+              onClick={() => setActive('therapist/create')}
+            >
+              <button type="button" className="rounded-md px-5 py-1 -mt-2">
+                Join our Therapist
+              </button>
+            </Link>
+          </li>} */}
       </ul>
 
 
