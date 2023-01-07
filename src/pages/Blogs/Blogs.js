@@ -1,10 +1,24 @@
 
 import React, { useEffect, useState } from "react"; 
 import { collection, addDoc,getDocs} from "firebase/firestore"; 
+import { ref, listAll, getDownloadURL } from 'firebase/storage';
 import { ReactComponent as SendIcon } from '../../icons/send.svg';
 import { db } from '../../firebase-config';
+//import { storage } from '../../firebase-config';
 
 function Blogs() {
+
+  const [imageList, setImageList] = useState([]);
+  const imagesListRef = ref(storage, 'blogImages/');
+  useEffect(() => {
+    listAll(imagesListRef).then((response) => {
+      response.items.forEach((item) => {
+        getDownloadURL(item).then((url) => {
+          setImageList((prev) => [...prev, url]);
+        });
+      });
+    });
+  }, []);
   const [blog, setBlog] = useState([]);
   const userCollectionRef = collection(db, 'blogCollection');
   useEffect(() => {
@@ -15,6 +29,7 @@ function Blogs() {
 
     fetchBlogImage();
   }, []);
+
   const [newEmailInput, setNewEmailInput] = useState({});
   const handleOnChange = (event) => {
     const {target: {name: keyName, value}} = event;
@@ -99,6 +114,20 @@ function Blogs() {
          {/* _____________________subscribtion___________________________________________________________________________________________________________ -*/}
         <div> 
           <h3 className='text-xl sm:text-xl md:text-3xl format-normal leading-normal pt-5 my-10'>RECOMMENED FOR YOU  </h3>
+          <div className="flex">
+        {imageList.map((image) => {
+          return (
+            <img
+              src={image}
+              alt=""
+              className="object-cover h-48 w-96 rounded-lg"
+            />
+          );
+        })}
+        {/* <h2 className="text-sm text-center mt-6">{title}</h2>
+        <div className="text-sm hover:cursor-pointer text-gray-500"/>
+        <div className="text-sm hover:cursor-pointer text-gray-500" /> */}
+      </div>
         </div>
       </div>
       </div>
