@@ -13,14 +13,12 @@ import BookingPage from './pages/Booking/BookingPage';
 import TherapistCreate from './pages/Therapist Create/TherapistCreate';
 import Signup from './pages/Signup/Signup';
 import CounselorRequirement from './pages/Requirement/RequirementPage';
-import { AuthContextProvider } from './context/AuthContext';
 import EditProfile from './pages/EditProfile/EditProfile';
 
 function App() {
   return (
     <div className="App">
       <NavBar />
-      <AuthContextProvider>
         <Routes>
           <Route path="/signup" element={<Signup />} />
           <Route path="/" element={<Home />} />
@@ -35,8 +33,6 @@ function App() {
           <Route path="/RequirementPage" element={<CounselorRequirement />} />
           <Route path="/profile" element={<EditProfile />} />
         </Routes> 
-      </AuthContextProvider>
-      
       <Footer />
     </div>
   );
