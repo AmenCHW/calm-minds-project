@@ -31,11 +31,26 @@ function Signup() {
   const handleGoogleSignIn = async () => {
     try {
       await googleSignIn();
+      navigate('/')
     } catch (error) {
       // eslint-disable-next-line
       console.log(error);
     }
   };
+
+  const { facebookSignIn } = UserAuth();
+
+  const handleFacebookSignIn = async () => {
+    try {
+      await facebookSignIn();
+      navigate('/')
+    } catch (error) {
+      // eslint-disable-next-line
+      alert("This account already exists")
+
+    }
+  };
+
 
   return (
     <div className="flex flex-wrap-reverse place-items-center p-6 lg:flex-row lg:pt-24 mx-auto lg:max-w-7xl px-10 py-10">
@@ -122,7 +137,7 @@ function Signup() {
           <div className="w-2/5 border-t mt-2 border-[#2DD3E3]" />
         </div>
         <div className="w-full flex place-content-center gap-12 mt-4">
-          <FacebookIcon className="cursor-pointer" />
+          <FacebookIcon className="cursor-pointer " onClick={handleFacebookSignIn}/>
           <GoogleIcon className="cursor-pointer" onClick={handleGoogleSignIn} />
         </div>
       </div>

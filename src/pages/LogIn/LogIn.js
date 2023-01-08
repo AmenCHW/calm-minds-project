@@ -28,6 +28,7 @@ function LogIn() {
   const handleGoogleSignIn = async () => {
     try {
       await googleSignIn();
+      navigate('/')
     } catch (error) {
       // eslint-disable-next-line
       console.log(error);
@@ -39,6 +40,7 @@ function LogIn() {
   const handleFacebookSignIn = async () => {
     try {
       await facebookSignIn();
+      navigate('/')
     } catch (error) {
       // eslint-disable-next-line
       alert("This account already exists")
