@@ -8,13 +8,16 @@ import {
     signOut,
     FacebookAuthProvider
 } from 'firebase/auth';
-import { auth } from '../firebase-config';
+import { doc, setDoc } from "firebase/firestore";
+import { auth, db } from '../firebase-config';
 
 const UserContext = createContext();
+const TherapistContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
 
     const [user, setUser] = useState({});
+    const [therapist, setTherapist] = useState({})
 
     const googleSignIn = () => {
         const provider = new GoogleAuthProvider();
@@ -29,7 +32,39 @@ export const AuthContextProvider = ({ children }) => {
 
     /* eslint-disable */
     const createUser = (email, password) => {
-        return createUserWithEmailAndPassword(auth, email, password)
+        return createUserWithEmailAndPassword(auth, email, password).then(
+            async (result) => {
+                console.log(result)
+
+                try {
+                    const docRef = await setDoc(doc(db, "users", `${result.user.uid}`), {
+                        userId: `${result.user.uid}`
+                    });
+                    console.log("Document written with ID: ", docRef.id);
+                } catch (e) {
+                    console.error("Error adding document: ", e);
+                }
+
+            }
+        )
+    }
+
+    const createTherapist = (email, password) => {
+        return createUserWithEmailAndPassword(auth, email, password).then(
+            async (result) => {
+                console.log(result)
+
+                try {
+                    const docRef = await setDoc(doc(db, "Therapists", `${result.user.uid}`), {
+                        userId: `${result.user.uid}`
+                    });
+                    console.log("Document written with ID: ", docRef.id);
+                } catch (e) {
+                    console.error("Error adding document: ", e);
+                }
+
+            }
+        )
     }
 
     const signIn = (email, password) => {
@@ -55,13 +90,31 @@ export const AuthContextProvider = ({ children }) => {
         };
     }, []);
 
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentTherapist) => {
+            setTherapist(currentTherapist);
+            console.log('Therapist', currentTherapist)
+        });
+        return () => {
+            unsubscribe();
+        };
+    }, []);
+
     return (
-        <UserContext.Provider value={{ createUser, signIn, googleSignIn, user, logOut, facebookSignIn}}>
-            {children}
-        </UserContext.Provider>
+
+        <TherapistContext.Provider value={{ createTherapist, therapist }} >
+            <UserContext.Provider value={{ createUser, signIn, googleSignIn, user, logOut, facebookSignIn }}>
+                {children}
+            </UserContext.Provider>
+        </TherapistContext.Provider>
     )
 }
 
 export const UserAuth = () => {
     return useContext(UserContext)
+}
+
+
+export const TherapistAuth = () => {
+    return useContext(TherapistContext)
 }

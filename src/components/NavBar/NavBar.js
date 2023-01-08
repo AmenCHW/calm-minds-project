@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-// import { UserAuth } from '../../context/AuthContext';
+import { UserAuth } from '../../context/AuthContext';  // TherapistAuth,
 import DropDown from './DropDown';
 import NavBarIcon from './NavBarIcon.png';
 
@@ -24,17 +24,19 @@ function NavBar() {
     setActive(item.active);
   };
 
-  // const { user, logOut } = UserAuth();
-  // eslint-disable-next-line
-  // console.log(UserAuth())
+  const { user, logOut } = UserAuth();
+  // const { therapist } = TherapistAuth();
+  // eslint-disable-next-line 
+  console.log(UserAuth())
 
-  // const handleSignOut = async () => {
-  //   try {
-  //     await logOut()
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
+  const handleSignOut = async () => {
+    try {
+      await logOut()
+    } catch (error) {
+      // eslint-disable-next-line 
+      console.log(error)
+    }
+  }
 
   return (
     <nav className="flex px-8 lg:px-20 py-6 bg-[#EAF8F9] justify-between items-center">
@@ -105,8 +107,18 @@ function NavBar() {
           </Link>
         </li>
 
-        <li className="p-4 ">
+        {user && <li className="p-4 hover:text-[#2DD3E3]">
           <Link
+            to="/profile"
+            className={active === 'profile' ? 'text-[#FEE89E]' : 'text-black'}
+            onClick={() => setActive('profile')}
+          >
+            {user.displayName || 'Profile'}
+          </Link>
+        </li>}
+
+        {user ?
+          <li className="p-4"> <Link
             to="/login"
             className={
               active === 'login'
@@ -114,22 +126,57 @@ function NavBar() {
                 : 'text-black bg-[#2DD3E3]'
             }
             onClick={() => setActive('login')}
-          >
-            <button type="button" className="rounded-md px-5 py-1 -mt-2">
-              Log in
-            </button>
-          </Link>
-        </li>
+          > <button type="button" onClick={handleSignOut}
+            className="rounded-md px-5 py-1 -mt-2 text-black bg-[#2DD3E3]">
+              Log out
+            </button></Link> </li>
+          :
+          <li className="p-4">
+            <Link
+              to="/login"
+              className={
+                active === 'login'
+                  ? 'text-white bg-[#FEE89E]'
+                  : 'text-black bg-[#2DD3E3]'
+              }
+              onClick={() => setActive('login')}
+            >
+              <button type="button" className="rounded-md px-5 py-1 -mt-2">
+                Log in
+              </button>
+            </Link>
+          </li>}
 
-        {/* {user && <li className="p-4 hover:text-[#2DD3E3]">
-          <Link
-            to="/profile"
-            className={active === 'profile' ? 'text-[#FEE89E]' : 'text-black'}
-            onClick={() => setActive('profile')}
-          >
-            Profile
-          </Link>
-        </li>} */}
+        {/* {therapist ?
+          <li className="p-4"> <Link
+            to="/login"
+            className={
+              active === 'login'
+                ? 'text-white bg-[#FEE89E]'
+                : 'text-black bg-[#2DD3E3]'
+            }
+            onClick={() => setActive('login')}
+          > <button type="button"
+            onClick={handleLogOut}
+            className="rounded-md px-5 py-1 -mt-2 text-black bg-[#2DD3E3]">
+              Log out
+            </button></Link> </li>
+          :
+          <li className="p-4">
+            <Link
+              to="/therapist/create"
+              className={
+                active === 'therapist/create'
+                  ? 'text-white bg-[#FEE89E]'
+                  : 'text-black bg-[#2DD3E3]'
+              }
+              onClick={() => setActive('therapist/create')}
+            >
+              <button type="button" className="rounded-md px-5 py-1 -mt-2">
+                Join our Therapist
+              </button>
+            </Link>
+          </li>} */}
       </ul>
 
 
@@ -213,23 +260,54 @@ function NavBar() {
             </Link>
           </li>
 
-          <li className="p-4 hover:text-[#2DD3E3]">
+          {user && <li className="p-4 hover:text-[#2DD3E3]">
             <Link
+              to="/profile"
+              className={active === 'profile' ? 'text-[#FEE89E]' : 'text-black'}
+              onClick={() => {
+                closeMobileMenu();
+                setActive('profile');
+              }}
+            >
+              {user.displayName || 'Profile'}
+            </Link>
+          </li>}
+
+          {user ?
+            <li className="p-4"> <Link
               to="/login"
-              className={active === 'login' ? 'text-[#FEE89E]' : 'text-black'}
+              className={
+                active === 'login'
+                  ? 'text-white bg-[#FEE89E]'
+                  : 'text-black bg-[#2DD3E3]'
+              }
               onClick={() => {
                 closeMobileMenu();
                 setActive('login');
               }}
-            >
-              <button
-                type="button"
-                className=" bg-[#2DD3E3] rounded-md px-5 hover:bg-[#FEE89E] py-1"
+            > <button type="button" onClick={handleSignOut}
+              className="rounded-md px-5 py-1 -mt-2 text-black bg-[#2DD3E3]">
+                Log out
+              </button></Link> </li>
+            :
+            <li className="p-4 hover:text-[#2DD3E3]">
+              <Link
+                to="/login"
+                className={active === 'login' ? 'text-[#FEE89E]' : 'text-black'}
+                onClick={() => {
+                  closeMobileMenu();
+                  setActive('login');
+                }}
               >
-                Log in
-              </button>
-            </Link>
-          </li>
+                <button
+                  type="button"
+                  className=" bg-[#2DD3E3] rounded-md px-5 hover:bg-[#FEE89E] py-1"
+                >
+                  Log in
+                </button>
+              </Link>
+            </li>}
+
         </ul>
       </div>
     </nav>
