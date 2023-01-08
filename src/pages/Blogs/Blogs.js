@@ -124,10 +124,10 @@ function Blogs() {
 
                 {/* <img
                   src={blogs.coverImg}
-                  alt=""
+                  alt="" ...
                   className=" im1 object-cover h-48 w-96 rounded-lg mr-3 mb-4"
                   
-                /> */}
+                /> */} 
                 
               </div>
             );
