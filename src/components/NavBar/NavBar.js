@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { UserAuth } from '../../context/AuthContext';  // TherapistAuth,
+import { collection, getDocs } from "firebase/firestore";
+import { db } from '../../firebase-config';
+import { UserAuth } from '../../context/AuthContext';
 import DropDown from './DropDown';
 import NavBarIcon from './NavBarIcon.png';
+
 
 function NavBar() {
   const xIcon = 'fas fa-2x fa-times';
@@ -18,6 +21,8 @@ function NavBar() {
 
   const [active, setActive] = useState('');
 
+  const [usersArray, setUsersArray] = useState([]);
+
   const onDropMenuLinkClick = (item) => {
     setshowDropDownMenu(false);
     setShowMobileMenu(false);
@@ -25,9 +30,12 @@ function NavBar() {
   };
 
   const { user, logOut } = UserAuth();
-  // const { therapist } = TherapistAuth();
   // eslint-disable-next-line 
-  console.log(UserAuth())
+  //console.log("therapist sent", therapist)
+  // eslint-disable-next-line
+  // console.log('user sent', user.displayName)
+  // eslint-disable-next-line
+  { user && console.log('user sent', user) }
 
   const handleSignOut = async () => {
     try {
@@ -37,6 +45,28 @@ function NavBar() {
       console.log(error)
     }
   }
+
+  const fetchPost = async () => {
+    await getDocs(collection(db, "users"))
+      .then((querySnapshot) => {
+        const usersIds = querySnapshot.docs
+          .map((doc) => {
+            return doc.id;
+            // { ...doc.data(), id: doc.id }
+            // usersArray.push(doc.id)
+          });
+
+        setUsersArray(usersIds);
+      })
+
+
+    // eslint-disable-next-line
+    console.log('usersArray:', usersArray);
+  }
+
+  useEffect(() => {
+    fetchPost();
+  }, [])
 
   return (
     <nav className="flex px-8 lg:px-20 py-6 bg-[#EAF8F9] justify-between items-center">
@@ -107,15 +137,43 @@ function NavBar() {
           </Link>
         </li>
 
-        {user && <li className="p-4 hover:text-[#2DD3E3]">
-          <Link
-            to="/profile"
-            className={active === 'profile' ? 'text-[#FEE89E]' : 'text-black'}
-            onClick={() => setActive('profile')}
-          >
-            {user.displayName || 'Profile'}
-          </Link>
-        </li>}
+        {
+          // eslint-disable-next-line
+          console.log("inside Jsx", usersArray)}
+        {
+          // eslint-disable-next-line
+          user &&
+          // eslint-disable-next-line
+          console.log("user uid", user.uid)}
+
+
+        {user && // eslint-disable-next-line
+          console.log('Does the array include user id? ', usersArray.length, user.uid, usersArray.includes(user.uid))
+        }
+
+
+        {user && ((usersArray.includes(user.uid)) ?
+          <li className="p-4 hover:text-[#2DD3E3]">
+            <Link
+              to="/profile"
+              className={active === 'profile' ? 'text-[#FEE89E]' : 'text-black'}
+              onClick={() => setActive('profile')}
+            >
+              {user.displayName || 'Profile'}
+            </Link>
+          </li>
+          :
+          <li className="p-4 hover:text-[#2DD3E3]">
+            <Link
+              to="/therapist/profile"
+              className={active === 'therapist/profile' ? 'text-[#FEE89E]' : 'text-black'}
+              onClick={() => setActive('therapist/profile')}
+            >
+              {user.displayName || 'Therapist Profile'}
+            </Link>
+          </li>)
+        }
+
 
         {user ?
           <li className="p-4"> <Link
@@ -147,7 +205,7 @@ function NavBar() {
             </Link>
           </li>}
 
-        {/* {therapist ?
+        {user ?
           <li className="p-4"> <Link
             to="/login"
             className={
@@ -157,7 +215,7 @@ function NavBar() {
             }
             onClick={() => setActive('login')}
           > <button type="button"
-            onClick={handleLogOut}
+            onClick={handleSignOut}
             className="rounded-md px-5 py-1 -mt-2 text-black bg-[#2DD3E3]">
               Log out
             </button></Link> </li>
@@ -176,8 +234,15 @@ function NavBar() {
                 Join our Therapist
               </button>
             </Link>
-          </li>} */}
+          </li>}
+
       </ul>
+
+
+
+
+
+
 
 
       {/* Mobile & Tablet Menus */}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar';
 import Home from './pages/Home/Home';
 import Blogs from './pages/Blogs/Blogs';
@@ -14,10 +14,12 @@ import TherapistCreate from './pages/Therapist Create/TherapistCreate';
 import Signup from './pages/Signup/Signup';
 import CounselorRequirement from './pages/Requirement/RequirementPage';
 import EditProfile from './pages/EditProfile/EditProfile';
+import TherapistProfile from './pages/Therapist Profile/TherapistProfile';
 
 function App() {
   return (
     <div className="App">
+      <BrowserRouter>
       <NavBar />
         <Routes>
           <Route path="/signup" element={<Signup />} />
@@ -32,8 +34,10 @@ function App() {
           <Route path="/therapist/create" element={<TherapistCreate />} />
           <Route path="/RequirementPage" element={<CounselorRequirement />} />
           <Route path="/profile" element={<EditProfile />} />
+          <Route path="/therapist/profile" element={<TherapistProfile />} />
         </Routes> 
       <Footer />
+      </BrowserRouter>
     </div>
   );
 }
