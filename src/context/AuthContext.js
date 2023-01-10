@@ -21,11 +21,56 @@ export const AuthContextProvider = ({ children }) => {
 
     const googleSignIn = () => {
         const provider = new GoogleAuthProvider();
-
         if ((window.innerWidth > 1024)) {
-            signInWithPopup(auth, provider);
+            signInWithPopup(auth, provider).then(
+                async (result) => {
+                    /* eslint-disable */
+                    console.log("google sign in result", result)
+
+                    try {
+                        const docRef = await setDoc(doc(db, "users", `${result.user.uid}`), {
+                            userId: `${result.user.uid}`,
+                            fullname: `${result.user.displayName}`,
+                            email: `${result.user.email}`,
+                            photoURL: `${result.user.photoURL}`,
+                            isTherapist: false,
+
+                        });
+                        /* eslint-disable */
+                        console.log("Document written with ID: ", docRef.id);
+                    } catch (e) {
+                        /* eslint-disable */
+                        console.error("Error adding document: ", e);
+                    }
+
+                }
+            )
+                ;
         } else {
-            signInWithRedirect(auth, provider);
+            signInWithRedirect(auth, provider).then(
+                async (result) => {
+                    /* eslint-disable */
+                    console.log("google sign in result", result)
+
+                    try {
+                        const docRef = await setDoc(doc(db, "users", `${result.user.uid}`), {
+                            userId: `${result.user.uid}`,
+                            fullname: `${result.user.displayName}`,
+                            email: `${result.user.email}`,
+                            photoURL: `${result.user.photoURL}`,
+                            isTherapist: false,
+
+                        });
+                        /* eslint-disable */
+                        console.log("Document written with ID: ", docRef.id);
+                    } catch (e) {
+                        /* eslint-disable */
+                        console.error("Error adding document: ", e);
+                    }
+
+                }
+            )
+                ;
         }
 
     };
@@ -38,9 +83,12 @@ export const AuthContextProvider = ({ children }) => {
 
                 try {
                     const docRef = await setDoc(doc(db, "users", `${result.user.uid}`), {
-                        userId: `${result.user.uid}`
+                        userId: `${result.user.uid}`,
+                        fullname: `${result.user.displayName}`,
+                        email,
+                        isTherapist: false,
                     });
-                    console.log("Document written with ID: ", docRef.id);
+                    // console.log("Document written with ID: ", docRef.id);
                 } catch (e) {
                     console.error("Error adding document: ", e);
                 }
@@ -56,9 +104,12 @@ export const AuthContextProvider = ({ children }) => {
 
                 try {
                     const docRef = await setDoc(doc(db, "Therapists", `${result.user.uid}`), {
-                        userId: `${result.user.uid}`
+                        userId: `${result.user.uid}`,
+                        fullname: `${result.user.displayName}`,
+                        email,
+                        isTherapist: true,
                     });
-                    console.log("Document written with ID: ", docRef.id);
+                    // console.log("Document written with ID: ", docRef.id);
                 } catch (e) {
                     console.error("Error adding document: ", e);
                 }
@@ -83,7 +134,7 @@ export const AuthContextProvider = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
-            console.log('User', currentUser)
+            // console.log('User', currentUser)
         });
         return () => {
             unsubscribe();
@@ -93,7 +144,7 @@ export const AuthContextProvider = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentTherapist) => {
             setTherapist(currentTherapist);
-            console.log('Therapist', currentTherapist)
+            // console.log('Therapist', currentTherapist)
         });
         return () => {
             unsubscribe();

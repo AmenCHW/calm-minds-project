@@ -7,6 +7,11 @@ import { TherapistAuth } from '../../context/AuthContext';
 function TherapistCreate() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [username, setUserName] = useState('');
+  const [city, setCity] = useState('');
+  const [licensenumber, setLicenseNumber] = useState('');
+  const [confirmpassword, setConfirmPassword] = useState('');
+
   const [, setError] = useState('');
   const { createTherapist } = TherapistAuth();
   const navigate = useNavigate();
@@ -35,6 +40,8 @@ function TherapistCreate() {
             </h2>
             <input
               type="text"
+              value={username}
+              onChange={(e) => setUserName(e.target.value)}
               className="border rounded-md p-2 w-full h-12 sm:w-96"
             />
           </div>
@@ -55,6 +62,8 @@ function TherapistCreate() {
             </h2>
             <input
               type="text"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
               className="border rounded-md p-2 w-full h-12 sm:w-96"
             />
           </div>
@@ -63,7 +72,9 @@ function TherapistCreate() {
               License Number
             </h2>
             <input
-              type="text"
+              type="number"
+              value={licensenumber}
+              onChange={(e) => setLicenseNumber(e.target.value)}
               className="border rounded-md p-2 w-full h-12 sm:w-96"
             />
           </div>
@@ -83,7 +94,9 @@ function TherapistCreate() {
               Confirm Password
             </h2>
             <input
-              type="text"
+              type="password"
+              value={confirmpassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
               className="border rounded-md p-2 w-full h-12 sm:w-96"
             />
           </div>
