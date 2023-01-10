@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { collection, getDocs } from "firebase/firestore";
+import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from '../../firebase-config';
 import { UserAuth } from '../../context/AuthContext';
 import DropDown from './DropDown';
@@ -21,7 +21,7 @@ function NavBar() {
 
   const [active, setActive] = useState('');
 
-  const [usersArray, setUsersArray] = useState([]);
+  const [istherapist, setIsTherapist] = useState(false)
 
   const onDropMenuLinkClick = (item) => {
     setshowDropDownMenu(false);
@@ -30,10 +30,7 @@ function NavBar() {
   };
 
   const { user, logOut } = UserAuth();
-  // eslint-disable-next-line 
-  //console.log("therapist sent", therapist)
-  // eslint-disable-next-line
-  // console.log('user sent', user.displayName)
+
   // eslint-disable-next-line
   { user && console.log('user sent', user) }
 
@@ -46,27 +43,46 @@ function NavBar() {
     }
   }
 
-  const fetchPost = async () => {
-    await getDocs(collection(db, "users"))
+
+  const fetchSingleUserData = async () => {
+    // eslint-disable-next-line
+    console.log('user.uid:', user.uid);
+    await getDocs(query(collection(db, "users"), where("userId", "==", user.uid)))
       .then((querySnapshot) => {
-        const usersIds = querySnapshot.docs
+        const usersData = querySnapshot.docs
           .map((doc) => {
-            return doc.id;
-            // { ...doc.data(), id: doc.id }
-            // usersArray.push(doc.id)
+            // eslint-disable-next-line 
+            console.log(doc.id, " => ", doc.data().isTherapist);
+            return doc.data();
           });
 
-        setUsersArray(usersIds);
+        if (usersData.length > 0) {
+          setIsTherapist(usersData[0].isTherapist);
+        }
       })
-
-
-    // eslint-disable-next-line
-    console.log('usersArray:', usersArray);
   }
 
   useEffect(() => {
-    fetchPost();
-  }, [])
+    if (user && user.uid)
+      fetchSingleUserData();
+  }, [user])
+
+  //   const fetchPost = async () => {
+  //     await getDocs(collection(db, "users", `${user.uid}`))
+  //       .then((querySnapshot) => {
+  //         const userInfo = querySnapshot.docs
+  //           .map((doc) => {
+  //             return { ...doc.data(), id: doc.id }
+  //           });
+
+  //         // eslint-disable-next-line
+  //         console.log("userinfo", userInfo)
+  //       })
+  //   }
+
+  // useEffect(() => {
+  //   fetchPost();
+  // }, [])
 
   return (
     <nav className="flex px-8 lg:px-20 py-6 bg-[#EAF8F9] justify-between items-center">
@@ -139,20 +155,25 @@ function NavBar() {
 
         {
           // eslint-disable-next-line
-          console.log("inside Jsx", usersArray)}
-        {
-          // eslint-disable-next-line
+          console.log("inside Jsx - istherapist", istherapist)
+        }
+
+        {// eslint-disable-next-line
           user &&
           // eslint-disable-next-line
           console.log("user uid", user.uid)}
 
 
-        {user && // eslint-disable-next-line
-          console.log('Does the array include user id? ', usersArray.length, user.uid, usersArray.includes(user.uid))
-        }
-
-
-        {user && ((usersArray.includes(user.uid)) ?
+        {user && (istherapist ?
+          <li className="p-4 hover:text-[#2DD3E3]">
+            <Link
+              to="/therapist/profile"
+              className={active === 'therapist/profile' ? 'text-[#FEE89E]' : 'text-black'}
+              onClick={() => setActive('therapist/profile')}
+            >
+              {user.displayName || 'Therapist Profile'}
+            </Link>
+          </li> :
           <li className="p-4 hover:text-[#2DD3E3]">
             <Link
               to="/profile"
@@ -162,20 +183,11 @@ function NavBar() {
               {user.displayName || 'Profile'}
             </Link>
           </li>
-          :
-          <li className="p-4 hover:text-[#2DD3E3]">
-            <Link
-              to="/therapist/profile"
-              className={active === 'therapist/profile' ? 'text-[#FEE89E]' : 'text-black'}
-              onClick={() => setActive('therapist/profile')}
-            >
-              {user.displayName || 'Therapist Profile'}
-            </Link>
-          </li>)
+        )
         }
 
 
-        {user ?
+        {user ? (!istherapist &&
           <li className="p-4"> <Link
             to="/login"
             className={
@@ -187,7 +199,7 @@ function NavBar() {
           > <button type="button" onClick={handleSignOut}
             className="rounded-md px-5 py-1 -mt-2 text-black bg-[#2DD3E3]">
               Log out
-            </button></Link> </li>
+            </button></Link> </li>)
           :
           <li className="p-4">
             <Link
@@ -205,20 +217,19 @@ function NavBar() {
             </Link>
           </li>}
 
-        {user ?
-          <li className="p-4"> <Link
-            to="/login"
-            className={
-              active === 'login'
-                ? 'text-white bg-[#FEE89E]'
-                : 'text-black bg-[#2DD3E3]'
-            }
-            onClick={() => setActive('login')}
-          > <button type="button"
-            onClick={handleSignOut}
-            className="rounded-md px-5 py-1 -mt-2 text-black bg-[#2DD3E3]">
-              Log out
-            </button></Link> </li>
+        {user ? (istherapist && <li className="p-4"> <Link
+          to="/login"
+          className={
+            active === 'login'
+              ? 'text-white bg-[#FEE89E]'
+              : 'text-black bg-[#2DD3E3]'
+          }
+          onClick={() => setActive('login')}
+        > <button type="button"
+          onClick={handleSignOut}
+          className="rounded-md px-5 py-1 -mt-2 text-black bg-[#2DD3E3]">
+            Log out
+          </button></Link> </li>)
           :
           <li className="p-4">
             <Link
@@ -325,20 +336,36 @@ function NavBar() {
             </Link>
           </li>
 
-          {user && <li className="p-4 hover:text-[#2DD3E3]">
-            <Link
-              to="/profile"
-              className={active === 'profile' ? 'text-[#FEE89E]' : 'text-black'}
-              onClick={() => {
-                closeMobileMenu();
-                setActive('profile');
-              }}
-            >
-              {user.displayName || 'Profile'}
-            </Link>
-          </li>}
+          {user && (istherapist ?
+            <li className="p-4 hover:text-[#2DD3E3]">
+              <Link
+                to="/therapist/profile"
+                className={active === 'therapist/profile' ? 'text-[#FEE89E]' : 'text-black'}
+                onClick={() => {
+                  closeMobileMenu();
+                  setActive('therapist/profile');
+                }
+                }
+              >
+                {user.displayName || 'Therapist Profile'}
+              </Link>
+            </li> :
+            <li className="p-4 hover:text-[#2DD3E3]">
+              <Link
+                to="/profile"
+                className={active === 'profile' ? 'text-[#FEE89E]' : 'text-black'}
+                onClick={() => {
+                  closeMobileMenu();
+                  setActive('profile');
+                }}
+              >
+                {user.displayName || 'Profile'}
+              </Link>
+            </li>
+          )
+          }
 
-          {user ?
+          {user ? (!istherapist &&
             <li className="p-4"> <Link
               to="/login"
               className={
@@ -353,7 +380,7 @@ function NavBar() {
             > <button type="button" onClick={handleSignOut}
               className="rounded-md px-5 py-1 -mt-2 text-black bg-[#2DD3E3]">
                 Log out
-              </button></Link> </li>
+              </button></Link> </li>)
             :
             <li className="p-4 hover:text-[#2DD3E3]">
               <Link
@@ -373,9 +400,39 @@ function NavBar() {
               </Link>
             </li>}
 
+          {user ? (istherapist && <li className="p-4"> <Link
+            to="/login"
+            className={
+              active === 'login'
+                ? 'text-white bg-[#FEE89E]'
+                : 'text-black bg-[#2DD3E3]'
+            }
+            onClick={() => { closeMobileMenu(); setActive('login'); }}
+          > <button type="button"
+            onClick={handleSignOut}
+            className="rounded-md px-5 py-1 -mt-2 text-black bg-[#2DD3E3]">
+              Log out
+            </button></Link> </li>)
+            :
+            <li className="p-4">
+              <Link
+                to="/therapist/create"
+                className={
+                  active === 'therapist/create'
+                    ? 'text-white bg-[#FEE89E]'
+                    : 'text-black bg-[#2DD3E3]'
+                }
+                onClick={() => { closeMobileMenu(); setActive('therapist/create'); }}
+              >
+                <button type="button" className="rounded-md px-5 py-1 -mt-2">
+                  Join our Therapist
+                </button>
+              </Link>
+            </li>}
+
         </ul>
       </div>
-    </nav>
+    </nav >
   );
 }
 
