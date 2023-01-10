@@ -1,10 +1,10 @@
-
 import React, { useEffect, useState } from "react"; 
 import { collection, addDoc,getDocs} from "firebase/firestore"; 
 import { ReactComponent as SendIcon } from '../../icons/send.svg';
 import { db } from '../../firebase-config';
 
 function Blogs() {
+
   const [blog, setBlog] = useState([]);
   const userCollectionRef = collection(db, 'blogCollection');
   useEffect(() => {

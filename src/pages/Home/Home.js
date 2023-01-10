@@ -1,7 +1,6 @@
 import React from 'react';
 import Communicate from './Communicate';
 import BookingSection from '../Booking/BookingSectionHome';
-
 import RecentBlogs from '../Blogs/RecentBlogs';
 import Counselor from './Counselor';
 import Ticket from './Ticket';
