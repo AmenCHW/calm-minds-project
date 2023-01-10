@@ -3,6 +3,7 @@ import { collection, addDoc, getDocs } from 'firebase/firestore';
 // import { ref, listAll, getDownloadURL } from 'firebase/storage';
 import { ReactComponent as SendIcon } from '../../icons/send.svg';
 import { db } from '../../firebase-config';
+// import RecentBlogs from './RecentBlogs';
 
 function Blogs() {
   const [newEmailInput, setNewEmailInput] = useState({});
@@ -144,9 +145,18 @@ function Blogs() {
         </div>
       </div>
       </div>
-
+      <div>
+      {/* {blog.map((blogg) => {
+        return (
+          <div key={blogg}>
+          <div key={blogg.blogtitle}>
+            <RecentBlogs imgs={blogg.coverImg}/>
+            </div></div>
+        );
+      })} */}
+    </div>
       
-
+      
       
     </div>
   );
