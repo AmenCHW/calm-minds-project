@@ -17,7 +17,7 @@ function RecentBlogs() {
     };
 
     fetchBlogImage();
-  console.log(blogs);
+  
   }, []);
 
 
