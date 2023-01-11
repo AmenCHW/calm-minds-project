@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection,  query, where,getDocs } from 'firebase/firestore';
+// import { collection, query, where, getDocs } from "firebase/firestore";
 // import Card from "./Card";
 // import {initalState} from "./testData";
 import { db } from '../../firebase-config';
@@ -8,7 +9,18 @@ function RecentBlogs() {
 
   // const [cards, setCards] = useState(initalState);
   const [blogs, setBlog] = useState([]);
+
   const userCollectionRef = collection(db, 'blogCollection');
+  const q = query(collection(db, "blogCollection"), where("coverImg", "==", true));
+
+        // const querySnapshot = await getDocs(q); ???
+        const querySnapshot = getDocs(q);
+        querySnapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          console.log(doc.id, " => ", doc.data());
+        });
+
+
 
   useEffect(() => {
     const fetchBlogImage = async () => {
@@ -138,7 +150,13 @@ function RecentBlogs() {
                 {/* <h1 className="text-2xl font-medium mb-12 mt-4 mx-2 my-2">
                   {blog.blogtitle}
                 </h1> */}
-
+                <Link
+            to="/blogs"
+            className={active === 'blogs' ? 'text-[#FEE89E]' : 'text-black'}
+            onClick={() => setActive('blogs')}
+          >
+            Blogs
+          </Link>
                 <img
                   src={blog.coverImg}
                   alt="" 
@@ -149,6 +167,8 @@ function RecentBlogs() {
               </div>
             );
           })}
+
+          
         {/* <div>
           
          {blog.map((blogg)=>{
