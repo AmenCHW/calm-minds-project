@@ -1,4 +1,4 @@
-import Blog from './blog.jpg';
+
 
 const CommunicateObject = [
   {
