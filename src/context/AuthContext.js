@@ -88,6 +88,7 @@ export const AuthContextProvider = ({ children }) => {
                         fullname: `${result.user.displayName}`,
                         email,
                         isTherapist: false,
+                        gender: true,
                     });
                     // console.log("Document written with ID: ", docRef.id);
                 } catch (e) {

@@ -10,19 +10,32 @@ import { ReactComponent as GoogleIcon } from '../../icons/googleBlue.svg';
 function Signup() {
 
   const [email, setEmail] = useState('');
+  const [confirmEmail, setConfirmEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [, setError] = useState('');
+  const [notMatching, setNotMatching] = useState('');
   const { createUser } = UserAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    try {
+
+    if(email === confirmEmail && password !== confirmPassword){
+      setNotMatching("Password is not matching")
+    } else if (email !== confirmEmail && password === confirmPassword){
+      setNotMatching("Email is not matching")
+    } else if (email !== confirmEmail && password !== confirmPassword){
+      setNotMatching("Password and Email are not matching")
+    } else if (email === confirmEmail && password === confirmPassword)
+    {try {
       await createUser(email, password);
       navigate('/')
     } catch (error) {
       setError(error.message);
+    }} else {
+      setNotMatching("Password or Email are not matching")
     }
   };
 
@@ -83,6 +96,7 @@ function Signup() {
             placeholder="Your Email"
           />
           <input
+            onChange={(e) => setConfirmEmail(e.target.value)}
             className="border border-[#D1DBE3] py-4 px-3.5 m-1"
             type="text"
             placeholder="Confirm Email"
@@ -95,11 +109,13 @@ function Signup() {
               placeholder="Password"
             />
             <input
+              onChange={(e) => setConfirmPassword(e.target.value)}
               className="border border-[#D1DBE3] py-4 px-3.5  w-full lg:ml-1"
-              type="text"
+              type="password"
               placeholder="Confirm Password"
             />
           </div>
+          <h2 className="text-red-500 py-4 px-3.5 m-1">{notMatching}</h2>
           <div className="flex flex-col w-full place-items-center py-4 px-1 lg:flex-row mb-1 place-content-around">
             <h2 className="lg:w-2/5">Birth Date:</h2>
             <input
