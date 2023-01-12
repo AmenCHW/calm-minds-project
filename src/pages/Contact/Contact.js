@@ -61,7 +61,9 @@ export default function Contact() {
   const [name,setName]=useState({});
   const [newEmailInput, setNewEmailInput] = useState({});
   const [details,setDetails]=useState({});
-  const [state, setState] = useState({});
+
+  //this  used for selected radio input
+  const [state, setState] = useState('');
 
   const handleOnChange = (event) => {
     const {
@@ -125,8 +127,8 @@ export default function Contact() {
                     <input
                       key={item.id}
                       type="radio"
-                      name="name"
-                    value={state.radio}
+                      name="state"
+                    value={state.state}
                     onChange={handleOnChange}
                       htmlFor="for"
                       id="for"
