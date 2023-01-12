@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { collection, addDoc} from 'firebase/firestore';
+import { db } from '../../firebase-config';
 import contactimage from './contactimage.png';
 
 const radioObject = [
@@ -55,7 +57,43 @@ const addressObject = [
   },
 ];
 
-export default function Contact() {
+export default function Contact() { 
+  const [name,setName]=useState({});
+  const [newEmailInput, setNewEmailInput] = useState({});
+  const [details,setDetails]=useState({});
+
+  const handleOnChange = (event) => {
+    const {
+      target: { name: keyName, value },
+    } = event;
+    // console.log('handleOnChange:', keyName);
+    setName((prev) => {
+      return { ...prev, [keyName]: value };
+    });
+    setNewEmailInput((prev) => {
+      return { ...prev, [keyName]: value };
+    });
+    setDetails((prev) => {
+      return { ...prev, [keyName]: value };
+    });
+  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    // console.log(newEmailInput);
+    await addDoc(collection(db, 'ContactUs'), {
+      ...name,
+      ...newEmailInput,
+      ...details, // { "":hi@gmail.com } => { "email": "hi@gmail.com" }  key value shouldnot be empty so in email input we have name=email
+    });
+    // Clear the form
+    setNewEmailInput({ email: '',
+    });
+    setDetails({ details: '',
+  });
+    setName({ name: '',
+  });
+  };
+
   return (
     <div className="mx-auto lg:max-w-7xl px-10 py-10">
       <h1 className="pt-5 text-3xl md:text-5xl format-normal leading-normal">
@@ -70,7 +108,7 @@ export default function Contact() {
 
       <div className="flex flex-wrap justify-center lg:flex-nowrap lg:justify-between mt-8 md:mt-16">
         <div>
-          <form>
+          <form  onSubmit={handleSubmit}>
             <p className="text-2xl font-semibold mb-4">Type of contact</p>
             <div className="flex flex-col">
               {radioObject.map((item) => {
@@ -94,6 +132,10 @@ export default function Contact() {
               <span className="mb-5 text-2xl font-normal">Full Name:</span>
               <input
                 type="text"
+                
+                name="name"
+                value={name.name}
+                onChange={handleOnChange}
                 id="name"
                 placeholder="Enter your full name here..."
                 className="border-2 rounded-lg h-16 w-auto border-[#E5E5E5] pl-4
@@ -104,7 +146,11 @@ export default function Contact() {
             <label className=" flex flex-col" htmlFor="email">
               <span className="mb-5 text-2xl font-normal pt-5">Email:</span>
               <input
-                type="text"
+                 type="email"
+                 name="email"
+                 value={newEmailInput.email}
+                 onChange={handleOnChange}
+
                 id="email"
                 placeholder="Enter your email address here..."
                 className="border-2 rounded-lg h-16 w-auto border-[#E5E5E5] pl-4
@@ -116,6 +162,10 @@ export default function Contact() {
               <span className="mb-5 text-2xl font-normal pt-5">Details:</span>
               <input
                 type="text"
+               
+                name="details"
+                value={details.details}
+                onChange={handleOnChange}
                 id="details"
                 placeholder="Enter your details here..."
                 className="border-2 rounded-lg h-40 w-auto sm:w-[500px] lg:w-[604px] border-[#E5E5E5] pl-4

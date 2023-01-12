@@ -30,6 +30,7 @@ function App() {
         <Route path="/bookingPage" element={<BookingPage />} />
         <Route path="/therapist/create" element={<TherapistCreate />} />
         <Route path="/RequirementPage" element={<CounselorRequirement />} />
+        {/* <Route path="/blogs/:blogs.id" element={<Blogs />} /> */}
       </Routes>
       <Footer />
     </div>

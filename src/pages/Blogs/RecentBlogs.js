@@ -1,36 +1,43 @@
 import React, { useEffect, useState } from 'react';
-import { collection,  query, where,getDocs } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 // import { collection, query, where, getDocs } from "firebase/firestore";
 // import Card from "./Card";
 // import {initalState} from "./testData";
+import { Link } from 'react-router-dom';
 import { db } from '../../firebase-config';
+
 
 function RecentBlogs() {
 
   // const [cards, setCards] = useState(initalState);
   const [blogs, setBlog] = useState([]);
 
-  const userCollectionRef = collection(db, 'blogCollection');
-  const q = query(collection(db, "blogCollection"), where("coverImg", "==", true));
-
-        // const querySnapshot = await getDocs(q); ???
-        const querySnapshot = getDocs(q);
-        querySnapshot.forEach((doc) => {
-          // doc.data() is never undefined for query doc snapshots
-          console.log(doc.id, " => ", doc.data());
-        });
+  // let { userId } = useParams();
+  
 
 
-
+  // blog.id
   useEffect(() => {
-    const fetchBlogImage = async () => {
-      const data = await getDocs(userCollectionRef);
-      setBlog(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    const fetchIds = async () => {
+      const userCollectionRef = collection(db, 'blogCollection','SZdRpqhsWwqlFlo1heJ0');
+   const docSnap=await getDocs(userCollectionRef)
+   console.log(docSnap)
     };
 
-    fetchBlogImage();
+    fetchIds()
   
   }, []);
+
+
+  // useEffect(() => {
+  //   const fetchBlogImage = async () => {
+  //     const data = await getDocs(userCollectionRef);
+  //     setBlog(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  //   };
+
+  //   fetchBlogImage();
+  
+  // }, []);
 
 
 
@@ -128,13 +135,18 @@ function RecentBlogs() {
                 {blog.blogtitle}
               </h1> */}
 
+              {/* Use the link Tag in order to reDirect the user to /blogs/doc.id
+              Link tag */}
+              <Link  
+                to="/blogs/: doc.id"
+                className="text-3xl md:text-4xl lg:text-5xl pl-3 font-normal"
+               >
               <img
                 src={blog.coverImg}
                 alt="" 
-                className=" im1 object-cover h-48 w-96 rounded-lg mr-3 mb-4"
-                
+                className=" im1 object-cover h-48 w-96 rounded-lg mr-3 mb-4" 
               /> 
-              
+              </Link>
             </div>
         
           // <Card key={blog.blogtitle} image={blog.coverImg} />
@@ -151,20 +163,20 @@ function RecentBlogs() {
                   {blog.blogtitle}
                 </h1> */}
                 <Link
-            to="/blogs"
-            className={active === 'blogs' ? 'text-[#FEE89E]' : 'text-black'}
-            onClick={() => setActive('blogs')}
-          >
-            Blogs
-          </Link>
+                  to="/blogs" 
+              >
+            
                 <img
                   src={blog.coverImg}
                   alt="" 
                   className=" im1 object-cover h-48 w-96 rounded-lg mr-3 mb-4"
                   
                 /> 
+                </Link>
                 
               </div>
+             
+          
             );
           })}
 
