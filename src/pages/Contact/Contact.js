@@ -62,7 +62,7 @@ export default function Contact() {
   const [newEmailInput, setNewEmailInput] = useState({});
   const [details,setDetails]=useState({});
 
-  //this  used for selected radio input
+  // this  used for selected radio input
   const [state, setState] = useState('');
 
   const handleOnChange = (event) => {
