@@ -61,6 +61,7 @@ export default function Contact() {
   const [name,setName]=useState({});
   const [newEmailInput, setNewEmailInput] = useState({});
   const [details,setDetails]=useState({});
+  const [state, setState] = useState({});
 
   const handleOnChange = (event) => {
     const {
@@ -76,6 +77,12 @@ export default function Contact() {
     setDetails((prev) => {
       return { ...prev, [keyName]: value };
     });
+
+    setState(states => {
+      const newState = { ...states, [name]: value }
+      // post newState to firebase
+     return newState
+  });
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -84,6 +91,7 @@ export default function Contact() {
       ...name,
       ...newEmailInput,
       ...details, // { "":hi@gmail.com } => { "email": "hi@gmail.com" }  key value shouldnot be empty so in email input we have name=email
+      ...state,
     });
     // Clear the form
     setNewEmailInput({ email: '',
@@ -117,11 +125,12 @@ export default function Contact() {
                     <input
                       key={item.id}
                       type="radio"
+                      name="name"
+                    value={state.radio}
+                    onChange={handleOnChange}
                       htmlFor="for"
                       id="for"
-                      name="type"
-                      value=""
-                    />
+                      />
                     <p className="ml-3 text-xl">{item.text}</p>
                   </div>
                 );
