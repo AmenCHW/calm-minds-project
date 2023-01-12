@@ -86,7 +86,7 @@ function NavBar() {
       </div>
 
       {/* Deskop Menu */}
-      <ul className="hidden lg:flex text-2xl">
+      <ul className="hidden xl:flex text-2xl">
         <li className="p-4 hover:text-[#2DD3E3] ">
           <Link
             to="/"
@@ -136,17 +136,6 @@ function NavBar() {
             Contact Us
           </Link>
         </li>
-
-        {/* {
-          // eslint-disable-next-line
-          console.log("inside Jsx - istherapist", istherapist)
-        }
-
-        {// eslint-disable-next-line
-          user &&
-          // eslint-disable-next-line
-          console.log("user uid", user.uid)} */}
-
 
         {user && (istherapist ?
           <li className="p-4 hover:text-[#2DD3E3]">
@@ -237,7 +226,7 @@ function NavBar() {
       {/* Mobile & Tablet Menus */}
       <button
         type="button"
-        className="block lg:hidden"
+        className="block xl:hidden"
         onClick={handleShowMobileMenu}
       >
         {showMobileMenu ? (
