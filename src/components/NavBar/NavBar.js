@@ -32,7 +32,7 @@ function NavBar() {
   const { user, logOut } = UserAuth();
 
   // eslint-disable-next-line
-  { user && console.log('user sent', user) }
+  // { user && console.log('user sent', user) }
 
   const handleSignOut = async () => {
     try {
@@ -46,13 +46,13 @@ function NavBar() {
 
   const fetchSingleUserData = async () => {
     // eslint-disable-next-line
-    console.log('user.uid:', user.uid);
+    // console.log('user.uid:', user.uid);
     await getDocs(query(collection(db, "users"), where("userId", "==", user.uid)))
       .then((querySnapshot) => {
         const usersData = querySnapshot.docs
           .map((doc) => {
             // eslint-disable-next-line 
-            console.log(doc.id, " => ", doc.data().isTherapist);
+            // console.log(doc.id, " => ", doc.data().isTherapist);
             return doc.data();
           });
 
@@ -67,22 +67,6 @@ function NavBar() {
       fetchSingleUserData();
   }, [user])
 
-  //   const fetchPost = async () => {
-  //     await getDocs(collection(db, "users", `${user.uid}`))
-  //       .then((querySnapshot) => {
-  //         const userInfo = querySnapshot.docs
-  //           .map((doc) => {
-  //             return { ...doc.data(), id: doc.id }
-  //           });
-
-  //         // eslint-disable-next-line
-  //         console.log("userinfo", userInfo)
-  //       })
-  //   }
-
-  // useEffect(() => {
-  //   fetchPost();
-  // }, [])
 
   return (
     <nav className="flex px-8 lg:px-20 py-6 bg-[#EAF8F9] justify-between items-center">
@@ -153,7 +137,7 @@ function NavBar() {
           </Link>
         </li>
 
-        {
+        {/* {
           // eslint-disable-next-line
           console.log("inside Jsx - istherapist", istherapist)
         }
@@ -161,7 +145,7 @@ function NavBar() {
         {// eslint-disable-next-line
           user &&
           // eslint-disable-next-line
-          console.log("user uid", user.uid)}
+          console.log("user uid", user.uid)} */}
 
 
         {user && (istherapist ?
@@ -242,18 +226,12 @@ function NavBar() {
               onClick={() => setActive('therapist/create')}
             >
               <button type="button" className="rounded-md px-5 py-1 -mt-2">
-                Join our Therapist
+                Join our Therapists
               </button>
             </Link>
           </li>}
 
       </ul>
-
-
-
-
-
-
 
 
       {/* Mobile & Tablet Menus */}
@@ -425,7 +403,7 @@ function NavBar() {
                 onClick={() => { closeMobileMenu(); setActive('therapist/create'); }}
               >
                 <button type="button" className="rounded-md px-5 py-1 -mt-2">
-                  Join our Therapist
+                  Join our Therapists
                 </button>
               </Link>
             </li>}
