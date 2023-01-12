@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { collection, getDocs } from 'firebase/firestore';
+import React, {  useState } from 'react';
+// import { collection, getDocs } from 'firebase/firestore';
 // import { collection, query, where, getDocs } from "firebase/firestore";
 // import Card from "./Card";
 // import {initalState} from "./testData";
 import { Link } from 'react-router-dom';
-import { db } from '../../firebase-config';
+// import { db } from '../../firebase-config';
 
 
 function RecentBlogs() {
@@ -17,16 +17,16 @@ function RecentBlogs() {
 
 
   // blog.id
-  useEffect(() => {
-    const fetchIds = async () => {
-      const userCollectionRef = collection(db, 'blogCollection','SZdRpqhsWwqlFlo1heJ0');
-   const docSnap=await getDocs(userCollectionRef)
-   console.log(docSnap)
-    };
+ // useEffect(() => {
+  //   const fetchIds = async () => {
+  //     const userCollectionRef = collection(db, 'blogCollection','SZdRpqhsWwqlFlo1heJ0');
+  //  const docSnap=await getDocs(userCollectionRef)
+  //  //console.log(docSnap)
+  //   };
 
-    fetchIds()
+  //   fetchIds()
   
-  }, []);
+  // }, []);
 
 
   // useEffect(() => {
