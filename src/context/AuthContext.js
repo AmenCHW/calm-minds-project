@@ -103,9 +103,12 @@ export const AuthContextProvider = ({ children }) => {
                 console.log(result)
 
                 try {
-                    const docRef = await setDoc(doc(db, "Therapists", `${result.user.uid}`), {
+                    const docRef = await setDoc(doc(db, "users", `${result.user.uid}`), {
                         userId: `${result.user.uid}`,
-                        fullname: `${result.user.displayName}`,
+                        fullname: " ",
+                        bio: " ",
+                        birthdate: " ",
+                        phonenumber: 0,
                         email,
                         isTherapist: true,
                     });
