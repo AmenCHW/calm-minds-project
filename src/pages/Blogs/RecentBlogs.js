@@ -1,24 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import { collection,  query, where,getDocs } from 'firebase/firestore';
+import React, {  useEffect, useState } from 'react';
+ import {  collection, getDocs } from 'firebase/firestore';
 // import { collection, query, where, getDocs } from "firebase/firestore";
-// import Card from "./Card";
-// import {initalState} from "./testData";
-import { db } from '../../firebase-config';
+
+import { Link } from 'react-router-dom';
+ import { db } from '../../firebase-config';
 
 function RecentBlogs() {
-
-  // const [cards, setCards] = useState(initalState);
   const [blogs, setBlog] = useState([]);
 
-  const userCollectionRef = collection(db, 'blogCollection');
-  const q = query(collection(db, "blogCollection"), where("coverImg", "==", true));
 
-        // const querySnapshot = await getDocs(q); ???
-        const querySnapshot = getDocs(q);
-        querySnapshot.forEach((doc) => {
-          // doc.data() is never undefined for query doc snapshots
-          console.log(doc.id, " => ", doc.data());
-        });
+
+  // ____________________________ blog id______________
+
+   const userCollectionRef = collection(db, 'blogCollection');
+  // const q = query(collection(db, "blogCollection"), where("coverImg", "==", true));
+
+       
+  //       const querySnapshot = getDocs(q);
+  //       querySnapshot.forEach((doc) => {
+  //         console.log(doc.id, " => ", doc.data());
+  //       });
 
 
 
@@ -36,7 +37,7 @@ function RecentBlogs() {
 
 
 
-  // slide
+  //  _________________________________________ Carsoul_____________________________________________________
   const handleRightClick = () => {
     const prevState = [...blogs];
     // find next inactive card index - top
@@ -127,14 +128,14 @@ function RecentBlogs() {
               {/* <h1 className="text-2xl font-medium mb-12 mt-4 mx-2 my-2">
                 {blog.blogtitle}
               </h1> */}
-
+            <Link to="/blogs/:id" > 
               <img
                 src={blog.coverImg}
                 alt="" 
                 className=" im1 object-cover h-48 w-96 rounded-lg mr-3 mb-4"
                 
               /> 
-              
+              </Link>
             </div>
         
           // <Card key={blog.blogtitle} image={blog.coverImg} />
@@ -150,19 +151,13 @@ function RecentBlogs() {
                 {/* <h1 className="text-2xl font-medium mb-12 mt-4 mx-2 my-2">
                   {blog.blogtitle}
                 </h1> */}
-                <Link
-            to="/blogs"
-            className={active === 'blogs' ? 'text-[#FEE89E]' : 'text-black'}
-            onClick={() => setActive('blogs')}
-          >
-            Blogs
-          </Link>
-                <img
-                  src={blog.coverImg}
-                  alt="" 
-                  className=" im1 object-cover h-48 w-96 rounded-lg mr-3 mb-4"
-                  
-                /> 
+                <Link to="/blogs/:id" > 
+                  <img
+                    src={blog.coverImg}
+                    alt="" 
+                    className=" im1 object-cover h-48 w-96 rounded-lg mr-3 mb-4" 
+                  />
+                </Link>
                 
               </div>
             );
