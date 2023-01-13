@@ -97,7 +97,7 @@ export const AuthContextProvider = ({ children }) => {
         )
     }
 
-    const createTherapist = (email, password) => {
+    const createTherapist = (email, password, username, city, licensenumber) => {
         return createUserWithEmailAndPassword(auth, email, password).then(
             async (result) => {
                 console.log(result)
@@ -111,6 +111,9 @@ export const AuthContextProvider = ({ children }) => {
                         phonenumber: 0,
                         email,
                         isTherapist: true,
+                        username: username,
+                        city: city,
+                        licensenumber: licensenumber
                     });
                     // console.log("Document written with ID: ", docRef.id);
                 } catch (e) {
