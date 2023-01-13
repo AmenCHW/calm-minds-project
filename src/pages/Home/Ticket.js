@@ -33,7 +33,7 @@ export default function Ticket() {
           <button
             className="my-4 bg-[#2DD3E3] hover:bg-[#7decf6] text-black 
             font-bold py-2 px-4 border-b-4 border-[#2DD3E3] hover:border-[#42e4f3] rounded"
-      type="button"
+            type="button"
           >
             PURCHASE
           </button>
@@ -47,7 +47,7 @@ export default function Ticket() {
           <button
             className="my-4 bg-[#2DD3E3] hover:bg-[#7decf6] text-black 
             font-bold py-2 px-4 border-b-4 border-[#2DD3E3] hover:border-[#42e4f3] rounded"
-      type="button"
+            type="button"
           >
             PURCHASE
           </button>
