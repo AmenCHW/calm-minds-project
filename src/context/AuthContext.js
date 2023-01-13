@@ -21,6 +21,7 @@ export const AuthContextProvider = ({ children }) => {
 
     const googleSignIn = () => {
         const provider = new GoogleAuthProvider();
+        provider.addScope('email');
         if ((window.innerWidth > 1024)) {
             signInWithPopup(auth, provider).then(
                 async (result) => {
@@ -87,6 +88,7 @@ export const AuthContextProvider = ({ children }) => {
                         fullname: `${result.user.displayName}`,
                         email,
                         isTherapist: false,
+                        gender: true,
                     });
                     // console.log("Document written with ID: ", docRef.id);
                 } catch (e) {
@@ -127,8 +129,62 @@ export const AuthContextProvider = ({ children }) => {
 
     const facebookSignIn = () => {
         const provider = new FacebookAuthProvider();
-        signInWithPopup(auth, provider)
-    }
+        if ((window.innerWidth > 1024)) {
+            signInWithPopup(auth, provider).then(
+                async (result) => {
+                    /* eslint-disable */
+                    console.log("google sign in result", result)
+
+                    try {
+                        const docRef = await setDoc(doc(db, "users", `${result.user.uid}`), {
+                            userId: `${result.user.uid}`,
+                            fullname: `${result.user.displayName}`,
+                            email: `${result.user.email}`,
+                            photoURL: `${result.user.photoURL}`,
+                            isTherapist: false,
+
+                        });
+                        /* eslint-disable */
+                        console.log("Document written with ID: ", docRef.id);
+                    } catch (e) {
+                        /* eslint-disable */
+                        console.error("Error adding document: ", e);
+                    }
+
+                }
+            )
+                ;
+        } else {
+            signInWithRedirect(auth, provider).then(
+                async (result) => {
+                    /* eslint-disable */
+                    console.log("google sign in result", result)
+
+                    try {
+                        const docRef = await setDoc(doc(db, "users", `${result.user.uid}`), {
+                            userId: `${result.user.uid}`,
+                            fullname: `${result.user.displayName}`,
+                            email: `${result.user.email}`,
+                            photoURL: `${result.user.photoURL}`,
+                            isTherapist: false,
+
+                        });
+                        /* eslint-disable */
+                        console.log("Document written with ID: ", docRef.id);
+                    } catch (e) {
+                        /* eslint-disable */
+                        console.error("Error adding document: ", e);
+                    }
+
+                }
+            )
+                ;
+        }
+
+    };
+
+    /* eslint-disable */
+    
 
     const logOut = () => {
         signOut(auth)
