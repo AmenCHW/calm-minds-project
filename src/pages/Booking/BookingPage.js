@@ -32,16 +32,16 @@ function Booking() {
         to deal with in online therapy. It would help us match you with the most suitable therapist for you.
       </p>
 
-      <div className='p-6 mt-9 mb-12 mx-auto w-auto sm:w-[700px] h-[500px] border-2 border-[#E5E5E5] rounded-md shadow-lg bg-white'>
+      <div className='p-6 mt-9 mb-12 mx-auto w-auto md:w-[700px]  h-[500px] border-2 border-[#E5E5E5] rounded-md shadow-lg bg-white'>
         <form >
-          <h1 className='text-2xl sm:text-3xl font-normal pb-8 text-center'>
+          <h1 className='text-1xl sm:text-3xl font-normal pb-8 text-center'>
             What Type Of Counseling Are You Looking For?
           </h1>
 
           <div className='flex flex-col'>
             {radioButtons.map(({ id, value, label }) => {
               return (
-                <div className="form-check pt-4 text-2xl sm:text-3xl font-normal" key={id}>
+                <div className="form-check pt-4 text-1xl sm:text-3xl font-normal" key={id}>
                   <input
                     type="radio"
                     name="exampleRadios"
@@ -57,7 +57,7 @@ function Booking() {
               )
             })}
 
-            <button type="submit" className='bg-[#2DD3E3] text-2xl px-6 py-3 font-normal border-2 border-[#2DD3E3] rounded-md place-self-start'>
+            <button type="submit" className='bg-[#2DD3E3] text-1xl sm:text-2xl px-6 py-3 font-normal border-2 border-[#2DD3E3] rounded-md place-self-start relative left-0 top-[12em] sm:top-[7em] md:top-[8em] lg:top-[8.5em]'>
               NEXT
             </button>
           </div>
