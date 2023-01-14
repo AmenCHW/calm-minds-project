@@ -12,21 +12,27 @@ const BlogDetails = () => {
        const ref=doc(db,'blogCollection',doc.id)
        const docs=await getDocs(ref)
        setBlog(docs);
+       console.log(docs)
       };
       fetchBlogId();
     }, []);
     
     return( 
     <div>
-      {blogs.map((blog) => {
+      {/* {blogs.map((blog) => {
             return (
               <div key={blog.id}>
                 <h1 className="text-6xl font-medium mb-12 mt-4">
                   {blog.blogtitle}
                 </h1> </div>
             );
-          })}
-      <h1> id   : {id}</h1> 
+            
+          })} */}
+           <div>
+                <h1 className="text-6xl font-medium mb-12 mt-4">
+                  {blogs.blogtitle}
+                </h1> </div>
+      <h1> id of   : {id}</h1> 
     </div>
      
     ) 
