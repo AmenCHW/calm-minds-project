@@ -1,29 +1,14 @@
 import React, {  useEffect, useState } from 'react';
  import {  collection, getDocs } from 'firebase/firestore';
-// import { collection, query, where, getDocs } from "firebase/firestore";
-
 import { Link } from 'react-router-dom';
  import { db } from '../../firebase-config';
 
+
 function RecentBlogs() {
   const [blogs, setBlog] = useState([]);
-
-
-
-  // ____________________________ blog id______________
-
+  // ____________________________ blog id_____________________________________________________________________________________________________________________________
    const userCollectionRef = collection(db, 'blogCollection');
-  // const q = query(collection(db, "blogCollection"), where("coverImg", "==", true));
-
-       
-  //       const querySnapshot = getDocs(q);
-  //       querySnapshot.forEach((doc) => {
-  //         console.log(doc.id, " => ", doc.data());
-  //       });
-
-
-
-  useEffect(() => {
+    useEffect(() => {
     const fetchBlogImage = async () => {
       const data = await getDocs(userCollectionRef);
       setBlog(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
@@ -32,12 +17,7 @@ function RecentBlogs() {
     fetchBlogImage();
   
   }, []);
-
-
-
-
-
-  //  _________________________________________ Carsoul_____________________________________________________
+  //  _________________________________________ Carsoul_____________________________________________________________________________________________________________
   const handleRightClick = () => {
     const prevState = [...blogs];
     // find next inactive card index - top
@@ -79,9 +59,7 @@ function RecentBlogs() {
         } 
           return -1;
        
-      })
-      
-      .pop(1).idx;
+      }) .pop(1).idx;
     // minimize pos
     prevState.find((f) => f.active === false).pos =
       Math.min.apply(
@@ -98,8 +76,7 @@ function RecentBlogs() {
     // update state
     setBlog(prevState);
   };
-
-  return (
+   return (
     <div className="flex flex-col md:flex-row place-content-center mb-4 ">
       <button
       type="button"
@@ -109,79 +86,21 @@ function RecentBlogs() {
         &#8249;
       </button>
       <div className="flex-col flex md:flex-row gap-2 sm:gap-4 place-items-center">
-      {blogs
-        .filter((f) => f.active === true)
-        .sort((a, b) => {
-            if (a.pos > b.pos) {
-              return 1;
-            } 
-              return -1;
-          
-          })
-          
-        .map((blog) => ( 
-         
-            <div className='object-cover h-60 w-96 rounded-lg mr-3 mb-4 '
-            // style={{backgroundImage: `url(${blog.coverImg})` }}
-            >
-              
-              {/* <h1 className="text-2xl font-medium mb-12 mt-4 mx-2 my-2">
-                {blog.blogtitle}
-              </h1> */}
-            <Link to="/blogs/:id" > 
-              <img
-                src={blog.coverImg}
-                alt="" 
-                className=" im1 object-cover h-48 w-96 rounded-lg mr-3 mb-4"
-                
-              /> 
-              </Link>
-            </div>
-        
-          // <Card key={blog.blogtitle} image={blog.coverImg} />
-        ))}</div>
-
-
-        {blogs.map((blog) => {
+      
+         {blogs.map((blog) => {
             return (
-              <div className='object-cover h-60 w-96 rounded-lg mr-3 mb-4 '
-              // style={{backgroundImage: `url(${blog.coverImg})` }}
-              >
-                
-                {/* <h1 className="text-2xl font-medium mb-12 mt-4 mx-2 my-2">
-                  {blog.blogtitle}
-                </h1> */}
-                <Link to="/blogs/:id" > 
+              <div className='object-cover h-60 w-96 rounded-lg mr-3 mb-4 '  >
+                <Link to= {`/blogs/${blog.id}`} > 
                   <img
                     src={blog.coverImg}
                     alt="" 
                     className=" im1 object-cover h-48 w-96 rounded-lg mr-3 mb-4" 
                   />
-                </Link>
-                
+                </Link>  
               </div>
             );
-          })}
-
-          
-        {/* <div>
-          
-         {blog.map((blogg)=>{
-          return(
-            <div key={blogg.blogtitle}>
-            <img
-            src={blogg.coverImg}
-            alt="" 
-            className=" im1 object-cover h-48 w-96 rounded-lg mr-3 mb-4"
-            
-          /></div>
-          
-          
-          
-          
-          )})}
-          
-          </div> */}
+          })}   
+          </div> 
       <button
       type="button"
         className="text-xl md:text-5xl hover:cursor-pointer border-2 pb-2 px-5 border-black rounded-md h-1/2 my-10 md:ml-4 mx-36 md:mx-0"
@@ -192,5 +111,37 @@ function RecentBlogs() {
     </div>
   );
 }
-
 export default RecentBlogs;
+
+
+
+// _____________________________________carsoul filter______________________________________________________________________________________________________
+// {blogs
+//   .filter((f) => f.active === true)
+//   .sort((a, b) => {
+//       if (a.pos > b.pos) {
+//         return 1;
+//       } 
+//         return -1;
+    
+//     })
+    
+//   .map((blog) => ( 
+   
+//       <div className='object-cover h-60 w-96 rounded-lg mr-3 mb-4 '
+//       key={blog.id}
+//       // style={{backgroundImage: `url(${blog.coverImg})` }}
+//       >
+        
+//         {/* <h1 className="text-2xl font-medium mb-12 mt-4 mx-2 my-2">
+//           {blog.blogtitle}
+//         </h1> */}
+//       <Link to= {`/blogs/${blog.id}`}> 
+//         <img
+//           src={blog.coverImg}
+//           alt="" 
+//           className=" im1 object-cover h-48 w-96 rounded-lg mr-3 mb-4"
+//         /> 
+//         </Link>
+//       </div>
+//   ))}
