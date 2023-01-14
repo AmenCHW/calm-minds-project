@@ -129,7 +129,7 @@ export default function Contact() {
                       type="radio"
                       name="state"
                     value={state.state}
-                    onChange={e=>setState(e.target.value)}
+                    onChange={handleOnChange}
                       htmlFor="for"
                       id="for"
                       />
