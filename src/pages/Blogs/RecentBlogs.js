@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
  import { db } from '../../firebase-config';
 
 
+
 function RecentBlogs() {
   const [blogs, setBlog] = useState([]);
   // ____________________________ blog id_____________________________________________________________________________________________________________________________
@@ -103,6 +104,7 @@ function RecentBlogs() {
                 </Link>  
               </div>
             );
+            
           })}   
           </div> 
 
