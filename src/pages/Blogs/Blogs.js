@@ -3,7 +3,7 @@ import { collection, addDoc, getDocs } from 'firebase/firestore';
 // import { ref, listAll, getDownloadURL } from 'firebase/storage';
 import { ReactComponent as SendIcon } from '../../icons/send.svg';
 import { db } from '../../firebase-config';
-// import RecentBlogs from './RecentBlogs';
+//  import BlogDetails from './BlogDetails';
 
 function Blogs() {
   const [newEmailInput, setNewEmailInput] = useState({});
@@ -79,6 +79,7 @@ function Blogs() {
               </div>
             );
           })}
+          
         </div>
         <h3 className="text-xl sm:text-xl md:text-2xl  mb-2 mt-4 items-start font-medium">
           SIGN UP FOR THE HEALING BLOG

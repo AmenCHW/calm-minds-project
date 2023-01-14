@@ -87,9 +87,13 @@ function RecentBlogs() {
       </button>
       <div className="flex-col flex md:flex-row gap-2 sm:gap-4 place-items-center">
       
+
+      
          {blogs.map((blog) => {
             return (
-              <div className='object-cover h-60 w-96 rounded-lg mr-3 mb-4 '  >
+              <div className='object-cover h-60 w-96 rounded-lg mr-3 mb-4 ' 
+              key={blog.id}
+               >
                 <Link to= {`/blogs/${blog.id}`} > 
                   <img
                     src={blog.coverImg}
@@ -101,6 +105,8 @@ function RecentBlogs() {
             );
           })}   
           </div> 
+
+
       <button
       type="button"
         className="text-xl md:text-5xl hover:cursor-pointer border-2 pb-2 px-5 border-black rounded-md h-1/2 my-10 md:ml-4 mx-36 md:mx-0"
@@ -112,6 +118,11 @@ function RecentBlogs() {
   );
 }
 export default RecentBlogs;
+
+
+
+
+
 
 
 
