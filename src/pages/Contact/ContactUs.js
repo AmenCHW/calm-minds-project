@@ -124,8 +124,9 @@ export default function  Contact() {
     // console.log(newEmailInput);
     await addDoc(collection(db, 'contact'), {
       ...newEmailInput,questions ,
-    }).then(() => {
-       alert('Message has been submitted');})
+    })
+    // .then(() => {
+    //   alert('Message has been submitted');})
     // Clear the form
     setNewEmailInput({ email: '',
     });
