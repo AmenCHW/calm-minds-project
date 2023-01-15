@@ -16,7 +16,7 @@ const BlogDetails = () => {
       const ref=doc(db,'blogCollection',params.id)
       const docs=await getDocs(ref)
       setBlog(docs);
-      console.log('docs')
+      // console.log('docs')
       // console.log('docs'+docs)
      };
      fetchBlogId();
