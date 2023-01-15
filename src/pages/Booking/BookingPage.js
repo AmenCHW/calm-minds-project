@@ -1,35 +1,24 @@
 import React, { useState } from 'react';
+import FirstSecondThirdForm from './FirstSecondThirdForm';
 import "./BookingRadioButtonStyle.css"
 
 function Booking() {
-  const [checked, setChecked] = useState('')
-  const isChecked = (value) => value === checked;
-  const onSelect = ({ target: { value } }) => {
-    setChecked(value)
-  }
-
-  const radioButtons = [{
-    id: 'Individual',
-    value: 'Individual',
-    label: 'Individual Counseling'
-  },
-  {
-    id: 'Teen',
-    value: 'Teen',
-    label: 'Teen Counseling (For My Child)'
-  },
-  ]
+  // const [checked, setChecked] = useState('')
+  // const isChecked = (value) => value === checked;
+  // const onSelect = ({ target: { value } }) => {
+  //   setChecked(value)
+  // }
 
   const [step, setStep] = useState(1)
 
-  // const [formData, setFormData] = useState({
-  //   counseling: "",
-  //   status: "",
-  //   therapybefore: "",
-  //   counselorqualities: "",
-  //   issues: "",
-  //   whatbringsyouhere: "",
-  // })
+  const [formData, setFormData] = useState({
+    counseling_type: "",
+    relationship_status: "",
+    ever_been_in_therapy_before: "",
+    counselor_qualities: "",
+    issues: "",
+    what_brings_you_here: "",
+  })
 
   const ChangePageTitle = () => {
     let pageTitle;
@@ -44,7 +33,7 @@ function Booking() {
       pageTitle = "YOUR REQUEST HAS BEEN SUBMITTED";
     }
     // eslint-disable-next-line
-    console.log(pageTitle)
+    // console.log(pageTitle)
     return pageTitle;
   }
 
@@ -61,32 +50,32 @@ function Booking() {
       pageText = "You will receive an email guiding you to book a date and time soon.";
     }
     // eslint-disable-next-line
-    console.log(pageText)
+    // console.log(pageText)
     return pageText;
   }
 
-  const ChangeFormQuestion = () => {
-    let formQuestion;
+  // const ChangeFormQuestion = () => {
+  //   let formQuestion;
 
-    if (step === 1) {
-      formQuestion = "What Type Of Counseling Are You Looking For?";
-    } else if (step === 2) {
-      formQuestion = "What Is Your Relationship Status?";
-    } else if (step === 3) {
-      formQuestion = "Have You Ever Been In Therapy Before?";
-    } else if (step === 4) {
-      formQuestion = "Are There Any Specific Qualities That You'd Like In A Counselor?";
-    } else if (step === 5) {
-      formQuestion = "Are There Any Issues You'd Like To Focus On?";
-    }
-    // eslint-disable-next-line
-    console.log(formQuestion)
-    return formQuestion;
-  }
+  //   if (step === 1) {
+  //     formQuestion = "What Type Of Counseling Are You Looking For?";
+  //   } else if (step === 2) {
+  //     formQuestion = "What Is Your Relationship Status?";
+  //   } else if (step === 3) {
+  //     formQuestion = "Have You Ever Been In Therapy Before?";
+  //   } else if (step === 4) {
+  //     formQuestion = "Are There Any Specific Qualities That You'd Like In A Counselor?";
+  //   } else if (step === 5) {
+  //     formQuestion = "Are There Any Issues You'd Like To Focus On?";
+  //   }
+  //   // eslint-disable-next-line
+  //   // console.log(formQuestion)
+  //   return formQuestion;
+  // }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  }
+
+  // eslint-disable-next-line
+  console.log("Form Data", formData)
 
   return (
     <div className='mx-auto lg:max-w-7xl px-10 py-10'>
@@ -99,39 +88,8 @@ function Booking() {
         {ChangePageText()}
       </p>
 
-      <div className='p-6 mt-9 mb-12 mx-auto w-auto md:w-[700px]  h-[500px] border-2 border-[#E5E5E5] rounded-md shadow-lg bg-white'>
-        <form onSubmit={handleSubmit}>
-          <h1 className='text-1xl sm:text-3xl font-normal pb-8 text-center md:text-left'>
-            {ChangeFormQuestion()}
-          </h1>
-
-          <div className='flex flex-col'>
-            {radioButtons.map(({ id, value, label }) => {
-              return (
-                <div className="form-check pt-4 text-1xl sm:text-3xl font-normal" key={id}>
-                  <input
-                    type="radio"
-                    name="exampleRadios"
-                    id={id}
-                    value={value}
-                    checked={isChecked(value)}
-                    onChange={onSelect}
-                  />
-                  <label className="form-check-label" htmlFor={id}>
-                    {label}
-                  </label>
-                </div>
-              )
-            })}
-
-            <button type="submit"
-              disabled={step >= 8}
-              onClick={() => { setStep((currentStep) => currentStep + 1) }}
-              className='bg-[#2DD3E3] text-1xl sm:text-2xl px-6 py-3 font-normal border-2 border-[#2DD3E3] rounded-md place-self-start relative left-0 top-[12em] sm:top-[7em] md:top-[8em] lg:top-[8.5em]'>
-              NEXT
-            </button>
-          </div>
-        </form>
+      <div>
+        <FirstSecondThirdForm step={step} setStep={setStep} formData={formData} setFormData={setFormData} />
       </div>
 
     </div>

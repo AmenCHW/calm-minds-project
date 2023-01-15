@@ -63,7 +63,7 @@ function TherapistCreate() {
     }
 
     // Email validation
-    const emailCondition = "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/";
+    const emailCondition = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
     if (!inputValues.email.trim()) {
       errors.email = "Email is required";
     } else if (!inputValues.email.match(emailCondition)) {
@@ -173,7 +173,7 @@ function TherapistCreate() {
               License Number
             </h2>
             <input
-              type="number"
+              type="text"
               name="licensenumber"
               value={inputValues.licensenumber}
               onChange={(e) => handleChange(e)}

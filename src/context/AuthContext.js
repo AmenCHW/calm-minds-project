@@ -184,7 +184,7 @@ export const AuthContextProvider = ({ children }) => {
     };
 
     /* eslint-disable */
-    
+
 
     const logOut = () => {
         signOut(auth)
