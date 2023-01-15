@@ -3,36 +3,7 @@ import { collection, addDoc} from 'firebase/firestore';
 import { db } from '../../firebase-config';
 import contactimage from './contactimage.png';
 
-const radioObject = [
-  {
-    id: 1,
-    text: 'I have a question about the service.',
-  },
-  {
-    id: 2,
-    text: "I'm a registered client and I need support.",
-  },
-  {
-    id: 3,
-    text: "I'm a counselor interested in joining.",
-  },
-  {
-    id: 4,
-    text: "I'm a registered counselor and I need support.",
-  },
-  {
-    id: 5,
-    text: 'I have a business-related inquiry.',
-  },
-  {
-    id: 6,
-    text: "I'm interested in Healing Online for my organization.",
-  },
-  {
-    id: 7,
-    text: 'I have a billing related question.',
-  },
-];
+
 
 const addressObject = [
   {
@@ -57,13 +28,79 @@ const addressObject = [
   },
 ];
 
-export default function Contact() { 
+export default function  Contact() { 
   const [name,setName]=useState({});
   const [newEmailInput, setNewEmailInput] = useState({});
   const [details,setDetails]=useState({});
-
+ 
+ 
+  const[questions , setQuestion] = useState("")
+  const[first,setFirst] = useState(true)
+  const[second,setSecond] = useState(true)
+  const[third,setThird] = useState(true)
+  const[fourth,setFourth] = useState(true)
+  const[fifth,setFifth] = useState(true)
+  const[sixth,setSixth] = useState(true)
+  const[seventh,setSeventh] = useState(true)
   // this  used for selected radio input
-  const [state, setState] = useState('');
+  
+
+
+
+  const handleOnChange1 = (data) => {
+
+    if (data==='first'){
+         if (first===true) {
+          setQuestion("I have a question about the service.")
+         }
+        setFirst(!first)
+      };
+    
+    
+      if (data==='second'){
+           if (second===true) {
+            setQuestion("I am a registered client and I need support.")
+           }
+          setSecond(!second)
+        };
+    
+    if (data==='third'){
+             if (third===true) {
+              setQuestion("I am a counselor interested in joining.")
+             }
+            setThird(!third)
+          };
+    
+    if (data==='fourth'){
+               if (fourth===true) {
+                setQuestion("I am a registered counselor and I need support.")
+               }
+              setFourth(!fourth)
+            };
+    
+    if (data==='fifth'){
+                 if (fifth===true) {
+                  setQuestion("I have a business-related inquiry.")
+                 }
+                setFifth(!fifth)
+              };
+    if (data==='sixth'){
+                   if (sixth===true) {
+                    setQuestion("I am interested in Healing Online for my organization.")
+                   }
+                  setSixth(!sixth)
+                };
+    
+    if (data==='seventh'){
+                     if (seventh===true) {
+                      setQuestion("I have a billing related question.")
+                     }
+                    setSeventh(!seventh)
+                  };
+    
+    };
+    
+    
 
   const handleOnChange = (event) => {
     const {
@@ -80,21 +117,15 @@ export default function Contact() {
       return { ...prev, [keyName]: value };
     });
 
-    setState(states => {
-      const newState = { ...states, [name]: value }
-      // post newState to firebase
-     return newState
-  });
+ 
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
     // console.log(newEmailInput);
-    await addDoc(collection(db, 'ContactUs'), {
-      ...name,
-      ...newEmailInput,
-      ...details, // { "":hi@gmail.com } => { "email": "hi@gmail.com" }  key value shouldnot be empty so in email input we have name=email
-      ...state,
-    });
+    await addDoc(collection(db, 'contact'), {
+      ...newEmailInput,questions ,
+    }).then(() => {
+       alert('Message has been submitted');})
     // Clear the form
     setNewEmailInput({ email: '',
     });
@@ -118,27 +149,44 @@ export default function Contact() {
 
       <div className="flex flex-wrap justify-center lg:flex-nowrap lg:justify-between mt-8 md:mt-16">
         <div>
-          <form  onSubmit={handleSubmit}>
+         
             <p className="text-2xl font-semibold mb-4">Type of contact</p>
             <div className="flex flex-col">
-              {radioObject.map((item) => {
-                return (
-                  <div className="flex py-3">
-                    <input
-                      key={item.id}
-                      type="radio"
-                      name="state"
-                    value={state.state}
-                    onChange={handleOnChange}
-                      htmlFor="for"
-                      id="for"
-                      />
-                    <p className="ml-3 text-xl">{item.text}</p>
+              
+                  <div className=" py-3 px-2">
+                    
+        <label htmlFor="ques1">
+        <input className='mr-2' type="radio" id="ques1" name="questions" onChange={()=> handleOnChange1("first")} value={first} />
+          I have a question about the service.
+        </label><br/>
+        <label htmlFor="ques2">
+        <input className='mr-2'  type="radio" id="ques2" name="questions" onChange={()=> handleOnChange1("second")} value={second} />
+          I am a registered client and I need support.
+        </label><br/>
+        <label htmlFor="ques3">
+        <input className='mr-2'  type="radio" id="ques3" name="questions" onChange={()=> handleOnChange1("third")} value={third}  />
+        I am a counselor interested in joining.</label><br/>
+        <label htmlFor="ques4">
+          <input className='mr-2'  type="radio" id="ques4" name="questions" onChange={()=> handleOnChange1("fourth")} value={fourth}  />
+          I am a registered counselor and I need support.</label><br/>
+        <label htmlFor="ques5">
+        <input  className='mr-2'  type="radio" id="ques5" name="questions" onChange={()=> handleOnChange1("fifth")} value={fifth}  />
+        I have a business-related inquiry.
+        </label><br/>
+        <label htmlFor="ques6">
+        <input className='mr-2'  type="radio" id="ques6" name="questions" onChange={()=> handleOnChange1("sixth")} value={sixth}  />
+        I am interested in Healing Online for my organization.
+        </label><br/>
+        <label htmlFor="ques7">
+        <input className='mr-2'   type="radio" id="ques7" name="questions" onChange={()=> handleOnChange1("seventh")} value={seventh}  />
+        I have a billing related question.s
+        </label><br/>
+                    
+                   
                   </div>
-                );
-              })}
+              
             </div>
-
+            <form  onSubmit={handleSubmit}>
             <label className=" flex flex-col mt-8 lg:mt-20" htmlFor="name">
               <span className="mb-5 text-2xl font-normal">Full Name:</span>
               <input
