@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
 // import { ref, listAll, getDownloadURL } from 'firebase/storage';
 import { ReactComponent as SendIcon } from '../../icons/send.svg';
 import { db } from '../../firebase-config';
 //  import BlogDetails from './BlogDetails';
+
 
 function Blogs() {
   const [newEmailInput, setNewEmailInput] = useState({});
@@ -116,20 +118,23 @@ function Blogs() {
           <div className="flex flex-wrap pr-5 mt-6">
           {blog.slice(0, 2).map((blogs) => {
             return (
+              
+              
+             
               <div className='object-cover h-60 w-96 rounded-lg mr-3 mb-4 '
               style={{backgroundImage: `url(${blogs.coverImg})` }}
               >
                 
-                <h1 className="text-2xl font-medium mb-12 mt-4 mx-2 my-2">
+                {/* <h1 className="text-2xl font-medium mb-12 mt-4 mx-2 my-2">
                   {blogs.blogtitle}
-                </h1>
-
-                {/* <img
+                </h1> */}
+                 <Link to= {`/blogs/${blog.id}`} > 
+                 <img
                   src={blogs.coverImg}
-                  alt="" ...
+                  alt="" 
                   className=" im1 object-cover h-48 w-96 rounded-lg mr-3 mb-4"
                   
-                /> */} 
+                /></Link>
                 
               </div>
             );
