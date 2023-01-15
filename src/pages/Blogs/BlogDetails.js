@@ -23,7 +23,7 @@ const BlogDetails = () => {
    }, []);
 
    
-    console.log(blogs)
+    // console.log(blogs)
     return( 
     <div>
       {blogs.id}
