@@ -10,41 +10,49 @@ function FirstSecondThirdForm({ step, setStep, formData, setFormData }) {
     const radioButtons1 = [{
         id: 1,
         value: 'Individual',
-        label: 'Individual Counseling'
+        label: 'Individual Counseling',
+        title: 'counseling_type',
     },
     {
         id: 2,
         value: 'Teen',
-        label: 'Teen Counseling (For My Child)'
+        label: 'Teen Counseling (For My Child)',
+        title: 'counseling_type',
     },
     ]
 
     const radioButtons2 = [{
         id: 3,
         value: 'Single',
-        label: 'Single'
+        label: 'Single',
+        title: 'relationship_status',
     },
     {
         id: 4,
         value: 'Married',
-        label: 'Married'
+        label: 'Married',
+        title: 'relationship_status',
     },
     {
         id: 5,
         value: 'Divorced',
-        label: 'Divorced'
+        label: 'Divorced',
+        title: 'relationship_status',
+
     },
     ]
 
     const radioButtons3 = [{
         id: 6,
         value: 'Yes',
-        label: 'Yes'
+        label: 'Yes',
+        title: 'ever_been_in_therapy_before'
     },
     {
         id: 7,
         value: 'No',
-        label: 'No'
+        label: 'No',
+        title: 'ever_been_in_therapy_before'
     },
     ]
 
@@ -79,61 +87,31 @@ function FirstSecondThirdForm({ step, setStep, formData, setFormData }) {
     function DisplayRadioButtons() {
         let radioButtons;
         if (step === 1) {
-            radioButtons = radioButtons1.map(({ id, value, label }) => {
-                return (
-                    <div className="form-check pt-4 text-1xl sm:text-3xl font-normal" key={id}>
-                        <input
-                            type="radio"
-                            name="exampleRadios"
-                            id={id}
-                            value={value}
-                            checked={value === checked}
-                            onChange={() => { setChecked(value); setFormData({ ...formData, counseling_type: value }) }}
-                        />
-                        <label className="form-check-label" htmlFor={id}>
-                            {label}
-                        </label>
-                    </div>
-                )
-            })
+            radioButtons = radioButtons1
         } else if (step === 2) {
-            radioButtons = radioButtons2.map(({ id, value, label }) => {
-                return (
-                    <div className="form-check pt-4 text-1xl sm:text-3xl font-normal" key={id}>
-                        <input
-                            type="radio"
-                            name="exampleRadios"
-                            id={id}
-                            value={value}
-                            checked={value === checked}
-                            onChange={() => { setChecked(value); setFormData({ ...formData, relationship_status: value }) }}
-                        />
-                        <label className="form-check-label" htmlFor={id}>
-                            {label}
-                        </label>
-                    </div>
-                )
-            })
+            radioButtons = radioButtons2
         } else if (step === 3) {
-            radioButtons = radioButtons3.map(({ id, value, label }) => {
-                return (
-                    <div className="form-check pt-4 text-1xl sm:text-3xl font-normal" key={id}>
-                        <input
-                            type="radio"
-                            name="exampleRadios"
-                            id={id}
-                            value={value}
-                            checked={value === checked}
-                            onChange={() => { setChecked(value); setFormData({ ...formData, ever_been_in_therapy_before: value }) }}
-                        />
-                        <label className="form-check-label" htmlFor={id}>
-                            {label}
-                        </label>
-                    </div>
-                )
-            })
+            radioButtons = radioButtons3
         }
-        return radioButtons;
+        return radioButtons.map(({ id, value, label, title }) => {
+            // eslint-disable-next-line
+            console.log(title)
+            return (
+                <div className="form-check pt-4 text-1xl sm:text-3xl font-normal" key={id}>
+                    <input
+                        type="radio"
+                        name="exampleRadios"
+                        id={id}
+                        value={value}
+                        checked={value === checked}
+                        onChange={() => { setChecked(value); setFormData({ ...formData, title: value }) }}
+                    />
+                    <label className="form-check-label" htmlFor={id}>
+                        {label}
+                    </label>
+                </div>
+            )
+        });
     }
 
     return (
