@@ -10,46 +10,44 @@ function BookingSection() {
           PROFESSIONAL, LICENSED, AND VETTED THERAPISTS THAT YOU CAN TRUST
         </h1>
       </header>
-      <body>
-        <div className="py-10 flex flex-wrap mx-auto md:mx-0">
-          <img
-            className="mx-2 rounded-full my-4 md:my-0 w-36 h-full border-solid border-2 border-[#2DD3E3]"
-            src={img}
-            alt="therapiest"
-          />
-          <img
-            className="mx-2 rounded-full my-4 md:my-0 w-36 h-full border-solid border-2 border-[#2DD3E3]"
-            src={img}
-            alt="therapiest"
-          />
-          <img
-            className="mx-2 rounded-full my-4 md:my-0 w-36  h-full border-solid border-2 border-[#2DD3E3]"
-            src={img}
-            alt="therapiest"
-          />
-          <img
-            className="mx-2 rounded-full my-4 md:my-0 w-36  h-full border-solid border-2 border-[#2DD3E3]"
-            src={img}
-            alt="therapiest"
-          />
-          <img
-            className="mx-2 rounded-full my-4 md:my-0 w-36  h-full border-solid border-2 border-[#2DD3E3]"
-            src={img}
-            alt="therapiest"
-          />
-        </div>
+      <div className="py-10 flex flex-wrap mx-auto md:mx-0">
+        <img
+          className="mx-2 rounded-full my-4 md:my-0 w-36 h-full border-solid border-2 border-[#2DD3E3]"
+          src={img}
+          alt="therapiest"
+        />
+        <img
+          className="mx-2 rounded-full my-4 md:my-0 w-36 h-full border-solid border-2 border-[#2DD3E3]"
+          src={img}
+          alt="therapiest"
+        />
+        <img
+          className="mx-2 rounded-full my-4 md:my-0 w-36  h-full border-solid border-2 border-[#2DD3E3]"
+          src={img}
+          alt="therapiest"
+        />
+        <img
+          className="mx-2 rounded-full my-4 md:my-0 w-36  h-full border-solid border-2 border-[#2DD3E3]"
+          src={img}
+          alt="therapiest"
+        />
+        <img
+          className="mx-2 rounded-full my-4 md:my-0 w-36  h-full border-solid border-2 border-[#2DD3E3]"
+          src={img}
+          alt="therapiest"
+        />
+      </div>
 
-        <p className="lg:text-justify mt-2 text-2xl">
-          Tap into the worlds largest network of licensed, accredited, and
-          experienced therapists who can help you with a range of issues
-          including depression, anxiety, relationships, trauma, grief, and more.
-          With our therapists, you get the same professionalism and quality you
-          would expect from an in-office therapist, but with the ability to
-          communicate whenever and however you want.
-        </p>
+      <p className="lg:text-justify mt-2 text-2xl">
+        Tap into the worlds largest network of licensed, accredited, and
+        experienced therapists who can help you with a range of issues
+        including depression, anxiety, relationships, trauma, grief, and more.
+        With our therapists, you get the same professionalism and quality you
+        would expect from an in-office therapist, but with the ability to
+        communicate whenever and however you want.
+      </p>
 
-        <BookingButton />
-      </body>
+      <BookingButton />
     </div>
   );
 }
