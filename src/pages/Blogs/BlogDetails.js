@@ -5,15 +5,15 @@ import { db } from '../../firebase-config';
 
 const BlogDetails = () => {
     const params = useParams({});
-    const id = params.id;  
-    console.log("The value of a is " + id);
+   //  const [id] = params.id;  
+    // console.log("The value of a is " + id);
    
     const [blogs, setBlog] = useState({});
 
 
     useEffect(() => {
       const fetchBlogId = async () => {
-      const ref=doc(db,'blogCollection',params.id)
+      const ref=doc(db,'blogCollection',doc.id)
       const docs=await getDocs(ref)
       setBlog(docs);
       // console.log('docs')
@@ -23,7 +23,7 @@ const BlogDetails = () => {
    }, []);
 
    
-    //console.log(blogs)
+    console.log(blogs)
     return( 
     <div>
       {blogs.id}
