@@ -32,7 +32,7 @@ function BookingForms({ step, setStep, formData, setFormData, handleSubmit }) {
     function FormStyle() {
         let formstyle;
         if (step < 6 || step > 6) {
-            formstyle = 'p-6 mt-9 mb-12 mx-auto w-auto md:w-[700px] h-[500px] border-2 border-[#E5E5E5] rounded-md shadow-lg bg-white'
+            formstyle = 'p-6 mt-9 mb-12 mx-auto w-auto md:w-[700px] h-auto md:h-[500px] border-2 border-[#E5E5E5] rounded-md shadow-lg bg-white'
         }
         return formstyle;
     }
@@ -111,7 +111,7 @@ function BookingForms({ step, setStep, formData, setFormData, handleSubmit }) {
                             checked={value === checked}
                             onChange={() => { setChecked(value); setFormData({ ...formData, counselor_qualities: value }) }}
                         />
-                        <p className="ml-3 text-xl">{text}</p>
+                        <p className="ml-3 text-lg sm:text-xl">{text}</p>
                     </div>
                 );
             })
@@ -129,7 +129,7 @@ function BookingForms({ step, setStep, formData, setFormData, handleSubmit }) {
                             checked={value === checked}
                             onChange={() => { setChecked(value); setFormData({ ...formData, issues: value }) }}
                         />
-                        <p className="ml-3 text-xl">{text}</p>
+                        <p className="ml-3 text-lg sm:text-xl">{text}</p>
                     </div>
                 );
             })
