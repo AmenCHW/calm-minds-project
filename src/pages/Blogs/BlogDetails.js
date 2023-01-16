@@ -5,8 +5,8 @@ import { db } from '../../firebase-config';
 
 const BlogDetails = () => {
     const params = useParams({});
-    // const id = params.id;  
-    // console.log("The value of a is " + id);
+    const id = params.id;  
+    console.log("The value of a is " + id);
    
     const [blogs, setBlog] = useState({});
 
@@ -23,12 +23,15 @@ const BlogDetails = () => {
    }, []);
 
    
-    // console.log(blogs)
+    //console.log(blogs)
     return( 
     <div>
       {blogs.id}
       <h1>id of blog is : {params.id}</h1>
-    </div> ) 
+      
+    </div>
+    // console.log()
+     ) 
 };
 
 
