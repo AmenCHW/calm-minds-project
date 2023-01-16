@@ -6,7 +6,7 @@ import Blogs from './pages/Blogs/Blogs';
 import About from './pages/About/About';
 import Team from './pages/Team/Team';
 import Careers from './pages/Careers/Careers';
-import Contact from './pages/Contact/Contact';
+import Contact from './pages/Contact/ContactUs';
 import LogIn from './pages/LogIn/LogIn';
 import Footer from './Footer';
 import BookingPage from './pages/Booking/BookingPage';
@@ -22,6 +22,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
       <NavBar />
+
         <Routes>
           <Route path="/signup" element={<Signup />} />
           <Route path="/" element={<Home />} />
@@ -37,6 +38,7 @@ function App() {
           <Route path="/profile" element={<EditProfile />} />
           <Route path="/therapist/profile" element={<TherapistProfile />} />
         </Routes> 
+
       <Footer />
       </BrowserRouter>
     </div>

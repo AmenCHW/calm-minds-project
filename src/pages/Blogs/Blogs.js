@@ -3,6 +3,8 @@ import { collection, addDoc, getDocs } from 'firebase/firestore';
 // import { ref, listAll, getDownloadURL } from 'firebase/storage';
 import { ReactComponent as SendIcon } from '../../icons/send.svg';
 import { db } from '../../firebase-config';
+// import {  useParams } from 'react-router-dom';
+// import RecentBlogs from './RecentBlogs';
 
 function Blogs() {
   const [newEmailInput, setNewEmailInput] = useState({});
@@ -10,6 +12,15 @@ function Blogs() {
   // const imagesListRef = ref(storage, 'blogImages/');
   const [blog, setBlog] = useState([]);
   const userCollectionRef = collection(db, 'blogCollection');
+
+
+  // const params = useParams();
+  // const blogId=params.blogId
+
+  /// /blogs/25
+  // useParam from ReactRouter get the id 
+  // use the doc.id to fetch the exact blog that you need
+  // fetch other blogs to put in the suggestions section
 
   useEffect(() => {
     const fetchBlogImage = async () => {
@@ -144,9 +155,18 @@ function Blogs() {
         </div>
       </div>
       </div>
-
+      <div>
+      {/* {blog.map((blogg) => {
+        return (
+          <div key={blogg}>
+          <div key={blogg.blogtitle}>
+            <RecentBlogs imgs={blogg.coverImg}/>
+            </div></div>
+        );
+      })} */}
+    </div>
       
-
+      
       
     </div>
   );
