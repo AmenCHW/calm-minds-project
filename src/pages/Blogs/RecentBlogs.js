@@ -1,3 +1,4 @@
+
 import React, {  useEffect, useState } from 'react';
  import {  collection, getDocs } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
@@ -19,6 +20,7 @@ function RecentBlogs() {
   
   }, []);
   //  _________________________________________ Carsoul_____________________________________________________________________________________________________________
+
   const handleRightClick = () => {
     const prevState = [...blogs];
     // find next inactive card index - top
@@ -27,11 +29,9 @@ function RecentBlogs() {
       .sort((a, b) => {
         if (a.pos > b.pos) {
           return 1;
-        } 
-          return -1;
-       
-      })
-      [0].idx;
+        }
+        return -1;
+      })[0].idx;
     // reset
     prevState.find((f) => f.active === false).active = true;
     // update
@@ -57,10 +57,12 @@ function RecentBlogs() {
       .sort((a, b) => {
         if (a.pos > b.pos) {
           return 1;
+
         } 
           return -1;
        
       }) .pop(1).idx;
+
     // minimize pos
     prevState.find((f) => f.active === false).pos =
       Math.min.apply(
@@ -80,18 +82,21 @@ function RecentBlogs() {
    return (
     <div className="flex flex-col md:flex-row place-content-center mb-4 ">
       <button
-      type="button"
+        type="button"
         className="text-xl md:text-5xl cursor-pointer border-2 pb-2 px-5 border-black rounded-md h-1/2 my-10 md:mr-4 mx-36 md:mx-0"
         onClick={() => handleLeftClick()}
       >
         &#8249;
       </button>
+
       <div className="flex-col flex md:flex-row gap-2 sm:gap-4 place-items-center">
       
+
 
       
          {blogs.map((blog) => {
             return (
+
               <div className='object-cover h-60 w-96 rounded-lg mr-3 mb-4 ' 
               key={blog.id}
                >
@@ -102,30 +107,29 @@ function RecentBlogs() {
                     className=" im1 object-cover h-48 w-96 rounded-lg mr-3 mb-4" 
                   />
                 </Link>  
+
               </div>
+             
+          
             );
+
             
           })}   
           </div> 
 
 
+
       <button
-      type="button"
+        type="button"
         className="text-xl md:text-5xl hover:cursor-pointer border-2 pb-2 px-5 border-black rounded-md h-1/2 my-10 md:ml-4 mx-36 md:mx-0"
         onClick={() => handleRightClick()}
       >
-        &#8250;	
+        &#8250;
       </button>
     </div>
   );
 }
 export default RecentBlogs;
-
-
-
-
-
-
 
 
 // _____________________________________carsoul filter______________________________________________________________________________________________________
@@ -158,3 +162,4 @@ export default RecentBlogs;
 //         </Link>
 //       </div>
 //   ))}
+

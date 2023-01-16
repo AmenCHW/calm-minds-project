@@ -1,7 +1,6 @@
-import React from "react";
+import React from 'react';
 
 function Card({ image, title }) {
- 
   return (
     <div
       className="
@@ -14,10 +13,10 @@ function Card({ image, title }) {
         rounded-md
         hover:shadow-lg"
     >
-      <div  className="flex-col">
+      <div className="flex-col">
         <img src={image} alt="blog" />
         <h2 className="text-sm text-center mt-6">{title}</h2>
-        <div className="text-sm hover:cursor-pointer text-gray-500"/>
+        <div className="text-sm hover:cursor-pointer text-gray-500" />
       </div>
     </div>
   );
