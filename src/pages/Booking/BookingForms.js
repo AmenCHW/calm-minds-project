@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { counselingTypeObject1, relationshipStatusObject2, therapyBeforeObject3, SpecificQualitiesObject4, issuesObject5 } from './BookingFormsObject';
+
 
 function BookingForms({ step, setStep, formData, setFormData, handleSubmit }) {
     const [checked, setChecked] = useState('')
@@ -17,6 +19,10 @@ function BookingForms({ step, setStep, formData, setFormData, handleSubmit }) {
             formQuestion = "Are There Any Specific Qualities That You'd Like In A Counselor?";
         } else if (step === 5) {
             formQuestion = "Are There Any Issues You'd Like To Focus On?";
+        } else if (step === 7) {
+            formQuestion = "Submit Appointment?";
+        } else if (step === 8) {
+            formQuestion = "Request Submitted";
         }
         // eslint-disable-next-line
         //console.log(formQuestion)
@@ -32,13 +38,37 @@ function BookingForms({ step, setStep, formData, setFormData, handleSubmit }) {
     function FormStyle() {
         let formstyle;
         if (step < 6 || step > 6) {
-            formstyle = 'p-6 mt-9 mb-12 mx-auto w-auto md:w-[700px] h-auto md:h-[500px] border-2 border-[#E5E5E5] rounded-md shadow-lg bg-white'
+            formstyle = 'p-6 mt-9 mb-12 mx-auto w-auto md:w-[700px] h-auto sm:h-[500px] border-2 border-[#E5E5E5] rounded-md shadow-lg bg-white'
         }
         return formstyle;
     }
 
+    function FormButtton() {
+        let button;
+        if (step <= 6) {
+            button = <button type="submit"
+                onClick={() => { setStep((currentStep) => currentStep + 1) }}
+                className='bg-[#2DD3E3] text-1xl sm:text-2xl px-6 py-3 font-normal border-2 border-[#2DD3E3] rounded-md place-self-start mt-5'>
+                NEXT
+            </button>
+        } else if (step === 7) {
+            button = <button type="submit"
+                onClick={() => { setStep((currentStep) => currentStep + 1) }}
+                className='bg-[#2DD3E3] text-1xl sm:text-2xl px-12 sm:px-28 py-3 font-normal border-2 border-[#2DD3E3] place-self-center items-center justify-center mx-auto rounded-md mt-7 mb-1 sm:mb-0'>
+                SUBMIT
+            </button>
+        } else if (step === 8) {
+            button = <button type="submit"
+                className='bg-[#2DD3E3] text-1xl sm:text-2xl px-8 sm:px-16 py-3 font-normal border-2 border-[#2DD3E3] rounded-md place-self-center items-center justify-center self-center mx-auto mt-7 mb-1 sm:mb-0'>
+                <Link to="/"> BACK TO HOME </Link>
+            </button>
+        }
+        return button;
+    }
+
     useEffect(() => {
-        FormStyle()
+        FormStyle();
+        FormButtton();
     }, [step]);
 
     function DisplayRadioButtons() {
@@ -137,7 +167,7 @@ function BookingForms({ step, setStep, formData, setFormData, handleSubmit }) {
             radioButtons = <input
                 type="text"
                 name="paragraph"
-                onChange={(e) => setFormData({ ...formData, issues: e.target.value })}
+                onChange={(e) => setFormData({ ...formData, what_brings_you_here: e.target.value })}
                 className="border-2 border-[#E5E5E5] rounded-md p-2 w-full h-[360px] mx-auto"
                 required
             />
@@ -150,20 +180,18 @@ function BookingForms({ step, setStep, formData, setFormData, handleSubmit }) {
 
         <div>
             <form onSubmit={handleSubmit} className={FormStyle()}>
-                <h1 className='text-2xl sm:text-3xl font-normal pb-8 text-left'>
+                <h1 className={`text-2xl sm:text-3xl font-normal pb-8 ${step > 6 ? "text-center sm:pt-16 sm:pb-10" : "text-left"}`} >
                     {ChangeFormQuestion()}
                 </h1>
 
+                {step > 6 && <p className='text-center text-xl sm:text-2xl px-2 sm:px-16 sm:py-10'>{step === 7 ? "Please Be Aware That This Action Will Cost You A Ticket!" : "You Will Receive A Confirmation Email Soon Please Keep An Eye On Your Mail."} </p>}
+                {/* {step === 8 && <p className='text-center text-xl sm:text-2xl px-2 sm:px-16 sm:py-10'> You Will Receive A Confirmation Email Soon Please Keep An Eye On Your Mail.</p>} */}
+
                 <div className='flex flex-col'>
                     {DisplayRadioButtons()}
-
-                    <button type="submit"
-                        disabled={step > 7}
-                        onClick={() => { setStep((currentStep) => currentStep + 1) }}
-                        className='bg-[#2DD3E3] text-1xl sm:text-2xl px-6 py-3 font-normal border-2 border-[#2DD3E3] rounded-md place-self-start mt-5'>
-                        NEXT
-                    </button>
+                    {FormButtton()}
                 </div>
+
             </form>
         </div >
 
