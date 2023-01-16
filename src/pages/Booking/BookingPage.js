@@ -28,12 +28,12 @@ function Booking() {
 
 
   useEffect(() => {
-    if (step === 1 || step === 2 || step === 3 || step === 4 || step === 5) {
+    if (step < 6) {
       setPageTitle("LET'S MATCH YOU WITH THE RIGHT THERAPIST");
       setPageText("Please fill out this short questionnaire to provide some general and anonymous background about you and the issues you'd like to deal with in online therapy. It would help us match you with the most suitable therapist for you.");
     } else if (step === 6) {
       setPageTitle("WHAT BRINGS YOU HERE?");
-      setPageText("Please specify (in a few sentences) why you'd like counseling.This will give your counselor a good understanding of where to start.")
+      setPageText("Please specify (in a few sentences) why you'd like counseling. This will give your counselor a good understanding of where to start.")
     } else if (step === 7) {
       setPageTitle("SUBMIT YOUR APPOINTMENT");
       setPageText("Click Submit if you are sure of all your choices.");

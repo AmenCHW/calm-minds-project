@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { counselingTypeObject1, relationshipStatusObject2, therapyBeforeObject3, SpecificQualitiesObject4, issuesObject5 } from './BookingFormsObject';
 
 function BookingForms({ step, setStep, formData, setFormData, handleSubmit }) {
@@ -28,6 +28,18 @@ function BookingForms({ step, setStep, formData, setFormData, handleSubmit }) {
 
     // eslint-disable-next-line
     console.log("formData", formData)
+
+    function FormStyle() {
+        let formstyle;
+        if (step < 6 || step > 6) {
+            formstyle = 'p-6 mt-9 mb-12 mx-auto w-auto md:w-[700px] h-[500px] border-2 border-[#E5E5E5] rounded-md shadow-lg bg-white'
+        }
+        return formstyle;
+    }
+
+    useEffect(() => {
+        FormStyle()
+    }, [step]);
 
     function DisplayRadioButtons() {
         let radioButtons;
@@ -121,6 +133,14 @@ function BookingForms({ step, setStep, formData, setFormData, handleSubmit }) {
                     </div>
                 );
             })
+        } else if (step === 6) {
+            radioButtons = <input
+                type="text"
+                name="paragraph"
+                onChange={(e) => setFormData({ ...formData, issues: e.target.value })}
+                className="border-2 border-[#E5E5E5] rounded-md p-2 w-full h-[360px] mx-auto"
+                required
+            />
         }
         return radioButtons;
     }
@@ -129,7 +149,7 @@ function BookingForms({ step, setStep, formData, setFormData, handleSubmit }) {
     return (
 
         <div>
-            <form onSubmit={handleSubmit} className='p-6 mt-9 mb-12 mx-auto w-auto md:w-[700px] h-[500px] border-2 border-[#E5E5E5] rounded-md shadow-lg bg-white'>
+            <form onSubmit={handleSubmit} className={FormStyle()}>
                 <h1 className='text-2xl sm:text-3xl font-normal pb-8 text-left'>
                     {ChangeFormQuestion()}
                 </h1>
