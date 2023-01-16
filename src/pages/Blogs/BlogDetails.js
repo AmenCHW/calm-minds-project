@@ -39,5 +39,5 @@ const BlogDetails = () => {
 
 export default BlogDetails;
 
-// use firebase to fetch that specific blog by id.
+
 // blogsCollection/${id}
