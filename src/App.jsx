@@ -13,6 +13,7 @@ import BookingPage from './pages/Booking/BookingPage';
 import TherapistCreate from './pages/Therapist Create/TherapistCreate';
 import Signup from './pages/Signup/Signup';
 import CounselorRequirement from './pages/Requirement/RequirementPage';
+import BlogDetails from './pages/Blogs/BlogDetails';
 import EditProfile from './pages/EditProfile/EditProfile';
 import TherapistProfile from './pages/Therapist Profile/TherapistProfile';
 
@@ -22,11 +23,11 @@ function App() {
     <div className="App">
       <BrowserRouter>
       <NavBar />
-
-        <Routes>
+       <Routes>
           <Route path="/signup" element={<Signup />} />
           <Route path="/" element={<Home />} />
           <Route path="/blogs" element={<Blogs />} />
+           <Route path="/blogs/:id" element={<BlogDetails />} />
           <Route path="/about" element={<About />} />
           <Route path="/team" element={<Team />} />
           <Route path="/careers" element={<Careers />} />
