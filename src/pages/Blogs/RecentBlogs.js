@@ -104,6 +104,9 @@ function RecentBlogs() {
     setBlog(prevState);
   };
 
+
+
+  
   return (
     <div className="flex flex-col md:flex-row place-content-center mb-4 ">
       <button
@@ -114,43 +117,7 @@ function RecentBlogs() {
         &#8249;
       </button>
 
-      {blogs
-        .filter((f) => f.active === true)
-        .sort((a, b) => {
-
-            if (a.pos > b.pos) {
-              return 1;
-            }
-            return -1;
-          })
-
-          
-        .map((blog) => ( 
-         
-            <div className='object-cover h-60 w-96 rounded-lg mr-3 mb-4 '
-            // style={{backgroundImage: `url(${blog.coverImg})` }}
-            >
-              
-              {/* <h1 className="text-2xl font-medium mb-12 mt-4 mx-2 my-2">
-                {blog.blogtitle}
-              </h1> */}
-
-              {/* Use the link Tag in order to reDirect the user to /blogs/doc.id
-              Link tag */}
-              <Link  
-                to="/blogs/: doc.id"
-                className="text-3xl md:text-4xl lg:text-5xl pl-3 font-normal"
-               >
-              <img
-                src={blog.coverImg}
-                alt="" 
-                className=" im1 object-cover h-48 w-96 rounded-lg mr-3 mb-4" 
-              /> 
-              </Link>
-            </div>
-        
-          // <Card key={blog.blogtitle} image={blog.coverImg} />
-        ))}</div>
+      {/*  */}
 
 
         {blogs.map((blog) => {
@@ -181,7 +148,7 @@ function RecentBlogs() {
           })}
 
           
-        {/* <div>
+        {/* 
           
          {blog.map((blogg)=>{
           return(
@@ -212,3 +179,42 @@ function RecentBlogs() {
 }
 
 export default RecentBlogs;
+
+
+// {blogs
+//   .filter((f) => f.active === true)
+//   .sort((a, b) => {
+
+//       if (a.pos > b.pos) {
+//         return 1;
+//       }
+//       return -1;
+//     })
+
+    
+//   .map((blog) => ( 
+   
+//       <div className='object-cover h-60 w-96 rounded-lg mr-3 mb-4 '
+//       // style={{backgroundImage: `url(${blog.coverImg})` }}
+//       >
+        
+//         {/* <h1 className="text-2xl font-medium mb-12 mt-4 mx-2 my-2">
+//           {blog.blogtitle}
+//         </h1> */}
+
+//         {/* Use the link Tag in order to reDirect the user to /blogs/doc.id
+//         Link tag */}
+//         <Link  
+//           to="/blogs/: doc.id"
+//           className="text-3xl md:text-4xl lg:text-5xl pl-3 font-normal"
+//          >
+//         <img
+//           src={blog.coverImg}
+//           alt="" 
+//           className=" im1 object-cover h-48 w-96 rounded-lg mr-3 mb-4" 
+//         /> 
+//         </Link>
+//       </div>
+  
+//     // <Card key={blog.blogtitle} image={blog.coverImg} />
+//   ))}</div>
