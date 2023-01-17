@@ -102,9 +102,9 @@ function RecentBlogs() {
                >
                 <Link to= {`/blogs/${blog.id}`} > 
                   <img
-                    src={blog.coverImg}
+                    src={blog.imgText}
                     alt="" 
-                    className=" im1 object-cover h-48 w-96 rounded-lg mr-3 mb-4" 
+                    className=" im1 object-cover h-56 w-96 rounded-lg mr-3 mb-4" 
                   />
                 </Link>  
 
