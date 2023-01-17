@@ -90,6 +90,7 @@ export const AuthContextProvider = ({ children }) => {
                         gender: true,
                         fullName: fullName,
                         birthDate: birthDate,
+                        photoURL: '',
                         educationLevel: "",
                         hobbies: "",
                         familySize: 1,

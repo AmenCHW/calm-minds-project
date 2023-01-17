@@ -1,9 +1,34 @@
 import React, {useEffect, useState} from 'react';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { storage } from '../../firebase-config';
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import {db, storage } from '../../firebase-config';
+import { UserAuth } from '../../context/AuthContext';
 import profileimage from './profileimage.png';
 
+
 function EditProfile() {
+
+  const {user} = UserAuth();
+
+  const fetchSingleUserData = async () => {
+    // eslint-disable-next-line
+    // console.log('user.uid:', user.uid);
+    await getDocs(query(collection(db, "users"), where("userId", "==", user.uid)))
+      .then((querySnapshot) => {
+        const usersData = querySnapshot.docs
+          .map((doc) => {
+            // eslint-disable-next-line 
+            // console.log(doc.id, " => ", doc.data().isTherapist);
+            return doc.data();
+          });
+          console.log(usersData)
+      })
+  }
+
+  useEffect(() => {
+    if (user && user.uid)
+      fetchSingleUserData();
+  }, [user])
 
   const [file, setFile] = useState('')
   useEffect(()=>{
