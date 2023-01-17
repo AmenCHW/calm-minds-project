@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from '../../firebase-config';
+import { UserAuth } from '../../context/AuthContext';
 import BookingForms from './BookingForms';
 import "./BookingRadioButtonStyle.css"
 
 function Booking() {
-  // const [checked, setChecked] = useState('')
-  // const isChecked = (value) => value === checked;
-  // const onSelect = ({ target: { value } }) => {
-  //   setChecked(value)
-  // }
+
+  const { user } = UserAuth();
+
+  // eslint-disable-next-line
+  { user && console.log('user sent', user) }
 
   const [step, setStep] = useState(1)
   const [pageTitle, setPageTitle] = useState('')
@@ -42,6 +45,32 @@ function Booking() {
       setPageText("You will receive an email guiding you to book a date and time soon.");
     }
   }, [step]);
+
+  useEffect(() => {
+    if (!user) {
+      // eslint-disable-next-line
+      alert("please signup before booking an appointment")
+    }
+    if (user && user.uid)
+      updateDoc(doc(db, 'users', user.uid), {
+        book_an_appointment: {
+          counseling_type: formData.counseling_type,
+          relationship_status: formData.relationship_status,
+          ever_been_in_therapy_before: formData.ever_been_in_therapy_before,
+          counselor_qualities: formData.counselor_qualities,
+          issues: formData.issues,
+          what_brings_you_here: formData.what_brings_you_here,
+        }
+      }).then(response => {
+        // eslint-disable-next-line
+        console.log(response)
+        // eslint-disable-next-line
+        console.log("updated")
+      }).catch(error => {
+        // eslint-disable-next-line
+        console.log(error.message)
+      })
+  }, [formData])
 
 
 

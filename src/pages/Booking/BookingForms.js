@@ -25,15 +25,15 @@ function BookingForms({ step, setStep, formData, setFormData, handleSubmit }) {
             formQuestion = "Request Submitted";
         }
         // eslint-disable-next-line
-        //console.log(formQuestion)
+        // console.log(formQuestion)
         return formQuestion;
     }
 
     // eslint-disable-next-line
-    console.log("step", step)
+    // console.log("step", step)
 
     // eslint-disable-next-line
-    console.log("formData", formData)
+    // console.log("formData", formData)
 
     function FormStyle() {
         let formstyle;
