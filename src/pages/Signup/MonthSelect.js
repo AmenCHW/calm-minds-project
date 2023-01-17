@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
 
 function MonthSelect() {
   return (
     <div>
-        <select className="form--dob-year border border-[#D1DBE3] py-4 px-3.5" name="year">
+      <select
+        className="form--dob-year border border-[#D1DBE3] py-4 px-3.5"
+        name="year"
+      >
         <option value="0">Month</option>
         <option>Jan</option>
         <option>Feb</option>
@@ -19,7 +22,7 @@ function MonthSelect() {
         <option>Dec</option>
       </select>
     </div>
-  )
+  );
 }
 
-export default MonthSelect
+export default MonthSelect;

@@ -1,9 +1,10 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from '@firebase/firestore';
-import {getAuth} from 'firebase/auth'
+import { getStorage } from 'firebase/storage';
+import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDY-EfG2iUbCSILU2iQCAVXYjLmLCI4Pao",
+  apiKey: 'AIzaSyDY-EfG2iUbCSILU2iQCAVXYjLmLCI4Pao',
   authDomain: 'calm-minds-project.firebaseapp.com',
   projectId: 'calm-minds-project',
   storageBucket: 'calm-minds-project.appspot.com',
@@ -15,4 +16,5 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
-export default app
+export const storage = getStorage(app);
+export default app;
