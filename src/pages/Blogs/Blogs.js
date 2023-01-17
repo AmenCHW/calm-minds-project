@@ -9,17 +9,9 @@ function Blogs() {
   const [newEmailInput, setNewEmailInput] = useState({});
   // const [imageList, setImageList] = useState([]);
   // const imagesListRef = ref(storage, 'blogImages/');
-  const [blog, setBlog] = useState([]);
+  const [blogs, setBlog] = useState([]);
   const userCollectionRef = collection(db, 'blogCollection');
 
-
-  // const params = useParams();
-  // const blogId=params.blogId
-
-  /// /blogs/25
-  // useParam from ReactRouter get the id 
-  // use the doc.id to fetch the exact blog that you need
-  // fetch other blogs to put in the suggestions section
 
   useEffect(() => {
     const fetchBlogImage = async () => {
@@ -74,15 +66,15 @@ function Blogs() {
         </div>
 
         <div>
-          {blog.map((blogs) => {
+          {blogs.map((blog) => {
             return (
               <div>
                 <h1 className="text-6xl font-medium mb-12 mt-4">
-                  {blogs.blogtitle}
+                  {blog.blogtitle}
                 </h1>
-                <p className="text-2xl">{blogs.summery}</p>
-                <h3 className="text-5xl mb-6 mt-12 ">{blogs.secondTitle}</h3>
-                <p className="text-2xl leading-relaxed">{blogs.paragraph}</p>
+                <p className="text-2xl">{blog.summery}</p>
+                <h3 className="text-5xl mb-6 mt-12 ">{blog.secondTitle}</h3>
+                <p className="text-2xl leading-relaxed">{blog.paragraph}</p>
               </div>
             );
           })}
@@ -119,18 +111,16 @@ function Blogs() {
               RECOMMENED FOR YOU{' '}
             </h3>
             <div className="flex flex-wrap pr-5 mt-6">
-              {blog.slice(0, 2).map((blogs) => {
+              {blogs.slice(1, 3).map((blog) => {
                 return (
                   <div
                     className="object-cover h-60 w-96 rounded-lg mr-3 mb-4 "
-                    style={{ backgroundImage: `url(${blogs.coverImg})` }}
+                    key={blog.id}
                   >
-                    {/* <h1 className="text-2xl font-medium mb-12 mt-4 mx-2 my-2">
-                  {blogs.blogtitle}
-                </h1> */}
-                    <Link to={`/blogs/${blog.id}`}>
+                   
+                    <Link to= {`/blogs/${blog.id}`}>
                       <img
-                        src={blogs.coverImg}
+                        src={blog.coverImg}
                         alt=""
                         className=" im1 object-cover h-48 w-96 rounded-lg mr-3 mb-4"
                       />
