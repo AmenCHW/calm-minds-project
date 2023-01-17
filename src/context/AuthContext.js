@@ -89,6 +89,7 @@ export const AuthContextProvider = ({ children }) => {
                         email,
                         isTherapist: false,
                         gender: true,
+                        book_an_appointment: {},
                     });
                     // console.log("Document written with ID: ", docRef.id);
                 } catch (e) {
@@ -187,7 +188,7 @@ export const AuthContextProvider = ({ children }) => {
     };
 
     /* eslint-disable */
-    
+
 
     const logOut = () => {
         signOut(auth)

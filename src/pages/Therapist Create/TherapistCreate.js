@@ -114,115 +114,115 @@ function TherapistCreate() {
             setError(error.message);
         }
     }
+    
+  return (
+    <div className=" flex-col mx-auto lg:max-w-7xl px-10 py-10">
+      <form onSubmit={handleSubmit}>
+        <h2 className="mb-8 font-normal text-3xl text-center sm:text-left sm:text-5xl">
+          CREATE AN ACCOUNT
+        </h2>
+        <div>
+          <div className="mb-4">
+            <h2 className=" font-normal text-2xl text-gray-500 ml-1 mb-1">
+              User Name
+            </h2>
+            <input
+              type="text"
+              name="username"
+              value={inputValues.username}
+              onChange={(e) => handleChange(e)}
+              className="border rounded-md p-2 w-full h-12 sm:w-96"
+              required
+            />
+            {validation.username && <p className='text-[red]'>{validation.username}</p>}
 
+          </div>
+          <div className="mb-4">
+            <h2 className=" font-normal text-2xl text-gray-500 ml-1 mb-1">
+              Email
+            </h2>
+            <input
+              type="email"
+              name="email"
+              value={inputValues.email}
+              onChange={(e) => handleChange(e)}
+              className="border rounded-md p-2 w-full h-12 sm:w-96"
+              required
+            />
+            {validation.email && <p className='text-[red]'>{validation.email}</p>}
 
-    return (
-        <div className=" flex-col mx-auto lg:max-w-7xl px-10 py-10">
-            <form onSubmit={handleSubmit}>
-                <h2 className="mb-8 font-normal text-3xl text-center sm:text-left sm:text-5xl">
-                    CREATE AN ACCOUNT
-                </h2>
-                <div>
-                    <div className="mb-4">
-                        <h2 className=" font-normal text-2xl text-gray-500 ml-1 mb-1">
-                            User Name
-                        </h2>
-                        <input
-                            type="text"
-                            name="username"
-                            value={inputValues.username}
-                            onChange={(e) => handleChange(e)}
-                            className="border rounded-md p-2 w-full h-12 sm:w-96"
-                            required
-                        />
-                        {validation.username && <p className='text-[red]'>{validation.username}</p>}
+          </div>
+          <div className="mb-4">
+            <h2 className=" font-normal text-2xl text-gray-500 ml-1 mb-1">
+              City
+            </h2>
+            <input
+              type="text"
+              name="city"
+              value={inputValues.city}
+              onChange={(e) => handleChange(e)}
+              className="border rounded-md p-2 w-full h-12 sm:w-96"
+              required
+            />
+            {validation.city && <p className='text-[red]'>{validation.city}</p>}
 
-                    </div>
-                    <div className="mb-4">
-                        <h2 className=" font-normal text-2xl text-gray-500 ml-1 mb-1">
-                            Email
-                        </h2>
-                        <input
-                            type="email"
-                            name="email"
-                            value={inputValues.email}
-                            onChange={(e) => handleChange(e)}
-                            className="border rounded-md p-2 w-full h-12 sm:w-96"
-                            required
-                        />
-                        {validation.email && <p className='text-[red]'>{validation.email}</p>}
+          </div>
+          <div className="mb-4">
+            <h2 className=" font-normal text-2xl text-gray-500 ml-1 mb-1">
+              License Number
+            </h2>
+            <input
+              type="text"
+              name="licensenumber"
+              value={inputValues.licensenumber}
+              onChange={(e) => handleChange(e)}
+              className="border rounded-md p-2 w-full h-12 sm:w-96"
+              required
+            />
+            {validation.licensenumber && <p className='text-[red]'>{validation.licensenumber}</p>}
 
-                    </div>
-                    <div className="mb-4">
-                        <h2 className=" font-normal text-2xl text-gray-500 ml-1 mb-1">
-                            City
-                        </h2>
-                        <input
-                            type="text"
-                            name="city"
-                            value={inputValues.city}
-                            onChange={(e) => handleChange(e)}
-                            className="border rounded-md p-2 w-full h-12 sm:w-96"
-                            required
-                        />
-                        {validation.city && <p className='text-[red]'>{validation.city}</p>}
+          </div>
+          <div className="mb-4">
+            <h2 className=" font-normal text-2xl text-gray-500 ml-1 mb-1">
+              Create Password
+            </h2>
+            <input
+              type="password"
+              name="password"
+              value={inputValues.password}
+              onChange={(e) => handleChange(e)}
+              className="border rounded-md p-2 w-full h-12 sm:w-96"
+              required
+            />
+            {validation.password && <p className='text-[red]'>{validation.password}</p>}
 
-                    </div>
-                    <div className="mb-4">
-                        <h2 className=" font-normal text-2xl text-gray-500 ml-1 mb-1">
-                            License Number
-                        </h2>
-                        <input
-                            type="number"
-                            name="licensenumber"
-                            value={inputValues.licensenumber}
-                            onChange={(e) => handleChange(e)}
-                            className="border rounded-md p-2 w-full h-12 sm:w-96"
-                            required
-                        />
-                        {validation.licensenumber && <p className='text-[red]'>{validation.licensenumber}</p>}
+          </div>
+          <div className="mb-4">
+            <h2 className=" font-normal text-2xl text-gray-500 ml-1 mb-1">
+              Confirm Password
+            </h2>
+            <input
+              type="password"
+              name="confirmPassword"
+              value={inputValues.confirmPassword}
+              onChange={(e) => handleChange(e)}
+              className="border rounded-md p-2 w-full h-12 sm:w-96"
+              required
+            />
+            {validation.confirmPassword && <p className='text-[red]'>{validation.confirmPassword}</p>}
 
-                    </div>
-                    <div className="mb-4">
-                        <h2 className=" font-normal text-2xl text-gray-500 ml-1 mb-1">
-                            Create Password
-                        </h2>
-                        <input
-                            type="password"
-                            name="password"
-                            value={inputValues.password}
-                            onChange={(e) => handleChange(e)}
-                            className="border rounded-md p-2 w-full h-12 sm:w-96"
-                            required
-                        />
-                        {validation.password && <p className='text-[red]'>{validation.password}</p>}
-
-                    </div>
-                    <div className="mb-4">
-                        <h2 className=" font-normal text-2xl text-gray-500 ml-1 mb-1">
-                            Confirm Password
-                        </h2>
-                        <input
-                            type="password"
-                            name="confirmPassword"
-                            value={inputValues.confirmPassword}
-                            onChange={(e) => handleChange(e)}
-                            className="border rounded-md p-2 w-full h-12 sm:w-96"
-                            required
-                        />
-                        {validation.confirmPassword && <p className='text-[red]'>{validation.confirmPassword}</p>}
-
-                    </div>
-                </div>
-                <div>
-                    <button
-                        className=" mt-12 w-48 h-16 bg-[#2dd3e3] rounded-md hover:bg-[#4dd9e9] font-normal text-2xl"
-                        type="submit"
-                    >
-                        CREATE
-                    </button>
+          </div>
+        </div>
+        <div>
+          <button
+            className=" mt-12 w-48 h-16 bg-[#2dd3e3] rounded-md hover:bg-[#4dd9e9] font-normal text-2xl"
+            type="submit"
+          >
+            CREATE
+          </button>                
                 </div>
             </form>
+
         </div>
     );
 }
