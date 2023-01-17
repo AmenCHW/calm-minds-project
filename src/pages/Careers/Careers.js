@@ -16,16 +16,18 @@ function Careers() {
   }, []);
 
   return (
-    <div className="">
+    <div>
       <div className="mx-auto lg:max-w-7xl px-10 py-10">
         <div className="mb-24">
-          <h1 className="font-medium text-6xl">CAREERS AT HEALING</h1>
-          <p className="text-3xl opacity-50">
+          <h1 className="font-medium lg:text-6xl text-4xl  ">
+            CAREERS AT HEALING
+          </h1>
+          <p className="lg:text-3xl lg:opacity-50 text-3xl">
             Be a part of making people feel better.
           </p>
         </div>
 
-        <p className="text-[1.2vw]">
+        <p className="lg:text-[1.2vw] text-[6vw]">
           Our SEO software cuts through mountains of data to surface critical
           insights. We build and maintain systems that process massive amounts
           of data (we&#39;re talking 36 trillion records per day and multiple
@@ -35,12 +37,14 @@ function Careers() {
           encourages accountability, empathy, and transparency.
         </p>
         <div>
-          <p className="mt-16 text-[1vw]">What role will you play?</p>
+          <p className="mt-16 lg:text-[1vw]  text-[6vw]">
+            What role will you play?
+          </p>
 
           <Link to="/bookingPage" className="focus:text-[#FEE89E]">
             <button
-              className="lg:mt-10 md:mt-5 bg-[#2DD3E3] hover:bg-blue-400 text-white 
-                  font-bold py-2 text-[1vw] px-4 border-b-4 border-[#2DD3E3] hover:border-blue-500 rounded"
+              className="lg:mt-10 mt-5 bg-[#2DD3E3] hover:bg-blue-400 text-white  lg:text-[1.2vw]
+                  font-bold py-2 text-[4vw] px-4 border-b-4 border-[#2DD3E3] hover:border-blue-500 rounded"
               type="button"
             >
               SEE OUR OPEN LIST
@@ -73,19 +77,21 @@ function Careers() {
         {carees.map((caree) => {
           return (
             <div className="mx-auto lg:max-w-7xl px-10 py-4">
-              <div className="flex justify-between ">
-                <div className="flex text-center space-x-4 text-[#2DD3E3] text-3xl">
+              <div className="lg:flex lg:justify-between ">
+                <div className="lg:flex text-start lg:space-x-4 text-[#2DD3E3] text-3xl">
                   <h1>{caree.work} |</h1>
                   <h1>{caree.workon} |</h1>
                   <h1>{caree.place}</h1>
                 </div>
                 <div>
-                  <h1 className="text-[#2DD3E3] text-3xl">{caree.degree}</h1>
+                  <h1 className="text-[#2DD3E3] text-3xl text-start">
+                    {caree.degree}
+                  </h1>
                 </div>
               </div>
-              <div className="flex justify-between mb-6">
+              <div className="lg:flex justify-between mb-6">
                 <p className="text-2xl">{caree.descriptions}</p>
-                <h1 className="text-2xl ">{caree.workon}</h1>
+                <h1 className="lg:text-2xl  hidden">{caree.workon}</h1>
               </div>
               <hr />
             </div>
