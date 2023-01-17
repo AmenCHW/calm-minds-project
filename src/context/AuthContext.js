@@ -77,7 +77,7 @@ export const AuthContextProvider = ({ children }) => {
     };
 
     /* eslint-disable */
-    const createUser = (email, password) => {
+    const createUser = (email, password, fullName, birthDate) => {
         return createUserWithEmailAndPassword(auth, email, password).then(
             async (result) => {
                 console.log(result)
@@ -85,11 +85,15 @@ export const AuthContextProvider = ({ children }) => {
                 try {
                     const docRef = await setDoc(doc(db, "users", `${result.user.uid}`), {
                         userId: `${result.user.uid}`,
-                        fullname: `${result.user.displayName}`,
                         email,
                         isTherapist: false,
                         gender: true,
-                        educationLevel: ""
+                        fullName: fullName,
+                        birthDate: birthDate,
+                        educationLevel: "",
+                        hobbies: "",
+                        familySize: 1,
+                        phonenumber: 0,
                     });
                     // console.log("Document written with ID: ", docRef.id);
                 } catch (e) {
