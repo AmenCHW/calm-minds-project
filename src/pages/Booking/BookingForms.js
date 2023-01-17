@@ -47,10 +47,12 @@ function BookingForms({ step, setStep, formData, setFormData, handleSubmit }) {
         let button;
         if (step <= 6) {
             button = <button type="submit"
-                onClick={() => { setStep((currentStep) => currentStep + 1) }}
-                className='bg-[#2DD3E3] text-1xl sm:text-2xl px-6 py-3 font-normal border-2 border-[#2DD3E3] rounded-md place-self-start mt-5'>
+                disabled={step === 1 && formData.counseling_type === null || step === 2 && formData.relationship_status === null || step === 3 && formData.ever_been_in_therapy_before === null || step === 4 && formData.counselor_qualities === null || step === 5 && formData.issues === null || step === 6 && (formData.what_brings_you_here === null || !formData.what_brings_you_here.trim().length)}
+                onClick={() => { setStep((currentStep) => currentStep + 1) }
+                }
+                className='bg-[#2DD3E3] text-1xl sm:text-2xl px-6 py-3 font-normal border-2 border-[#2DD3E3] rounded-md place-self-start mt-5' >
                 NEXT
-            </button>
+            </button >
         } else if (step === 7) {
             button = <button type="submit"
                 onClick={() => { setStep((currentStep) => currentStep + 1) }}
@@ -185,7 +187,6 @@ function BookingForms({ step, setStep, formData, setFormData, handleSubmit }) {
                 </h1>
 
                 {step > 6 && <p className='text-center text-xl sm:text-2xl px-2 sm:px-16 sm:py-10'>{step === 7 ? "Please Be Aware That This Action Will Cost You A Ticket!" : "You Will Receive A Confirmation Email Soon Please Keep An Eye On Your Mail."} </p>}
-                {/* {step === 8 && <p className='text-center text-xl sm:text-2xl px-2 sm:px-16 sm:py-10'> You Will Receive A Confirmation Email Soon Please Keep An Eye On Your Mail.</p>} */}
 
                 <div className='flex flex-col'>
                     {DisplayRadioButtons()}
