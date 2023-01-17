@@ -8,6 +8,7 @@ import profileimage from './profileimage.png';
 
 function EditProfile() {
 
+  const [userDetails, setUserDetails] = useState({})
   const {user} = UserAuth();
 
   const fetchSingleUserData = async () => {
@@ -21,9 +22,10 @@ function EditProfile() {
             // console.log(doc.id, " => ", doc.data().isTherapist);
             return doc.data();
           });
-          console.log(usersData)
+          setUserDetails(usersData[0])
       })
   }
+
 
   useEffect(() => {
     if (user && user.uid)
@@ -103,6 +105,7 @@ function EditProfile() {
                 <input
                   type="text"
                   id="name"
+                  placeholder={userDetails.fullName}
                   className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md"
                 />
               </label>
@@ -113,9 +116,11 @@ function EditProfile() {
                 </span>
                 <select className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md text-xl">
                   <option value="select....">select...</option>
-                  <option value="due_date">option 1</option>
-                  <option value="asc">option 2</option>
-                  <option value="desc">option 3</option>
+                  <option value="due_date">High School</option>
+                  <option value="asc">Diploma</option>
+                  <option value="desc">Bachelor&apos;s Degree</option>
+                  <option value="desc">Master&apos;s Degree</option>
+                  <option value="desc">phD</option>
                 </select>
               </div>
 
