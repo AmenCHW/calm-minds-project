@@ -9,9 +9,6 @@ function Booking() {
 
   const { user } = UserAuth();
 
-  // eslint-disable-next-line
-  { user && console.log('user sent', user) }
-
   const [step, setStep] = useState(1)
   const [pageTitle, setPageTitle] = useState('')
   const [pageText, setPageText] = useState('')
