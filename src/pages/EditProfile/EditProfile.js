@@ -9,7 +9,7 @@ import profileimage from './profileimage.png';
 function EditProfile() {
 
   const [userDetails, setUserDetails] = useState({})
-  const {user} = UserAuth();
+  const { user } = UserAuth();
 
   const fetchSingleUserData = async () => {
     // eslint-disable-next-line
@@ -25,7 +25,6 @@ function EditProfile() {
           setUserDetails(usersData[0])
       })
   }
-
 
   useEffect(() => {
     if (user && user.uid)
@@ -100,27 +99,27 @@ function EditProfile() {
                 htmlFor="name"
               >
                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
-                  Full Name
+                  Full Name: <span className=' font-bold text-blue-600'>{userDetails.fullName}</span>
                 </span>
                 <input
                   type="text"
                   id="name"
-                  placeholder={userDetails.fullName}
+                  defaultValue={userDetails.fullName}
                   className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md"
                 />
               </label>
 
               <div className=" flex flex-col items-center sm:flex-row sm:flex-wrap justify-center mt-6 sm:justify-between">
                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
-                  Education Level
+                  Education Level: <span className=' font-bold text-blue-600'>{userDetails.educationLevel}</span>
                 </span>
-                <select className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md text-xl">
+                <select defaultValue={userDetails.educationLevel} className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md text-xl">
                   <option value="select....">select...</option>
-                  <option value="due_date">High School</option>
-                  <option value="asc">Diploma</option>
-                  <option value="desc">Bachelor&apos;s Degree</option>
-                  <option value="desc">Master&apos;s Degree</option>
-                  <option value="desc">phD</option>
+                  <option value="highschool">High School</option>
+                  <option value="diploma">Diploma</option>
+                  <option value="bachelor">Bachelor&apos;s Degree</option>
+                  <option value="master">Master&apos;s Degree</option>
+                  <option value="phd">phD</option>
                 </select>
               </div>
 
@@ -129,11 +128,12 @@ function EditProfile() {
                 htmlFor="hobbies"
               >
                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
-                  Hobbies
+                  Hobbies: <span className=' font-bold text-blue-600'>{userDetails.hobbies}</span>
                 </span>
                 <input
                   type="text"
                   id="hobbies"
+                  defaultValue={userDetails.hobbies}
                   className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md"
                 />
               </label>
@@ -148,7 +148,9 @@ function EditProfile() {
                 <div className="flex sm:flex-wrap sm:flex-start w-1/2 lg:w-[470px]">
                   <input
                     type="number"
+                    min={1}
                     id="family-size"
+                    defaultValue={userDetails.familySize}
                     className="border-2 rounded-lg h-16 w-[68px] border-gray-100 pl-4 shadow-md"
                   />
                   <span className="text-2xl font-normal text-center sm:text-start ml-3 sm:ml-10 mt-3">
@@ -161,7 +163,7 @@ function EditProfile() {
                 <span className=" mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
                   Gender
                 </span>
-                <select className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md text-xl">
+                <select defaultValue={userDetails.gender} className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md text-xl">
                   <option value="select....">select...</option>
                   <option value="male">male</option>
                   <option value="female">female</option>
@@ -173,11 +175,12 @@ function EditProfile() {
                 htmlFor="date"
               >
                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
-                  Birth Date
+                  Birth Date: <span className=' font-bold text-blue-600'>{userDetails.birthDate}</span>
                 </span>
                 <input
                   type="date"
                   id="date"
+                  defaultValue={userDetails.birthDate}
                   className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md"
                 />
               </label>
@@ -192,6 +195,7 @@ function EditProfile() {
                 <input
                   type="email"
                   id="email"
+                  defaultValue={userDetails.email}
                   className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md"
                 />
               </label>
@@ -206,6 +210,7 @@ function EditProfile() {
                 <input
                   type="tel"
                   id="phone"
+                  defaultValue={userDetails.phonenumber}
                   className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md"
                 />
               </label>
