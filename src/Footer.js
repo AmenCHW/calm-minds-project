@@ -49,7 +49,7 @@ function Footer() {
           />
           <button  onClick={handleSubmit}
             className="p-2 border-y-2 border-r-2 border-[#718096] rounded-r-md bg-cyan-500 active:pr-1 active:pl-1 active:bg-cyan-400"
-           type='button'
+           type='submit'
             aria-label="Send"
           >
             <SendIcon />
