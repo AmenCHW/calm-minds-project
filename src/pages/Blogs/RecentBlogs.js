@@ -1,4 +1,3 @@
-
 import React, {  useEffect, useState } from 'react';
  import {  collection, getDocs } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
@@ -58,6 +57,7 @@ function RecentBlogs() {
         if (a.pos > b.pos) {
           return 1;
 
+
         } 
           return -1;
        
@@ -116,8 +116,6 @@ function RecentBlogs() {
             
           })}   
           </div> 
-
-
 
       <button
         type="button"
