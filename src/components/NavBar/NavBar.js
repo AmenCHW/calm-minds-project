@@ -5,7 +5,7 @@ import { db } from '../../firebase-config';
 import { UserAuth } from '../../context/AuthContext';
 import DropDown from './DropDown';
 import NavBarIcon from './NavBarIcon.png';
-
+//
 
 function NavBar() {
   const xIcon = 'fas fa-2x fa-times';
