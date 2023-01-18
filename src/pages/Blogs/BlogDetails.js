@@ -3,6 +3,7 @@ import { getDoc, doc } from 'firebase/firestore';
 import { useParams } from 'react-router-dom';
 import { db } from '../../firebase-config';
 import SubcribedEmails from "./SubcribedEmails"
+import RecommendedBlogs from "./RecommendedBlogs"
 
 const BlogDetails = () => {
   const params = useParams({});
@@ -31,10 +32,11 @@ const BlogDetails = () => {
           <h1 className="text-6xl font-medium mb-12 mt-4">{blog.blogtitle}</h1>
           <p className="text-2xl">{blog.summery}</p>
           <h3 className="text-5xl mb-6 mt-12 ">{blog.secondTitle}</h3>
-          <p className="text-2xl leading-relaxed">{blog.paragraph}</p>
+          <p className="text-2xl leading-relaxed mb-3">{blog.paragraph}</p>
         </div> 
       </div>
       <SubcribedEmails/>
+      <RecommendedBlogs/>
     </div>
   );
 };

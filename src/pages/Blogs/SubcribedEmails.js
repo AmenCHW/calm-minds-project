@@ -36,11 +36,11 @@ function SubcribedEmails() {
     <div className="mx-auto  px-10 py-10">
       <div className="mx-auto lg:max-w-7xl ">
         
-        {/* _____________________subscribtion__________________________________________________________________________________________________- */}
-        <div className="mt-4 flex mx-2 ">
+       
+        <div className=" flex mr-4 ">
           <form className="flex" onSubmit={handleSubmit}>
             <input
-              className="p-2 border-2 lg:px-3 px-0 border-[#718096] rounded-l-md"
+              className=" border-2 lg:px-3 px-0 border-[#718096] rounded-l-md"
               placeholder="Enter your e-mail"
               type="email"
               name="email"
