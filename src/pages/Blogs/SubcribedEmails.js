@@ -24,7 +24,7 @@ function SubcribedEmails() {
     event.preventDefault();
     // console.log(newEmailInput);
     await addDoc(collection(db, 'subscribed-emails'), {
-      ...newEmailInput, // { "": muslim@gmail.com } => { "email": "muslim@gmail.com" }  key value shouldnot be empty so in email input we have name=email
+      ...newEmailInput, // { "": hi@gmail.com } => { "email": "hi@gmail.com" }  key value shouldnot be empty so in email input we have name=email
     });
     // Clear the form
     setNewEmailInput({
