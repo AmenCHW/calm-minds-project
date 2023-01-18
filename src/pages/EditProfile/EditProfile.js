@@ -1,15 +1,39 @@
 import React, {useEffect, useState} from 'react';
+import {deleteUser} from 'firebase/auth';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { collection, query, where, getDocs } from 'firebase/firestore';
-import {db, storage } from '../../firebase-config';
+import { collection, query, where, getDocs, deleteDoc, doc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
+import {db, storage, auth } from '../../firebase-config';
 import { UserAuth } from '../../context/AuthContext';
 import profileimage from './profileimage.png';
 
-
+ 
 function EditProfile() {
 
   const [userDetails, setUserDetails] = useState({})
-  const { user } = UserAuth();
+  const navigate = useNavigate();
+  const { user, logOut } = UserAuth();
+
+   const userDel = auth.currentUser
+    const userDelete = () => {deleteUser(userDel).then(() => {
+        /* eslint-disable */
+        console.log("user deleted")
+      }).catch((error) => {
+        /* eslint-disable */
+        console.log(error)
+      })};
+
+  const handleDelete = async () => {
+          try {
+            await deleteDoc(doc(db, "users", `${user.uid}`));
+            userDelete()
+            logOut()
+            navigate('/signup')
+        } catch (e) {
+            console.error("Error adding document: ", e);
+        }
+
+}
 
   const fetchSingleUserData = async () => {
     // eslint-disable-next-line
@@ -17,12 +41,13 @@ function EditProfile() {
     await getDocs(query(collection(db, "users"), where("userId", "==", user.uid)))
       .then((querySnapshot) => {
         const usersData = querySnapshot.docs
-          .map((doc) => {
+          .map((docm) => {
             // eslint-disable-next-line 
             // console.log(doc.id, " => ", doc.data().isTherapist);
-            return doc.data();
+            return docm.data();
           });
           setUserDetails(usersData[0])
+          console.log(usersData[0])
       })
   }
 
@@ -99,12 +124,12 @@ function EditProfile() {
                 htmlFor="name"
               >
                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
-                  Full Name: <span className=' font-bold text-blue-600'>{userDetails.fullName}</span>
+                  Full Name: 
                 </span>
                 <input
                   type="text"
                   id="name"
-                  defaultValue={userDetails.fullName}
+                 defaultValue={userDetails.fullName}
                   className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md"
                 />
               </label>
@@ -115,8 +140,8 @@ function EditProfile() {
                 </span>
                 <select defaultValue={userDetails.educationLevel} className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md text-xl">
                   <option value="select....">select...</option>
-                  <option value="highschool">High School</option>
-                  <option value="diploma">Diploma</option>
+                  <option value="Highschool">Highschool</option>
+                  <option value="Diploma">Diploma</option>
                   <option value="bachelor">Bachelor&apos;s Degree</option>
                   <option value="master">Master&apos;s Degree</option>
                   <option value="phd">phD</option>
@@ -273,6 +298,7 @@ function EditProfile() {
                 <button
                   type="button"
                   className="bg-[#2DD3E3] py-3 text-2xl border-2 rounded-lg border-[#2DD3E3] px-3 lg:px-0 lg:w-[220px] my-2 lg:my-0 mx-2"
+                  onClick={handleDelete}
                 >
                   DELETE ACCOUNT
                 </button>

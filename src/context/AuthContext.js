@@ -6,7 +6,8 @@ import {
     signInWithPopup, signInWithRedirect,
     onAuthStateChanged,
     signOut,
-    FacebookAuthProvider
+    FacebookAuthProvider,
+    // deleteUser
 } from 'firebase/auth';
 import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from '../firebase-config';
@@ -191,6 +192,16 @@ export const AuthContextProvider = ({ children }) => {
         }
 
     };
+
+    // const userDel = auth.currentUser
+    // const userDelete = () => {deleteUser(userDel).then(() => {
+    //     /* eslint-disable */
+    //     console.log("user deleted")
+    //   }).catch((error) => {
+    //     /* eslint-disable */
+    //     console.log(error)
+    //   })};
+
 
     /* eslint-disable */
     
