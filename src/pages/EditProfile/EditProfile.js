@@ -200,7 +200,7 @@ function EditProfile() {
                 htmlFor="date"
               >
                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
-                  Birth Date: <span className=' font-bold text-blue-600'>{userDetails.birthDate}</span>
+                  Birth Date:
                 </span>
                 <input
                   type="date"

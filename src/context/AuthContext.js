@@ -9,7 +9,7 @@ import {
     FacebookAuthProvider,
     // deleteUser
 } from 'firebase/auth';
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, updateDoc } from "firebase/firestore";
 import { auth, db } from '../firebase-config';
 
 const UserContext = createContext();
@@ -193,17 +193,28 @@ export const AuthContextProvider = ({ children }) => {
 
     };
 
-    // const userDel = auth.currentUser
-    // const userDelete = () => {deleteUser(userDel).then(() => {
-    //     /* eslint-disable */
-    //     console.log("user deleted")
-    //   }).catch((error) => {
-    //     /* eslint-disable */
-    //     console.log(error)
-    //   })};
+    const updateUser = async (email,fullName, birthDate, gender, photoURL, educationLevel, hobbies, familySize, phonenumber) => {
+        
 
-
-    /* eslint-disable */
+                try {
+                    const docRef = await updateDoc(doc(db, "users", `${result.user.uid}`), {
+                        userId: `${result.user.uid}`,
+                        email,
+                        isTherapist: false,
+                        gender: gender,
+                        fullName: fullName,
+                        birthDate: birthDate,
+                        photoURL: photoURL,
+                        educationLevel: educationLevel,
+                        hobbies: hobbies,
+                        familySize: familySize,
+                        phonenumber: phonenumber,
+                    });
+                    // console.log("Document written with ID: ", docRef.id);
+                } catch (e) {
+                    console.error("Error adding document: ", e);
+                }
+    }
     
 
     const logOut = () => {
