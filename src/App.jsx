@@ -34,6 +34,9 @@ function App() {
       <button type="button" onClick={() => handleChangeLng('jp')}>
         Jp
       </button>
+      <button type="button" onClick={() => handleChangeLng('tr')}>
+        tr
+      </button>
       <h1>{t('hello')}</h1>
       <h1>{t('how are you?')}</h1>
       <BrowserRouter>
