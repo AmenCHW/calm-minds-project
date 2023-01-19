@@ -88,6 +88,7 @@ export const AuthContextProvider = ({ children }) => {
                         userId: `${result.user.uid}`,
                         email,
                         isTherapist: false,
+
                         gender: '',
                         fullName: fullName,
                         birthDate: birthDate,
@@ -96,6 +97,8 @@ export const AuthContextProvider = ({ children }) => {
                         hobbies: "",
                         familySize: 1,
                         phonenumber: 0,
+                        book_an_appointment: {},
+
                     });
                     // console.log("Document written with ID: ", docRef.id);
                 } catch (e) {
@@ -193,6 +196,7 @@ export const AuthContextProvider = ({ children }) => {
 
     };
 
+
     const updateUser = async (fullName, birthDate, gender, educationLevel, hobbies, familySize, phonenumber) => {
 
 
@@ -214,6 +218,7 @@ export const AuthContextProvider = ({ children }) => {
                 }
     }
     
+
 
     const logOut = () => {
         signOut(auth)
