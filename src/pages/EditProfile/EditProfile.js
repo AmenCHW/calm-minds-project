@@ -1,29 +1,38 @@
 import React, {useEffect, useState} from 'react';
 import {deleteUser} from 'firebase/auth';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { collection, query, where, getDocs, deleteDoc, doc } from 'firebase/firestore';
+import { collection, query, where, getDocs, deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import {db, storage, auth } from '../../firebase-config';
 import { UserAuth } from '../../context/AuthContext';
 import profileimage from './profileimage.png';
+// import { input } from '@testing-library/user-event/dist/types/event';
 
  
 function EditProfile() {
 
   const [userDetails, setUserDetails] = useState({})
-  const [inputValues, setInputValue] = useState({
-    gender: "",
-    fullName: "",
-    birthDate: "",
-    // photoURL: "",
-    educationLevel: "",
-    hobbies: "",
-    familySize: 0,
-    phonenumber: 0,
-});
+//   const [inputValues, setInputValue] = useState({
+//     gender: "",
+//     fullName: "",
+//     birthDate: "",
+//     // photoURL: "",
+//     educationLevel: "",
+//     hobbies: "",
+//     familySize: 0,
+//     phonenumber: 0,
+// });
+const [gender, setGender]= useState('')
+const [fullName, setFullName]= useState('')
+const [birthDate, setbirthDate]= useState('')
+const [educationLevel, setEducationLevel]= useState('')
+const [hobbies, setHobbies]= useState('')
+const [familySize, setFamilySize]= useState(1)
+const [phonenumber, setPhoneNumber]= useState(0)
+
 
   const navigate = useNavigate();
-  const { user, logOut, updateUser } = UserAuth();
+  const { user, logOut } = UserAuth();
 
    const userDel = auth.currentUser
     const userDelete = () => {deleteUser(userDel).then(() => {
@@ -34,17 +43,26 @@ function EditProfile() {
         console.log(error)
       })};
 
-      const handleChange = (e) => {
-        setInputValue({ ...inputValues, [e.target.name]: e.target.value });
-    }
+    //   const handleChange = (e) => {
+    //     setInputValue({ ...inputValues, [e.target.name]: e.target.value });
+    // }
 
     const handleSubmit = async (e) => {
       e.preventDefault();
    
 
       try {
-          await updateUser(inputValues.fullName, inputValues.educationLevel, inputValues.hobbies, inputValues.familySize, inputValues.gender, inputValues.birthDate, inputValues.phonenumber);
-      } catch (error) {
+        const docRef = doc(db, "users", `${user.uid}`)
+        await updateDoc(docRef, {
+          gender: gender,
+          fullName: fullName,
+          birthDate: birthDate,
+          // photoURL: photoURL,
+          educationLevel: educationLevel,
+          hobbies: hobbies,
+          familySize: familySize,
+          phonenumber: phonenumber,
+      })  } catch (error) {
           console.log(error.message);
       }
   }
@@ -156,7 +174,7 @@ function EditProfile() {
                 <input
                   type="text"
                   id="name"
-                  onChange={(e) => handleChange(e)}
+                  onChange={(e) => setFullName(e.target.value)}
                  defaultValue={userDetails.fullName}
                   className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md"
                 />
@@ -166,7 +184,7 @@ function EditProfile() {
                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
                   Education Level: <span className=' font-bold text-blue-600'>{userDetails.educationLevel}</span>
                 </span>
-                <select onChange={(e) => handleChange(e)} defaultValue={userDetails.educationLevel} className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md text-xl">
+                <select onChange={(e) => (e) => setEducationLevel(e.target.value)} defaultValue={userDetails.educationLevel} className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md text-xl">
                   <option value="select....">select...</option>
                   <option value="Highschool">Highschool</option>
                   <option value="Diploma">Diploma</option>
@@ -186,7 +204,7 @@ function EditProfile() {
                 <input
                   type="text"
                   id="hobbies"
-                  onChange={(e) => handleChange(e)}
+                  onChange={(e) => setHobbies(e.target.value)}
                   defaultValue={userDetails.hobbies}
                   className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md"
                 />
@@ -204,7 +222,7 @@ function EditProfile() {
                     type="number"
                     min={1}
                     id="family-size"
-                    onChange={(e) => handleChange(e)}
+                    onChange={(e) => setFamilySize(e.target.value)}
                     defaultValue={userDetails.familySize}
                     className="border-2 rounded-lg h-16 w-[68px] border-gray-100 pl-4 shadow-md"
                   />
@@ -218,7 +236,7 @@ function EditProfile() {
                 <span className=" mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
                   Gender
                 </span>
-                <select onChange={(e) => handleChange(e)} defaultValue={userDetails.gender} className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md text-xl">
+                <select onChange={(e) => setGender(e.target.value)} defaultValue={userDetails.gender} className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md text-xl">
                   <option value="select....">select...</option>
                   <option value="male">male</option>
                   <option value="female">female</option>
@@ -235,7 +253,7 @@ function EditProfile() {
                 <input
                   type="date"
                   id="date"
-                  onChange={(e) => handleChange(e)}
+                  onChange={(e) => setbirthDate(e.target.value)}
                   defaultValue={userDetails.birthDate}
                   className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md"
                 />
@@ -266,7 +284,7 @@ function EditProfile() {
                 <input
                   type="tel"
                   id="phone"
-                  onChange={(e) => handleChange(e)}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
                   defaultValue={userDetails.phonenumber}
                   className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md"
                 />

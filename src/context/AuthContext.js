@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
@@ -9,7 +9,7 @@ import {
     FacebookAuthProvider,
     // deleteUser
 } from 'firebase/auth';
-import { doc, setDoc, updateDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from '../firebase-config';
 
 const UserContext = createContext();
@@ -94,7 +94,7 @@ export const AuthContextProvider = ({ children }) => {
                         photoURL: '',
                         educationLevel: "",
                         hobbies: "",
-                        familySize: 1,
+                        familySize: 0,
                         phonenumber: 0,
                     });
                     // console.log("Document written with ID: ", docRef.id);
@@ -193,14 +193,12 @@ export const AuthContextProvider = ({ children }) => {
 
     };
 
-    const updateUser = async (email,fullName, birthDate, gender, photoURL, educationLevel, hobbies, familySize, phonenumber) => {
+    const updateUser = async (fullName, birthDate, gender, educationLevel, hobbies, familySize, phonenumber) => {
+
 
                 try {
                     const docRef = doc(db, "users", `${result.user.uid}`)
                     await updateDoc(docRef), {
-                        userId: `${result.user.uid}`,
-                        email,
-                        isTherapist: false,
                         gender: gender,
                         fullName: fullName,
                         birthDate: birthDate,
@@ -212,7 +210,7 @@ export const AuthContextProvider = ({ children }) => {
                     };
                     // console.log("Document written with ID: ", docRef.id);
                 } catch (e) {
-                    console.error("Error adding document: ", e);
+                    console.error(e);
                 }
     }
     
@@ -244,7 +242,7 @@ export const AuthContextProvider = ({ children }) => {
     return (
 
         <TherapistContext.Provider value={{ createTherapist, therapist }} >
-            <UserContext.Provider value={{ createUser, signIn, googleSignIn, user, logOut, facebookSignIn }}>
+            <UserContext.Provider value={{ createUser, signIn, googleSignIn, user, logOut, facebookSignIn, updateUser }}>
                 {children}
             </UserContext.Provider>
         </TherapistContext.Provider>
