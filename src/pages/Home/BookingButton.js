@@ -11,7 +11,7 @@ function BookingButton() {
     <div className="Booking">
 
       <button
-        className="mt-20 bg-[#2DD3E3] hover:bg-blue-400 text-white 
+        className="mt-16 bg-[#2DD3E3] hover:bg-blue-400 text-white 
                   font-bold py-2 px-4 border-b-4 border-[#2DD3E3] hover:border-blue-500 rounded"
         type="button"
       >

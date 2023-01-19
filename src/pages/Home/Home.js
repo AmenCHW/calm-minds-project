@@ -6,7 +6,7 @@ import BookingSection from './BookingSectionHome';
 import RecentBlogs from '../Blogs/RecentBlogs';
 import Counselor from './Counselor';
 import Ticket from './Ticket';
-import Welcome from '../Welcome/welcome';
+import Welcome from './welcome';
 
 function Home() {
   return (
