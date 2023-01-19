@@ -194,22 +194,22 @@ export const AuthContextProvider = ({ children }) => {
     };
 
     const updateUser = async (email,fullName, birthDate, gender, photoURL, educationLevel, hobbies, familySize, phonenumber) => {
-        
 
                 try {
-                    const docRef = await updateDoc(doc(db, "users", `${result.user.uid}`), {
+                    const docRef = doc(db, "users", `${result.user.uid}`)
+                    await updateDoc(docRef), {
                         userId: `${result.user.uid}`,
                         email,
                         isTherapist: false,
                         gender: gender,
                         fullName: fullName,
                         birthDate: birthDate,
-                        photoURL: photoURL,
+                        // photoURL: photoURL,
                         educationLevel: educationLevel,
                         hobbies: hobbies,
                         familySize: familySize,
                         phonenumber: phonenumber,
-                    });
+                    };
                     // console.log("Document written with ID: ", docRef.id);
                 } catch (e) {
                     console.error("Error adding document: ", e);

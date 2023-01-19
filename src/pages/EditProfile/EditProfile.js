@@ -11,8 +11,19 @@ import profileimage from './profileimage.png';
 function EditProfile() {
 
   const [userDetails, setUserDetails] = useState({})
+  const [inputValues, setInputValue] = useState({
+    gender: "",
+    fullName: "",
+    birthDate: "",
+    // photoURL: "",
+    educationLevel: "",
+    hobbies: "",
+    familySize: 0,
+    phonenumber: 0,
+});
+
   const navigate = useNavigate();
-  const { user, logOut } = UserAuth();
+  const { user, logOut, updateUser } = UserAuth();
 
    const userDel = auth.currentUser
     const userDelete = () => {deleteUser(userDel).then(() => {
@@ -22,6 +33,22 @@ function EditProfile() {
         /* eslint-disable */
         console.log(error)
       })};
+
+      const handleChange = (e) => {
+        setInputValue({ ...inputValues, [e.target.name]: e.target.value });
+    }
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+   
+
+      try {
+          await updateUser(inputValues.fullName, inputValues.educationLevel, inputValues.hobbies, inputValues.familySize, inputValues.gender, inputValues.birthDate, inputValues.phonenumber);
+      } catch (error) {
+          console.log(error.message);
+      }
+  }
+
 
   const handleDelete = async () => {
           try {
@@ -118,7 +145,7 @@ function EditProfile() {
           </h1>
 
           <div className="px-2 sm:px-0">
-            <form>
+            <form onSubmit={handleSubmit}>
               <label
                 className="flex flex-col items-center sm:flex-row sm:flex-wrap justify-center sm:justify-between mt-10"
                 htmlFor="name"
@@ -129,6 +156,7 @@ function EditProfile() {
                 <input
                   type="text"
                   id="name"
+                  onChange={(e) => handleChange(e)}
                  defaultValue={userDetails.fullName}
                   className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md"
                 />
@@ -138,7 +166,7 @@ function EditProfile() {
                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
                   Education Level: <span className=' font-bold text-blue-600'>{userDetails.educationLevel}</span>
                 </span>
-                <select defaultValue={userDetails.educationLevel} className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md text-xl">
+                <select onChange={(e) => handleChange(e)} defaultValue={userDetails.educationLevel} className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md text-xl">
                   <option value="select....">select...</option>
                   <option value="Highschool">Highschool</option>
                   <option value="Diploma">Diploma</option>
@@ -158,6 +186,7 @@ function EditProfile() {
                 <input
                   type="text"
                   id="hobbies"
+                  onChange={(e) => handleChange(e)}
                   defaultValue={userDetails.hobbies}
                   className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md"
                 />
@@ -175,6 +204,7 @@ function EditProfile() {
                     type="number"
                     min={1}
                     id="family-size"
+                    onChange={(e) => handleChange(e)}
                     defaultValue={userDetails.familySize}
                     className="border-2 rounded-lg h-16 w-[68px] border-gray-100 pl-4 shadow-md"
                   />
@@ -188,7 +218,7 @@ function EditProfile() {
                 <span className=" mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
                   Gender
                 </span>
-                <select defaultValue={userDetails.gender} className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md text-xl">
+                <select onChange={(e) => handleChange(e)} defaultValue={userDetails.gender} className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md text-xl">
                   <option value="select....">select...</option>
                   <option value="male">male</option>
                   <option value="female">female</option>
@@ -205,6 +235,7 @@ function EditProfile() {
                 <input
                   type="date"
                   id="date"
+                  onChange={(e) => handleChange(e)}
                   defaultValue={userDetails.birthDate}
                   className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md"
                 />
@@ -235,6 +266,7 @@ function EditProfile() {
                 <input
                   type="tel"
                   id="phone"
+                  onChange={(e) => handleChange(e)}
                   defaultValue={userDetails.phonenumber}
                   className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md"
                 />
@@ -289,7 +321,7 @@ function EditProfile() {
 
               <div className="flex flex-wrap justify-center lg:justify-between mt-12">
                 <button
-                  type="button"
+                  type="submit"
                   className="bg-[#2DD3E3] py-3 text-2xl border-2 rounded-lg border-[#2DD3E3] px-3 lg:px-0 lg:w-[220px] my-2 lg:my-0 mx-2"
                 >
                   SAVE CHANGES
