@@ -1,11 +1,11 @@
 import React from 'react';
 import CommunicateObject from './CommunicateObject';
 
-function Communicate() {
+function Communicate({ t }) {
   return (
     <div className="mx-auto py-14 px-10 lg:px-44">
       <h1 className="text-3xl sm:text-4xl md:text-5xl format-normal leading-normal">
-        WE CAN COMMUNICATE THROUGH
+        {t('WE CAN COMMUNICATE THROUGH')}
       </h1>
 
       <div className="flex flex-wrap">
