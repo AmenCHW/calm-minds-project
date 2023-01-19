@@ -8,15 +8,15 @@ import Counselor from './Counselor';
 import Ticket from './Ticket';
 import Welcome from '../Welcome/welcome';
 
-function Home() {
+function Home({ t }) {
   return (
     <div>
-      <Welcome />
-      <BookingSection />
-      <Communicate />
-      <RecentBlogs />
-      <Ticket />
-      <Counselor />
+      <Welcome t={t} />
+      <BookingSection t={t} />
+      <Communicate t={t} />
+      <RecentBlogs t={t} />
+      <Ticket t={t} />
+      <Counselor t={t} />
     </div>
   );
 }

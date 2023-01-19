@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import NavBar from './components/NavBar/NavBar';
 import Home from './pages/Home/Home';
 import Blogs from './pages/Blogs/Blogs';
@@ -18,19 +19,34 @@ import BlogDetails from './pages/Blogs/BlogDetails';
 import EditProfile from './pages/EditProfile/EditProfile';
 import TherapistProfile from './pages/Therapist Profile/TherapistProfile';
 
-
 function App() {
+  const { t, i18n } = useTranslation();
+
+  const handleChangeLng = (lng) => {
+    i18n.changeLanguage(lng);
+    localStorage.setItem('lng', lng);
+  };
   return (
     <div className="App">
+      <button type="button" onClick={() => handleChangeLng('en')}>
+        English
+      </button>
+      <button type="button" onClick={() => handleChangeLng('jp')}>
+        Jp
+      </button>
+      <button type="button" onClick={() => handleChangeLng('tr')}>
+        tr
+      </button>
+      <h1>{t('hello')}</h1>
+      <h1>{t('how are you?')}</h1>
       <BrowserRouter>
-      <NavBar />
-
-       <Routes>
+        <NavBar />
+        <Routes>
           <Route path="/signup" element={<Signup />} />
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home t={t} />} />
           <Route path="/blogs" element={<Blogs />} />
-           <Route path="/blogs/:id" element={<BlogDetails />} />
-           
+          <Route path="/blogs/:id" element={<BlogDetails />} />
+
           <Route path="/about" element={<About />} />
           <Route path="/team" element={<Team />} />
           <Route path="/careers" element={<Careers />} />
@@ -41,9 +57,8 @@ function App() {
           <Route path="/RequirementPage" element={<CounselorRequirement />} />
           <Route path="/profile" element={<EditProfile />} />
           <Route path="/therapist/profile" element={<TherapistProfile />} />
-        </Routes> 
-
-      <Footer />
+        </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   );
