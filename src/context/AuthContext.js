@@ -94,7 +94,7 @@ export const AuthContextProvider = ({ children }) => {
                         photoURL: '',
                         educationLevel: "",
                         hobbies: "",
-                        familySize: 0,
+                        familySize: 1,
                         phonenumber: 0,
                     });
                     // console.log("Document written with ID: ", docRef.id);

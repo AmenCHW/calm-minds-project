@@ -22,14 +22,15 @@ function EditProfile() {
 //     familySize: 0,
 //     phonenumber: 0,
 // });
-const [gender, setGender]= useState('')
-const [fullName, setFullName]= useState('')
-const [birthDate, setbirthDate]= useState('')
-const [educationLevel, setEducationLevel]= useState('')
-const [hobbies, setHobbies]= useState('')
-const [familySize, setFamilySize]= useState(1)
-const [phonenumber, setPhoneNumber]= useState(0)
+const [gender, setGender]= useState(`${userDetails.gender}`)
+const [fullName, setFullName]= useState(`${userDetails.fullName}`)
+const [birthDate, setbirthDate]= useState(`${userDetails.birthDate}`)
+const [educationLevel, setEducationLevel]= useState(`${userDetails.educationLevel}`)
+const [hobbies, setHobbies]= useState(`${userDetails.hobbies}`)
+const [familySize, setFamilySize]= useState(`${userDetails.familySize}`)
+const [phonenumber, setPhoneNumber]= useState(`${userDetails.phonenumber}`)
 
+console.log(fullName)
 
   const navigate = useNavigate();
   const { user, logOut } = UserAuth();
@@ -199,7 +200,7 @@ const [phonenumber, setPhoneNumber]= useState(0)
                 htmlFor="hobbies"
               >
                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
-                  Hobbies: <span className=' font-bold text-blue-600'>{userDetails.hobbies}</span>
+                  Hobbies:
                 </span>
                 <input
                   type="text"
