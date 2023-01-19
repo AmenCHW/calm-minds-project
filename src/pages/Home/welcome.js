@@ -1,5 +1,4 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
 import BookingButton from './BookingButton';
 import image from '../../img/image5.svg';
 import image2 from '../../img/image1.svg';
