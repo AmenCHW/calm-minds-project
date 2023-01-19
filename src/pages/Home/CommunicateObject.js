@@ -1,6 +1,7 @@
-import Chat from './Chat.png';
-import VideoCall from './VideoCall.png';
-import VoiceCall from './VoiceCall.png';
+import Chat from './img/Chat.png';
+import VideoCall from './img/VideoCall.png';
+import VoiceCall from './img/VoiceCall.png';
+
 
 const CommunicateObject = [
   {

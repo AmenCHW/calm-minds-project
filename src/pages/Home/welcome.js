@@ -1,11 +1,10 @@
 import React from 'react';
 import BookingButton from './BookingButton';
-import image from '../../img/image5.svg';
-import image2 from '../../img/image1.svg';
+import image from './img/image5.svg';
+import image2 from './img/image1.svg';
 
 export default function welcome() {
   return (
-
     <div
       className="w-full bg-cover bg-no-repeat lg:h-[745px]"
       style={{ backgroundImage: `url(${image})` }}
@@ -16,7 +15,7 @@ export default function welcome() {
             <h1 className="text-2xl lg:text-4xl format-normal leading-normal">
               WE ARE HERE TO
             </h1>
-            <h1 className="text-6xl -mt-5 lg:text-9xl format-normal leading-normal">HELP</h1>
+            <h1 className="text-6xl -mt-3 lg:text-9xl format-normal leading-normal">HELP</h1>
             <BookingButton />
           </div>
 
