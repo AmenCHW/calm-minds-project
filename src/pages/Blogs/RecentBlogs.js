@@ -100,7 +100,7 @@ function RecentBlogs() {
               <div className='object-cover h-60 w-96 rounded-lg mr-3 mb-4 ' 
               key={blog.id}
                >
-                <Link to= {`/blogs/${blog.id}`} > 
+                <Link to= {`/blogs/${blog.id}`} onClick={window.scrollTo(0, 0)}> 
                   <img
                     src={blog.imgText}
                     alt="" 
