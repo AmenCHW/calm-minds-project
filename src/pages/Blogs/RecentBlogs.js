@@ -104,7 +104,7 @@ function RecentBlogs() {
                   <img
                     src={blog.imgText}
                     alt="" 
-                    className=" im1 object-cover h-56 w-96 rounded-lg mr-3 mb-4" 
+                    className=" im1 object-cover h-56 w-96 rounded-lg mr-3 mb-4 hover:scale-110 transition duration-300 ease-in-out" 
                   />
                 </Link>  
 

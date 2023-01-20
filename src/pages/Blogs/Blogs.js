@@ -49,7 +49,7 @@ function Blogs() {
         </div>
 
         <div>
-          {blogs.map((blog) => {
+          {blogs.slice(2).map((blog) => {
             return (
               <div>
                 <h1 className="text-6xl font-medium mb-12 mt-4">
