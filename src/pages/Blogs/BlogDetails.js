@@ -16,7 +16,7 @@ const BlogDetails = () => {
       setBlog(docSnap.data());
     }
     fetchListing();
-  }, [params.listingId]);
+  }, [params.id]);
 
   return (
     <div className="mx-auto px-10 py-10">

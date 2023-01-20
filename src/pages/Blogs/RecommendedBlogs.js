@@ -45,11 +45,13 @@ function RecommendedBlogs() {
                     key={blog.id}
                   >
                    
-                    <Link to= {`/blogs/${blog.id}`}>
-                      <img
-                        src={blog.imgText}
-                        alt=""
-                        className=" im1 object-cover h-56 w-96 rounded-lg mr-3 mb-4"
+                    <Link 
+                    to= {`/blogs/${blog.id}`}
+                    onClick={window.scrollTo(0, 0)}
+                    >
+                      <img src={blog.imgText}
+                        alt="blog"
+                        className=" im1 object-cover h-56 w-96 rounded-lg mr-3 mb-4  hover:scale-100 transition duration-300 ease-in-out "
                       />
                     </Link>
                   </div>
