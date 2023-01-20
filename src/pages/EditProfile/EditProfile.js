@@ -30,7 +30,7 @@ const [hobbies, setHobbies]= useState(`${userDetails.hobbies}`)
 const [familySize, setFamilySize]= useState(`${userDetails.familySize}`)
 const [phonenumber, setPhoneNumber]= useState(`${userDetails.phonenumber}`)
 
-console.log(fullName)
+// console.log(fullName)
 
   const navigate = useNavigate();
   const { user, logOut } = UserAuth();
@@ -183,7 +183,7 @@ console.log(fullName)
 
               <div className=" flex flex-col items-center sm:flex-row sm:flex-wrap justify-center mt-6 sm:justify-between">
                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
-                  Education Level: <span className=' font-bold text-blue-600'>{userDetails.educationLevel}</span>
+                  Education Level: 
                 </span>
                 <select onChange={(e) => (e) => setEducationLevel(e.target.value)} defaultValue={userDetails.educationLevel} className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md text-xl">
                   <option value="select....">select...</option>
