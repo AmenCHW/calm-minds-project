@@ -1,4 +1,4 @@
-import React, {useEffect, useState, prevState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {deleteUser} from 'firebase/auth';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { collection, query, where, getDocs, deleteDoc, doc, updateDoc } from 'firebase/firestore';
@@ -30,22 +30,26 @@ function EditProfile() {
 // const [familySize, setFamilySize]= useState(`${userDetails.familySize}`)
 // const [phonenumber, setPhoneNumber]= useState(`${userDetails.phonenumber}`)
 
+const hob = "skii"
+
 const [inputValues, setInputValue] = useState({
-  gender: `${userDetails.gender}`,
-  fullName: `${userDetails.fullName}`,
-  birthDate: `${userDetails.birthDate}`,
-  educationLevel: `${userDetails.educationLevel}`,
-  hobbies: `${userDetails.hobbies}`,
-  familySize: `${userDetails.familySize}`,
-  phonenumber: `${userDetails.phonenumber}`
+  gender: userDetails.gender,
+  fullName: userDetails.fullName,
+  birthDate: userDetails.birthDate,
+  educationLevel: userDetails.educationLevel,
+  hobbies: hob,
+  familySize: userDetails.familySize,
+  phonenumber: userDetails.phonenumber
 });
 
 const handleChange = (e) => {
-  setInputValue({...prevState, ...inputValues, [e.target.name]: e.target.value });
+  setInputValue({...inputValues, [e.target.name]: e.target.value });
 }
 
-
-// console.log(fullName)
+console.log(userDetails.fullName)
+console.log(inputValues.fullName)
+console.log(userDetails.hobbies)
+console.log(inputValues.hobbies)
 
   const navigate = useNavigate();
   const { user, logOut } = UserAuth();
