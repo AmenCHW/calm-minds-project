@@ -1,105 +1,166 @@
-import React from 'react';
-import blogObject from './blogObject';
+import React, {  useEffect, useState } from 'react';
+ import {  collection, getDocs } from 'firebase/firestore';
+import { Link } from 'react-router-dom';
+ import { db } from '../../firebase-config';
+
+
 
 function RecentBlogs() {
-  return (
-    <div>
-      <div id="default-carousel" className="relative" data-carousel="static">
-        <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
-          {blogObject.map((blog) => {
+  const [blogs, setBlog] = useState([]);
+  // ____________________________ blog id_____________________________________________________________________________________________________________________________
+   const userCollectionRef = collection(db, 'blogCollection');
+    useEffect(() => {
+    const fetchBlogImage = async () => {
+      const data = await getDocs(userCollectionRef);
+      setBlog(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
+
+    fetchBlogImage();
+  
+  }, []);
+  //  _________________________________________ Carsoul_____________________________________________________________________________________________________________
+
+  const handleRightClick = () => {
+    const prevState = [...blogs];
+    // find next inactive card index - top
+    const nextCardIdx = prevState
+      .filter((ft) => ft.active === true)
+      .sort((a, b) => {
+        if (a.pos > b.pos) {
+          return 1;
+        }
+        return -1;
+      })[0].idx;
+    // reset
+    prevState.find((f) => f.active === false).active = true;
+    // update
+    prevState.find((f) => f.idx === nextCardIdx).active = false;
+    // maximize pos
+    prevState.find((f) => f.idx === nextCardIdx).pos =
+      Math.max.apply(
+        null,
+        prevState.map((o) => {
+          return o.pos;
+        })
+      ) + 1;
+
+    // update state
+    setBlog(prevState);
+  };
+
+  const handleLeftClick = () => {
+    const prevState = [...blogs];
+    // find next inactive card index - bottom
+    const nextCardIdx = prevState
+      .filter((ft) => ft.active === true)
+      .sort((a, b) => {
+        if (a.pos > b.pos) {
+          return 1;
+
+
+        } 
+          return -1;
+       
+      }) .pop(1).idx;
+
+    // minimize pos
+    prevState.find((f) => f.active === false).pos =
+      Math.min.apply(
+        null,
+        prevState.map((o) => {
+          return o.pos;
+        })
+      ) - 1;
+    // reset
+    prevState.find((f) => f.active === false).active = true;
+    // update
+    prevState.find((f) => f.idx === nextCardIdx).active = false;
+
+    // update state
+    setBlog(prevState);
+  };
+   return (
+    <div className="flex flex-col md:flex-row place-content-center mb-4 ">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl format-normal leading-normal pt-10">
+        RECENT BLOGS
+      </h1>
+      <button
+        type="button"
+        className="text-xl md:text-5xl cursor-pointer border-2 pb-2 px-5 border-black rounded-md h-1/2 my-10 md:mr-4 mx-36 md:mx-0"
+        onClick={() => handleLeftClick()}
+      >
+        &#8249;
+      </button>
+
+      <div className="flex-col flex md:flex-row gap-2 sm:gap-4 place-items-center">
+      
+
+
+      
+         {blogs.map((blog) => {
             return (
-              <div
-                className="hidden duration-700 ease-in-out"
-                data-carousel-item
-              >
-                <span className="absolute text-2xl font-semibold text-white -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 sm:text-3xl dark:text-gray-800">
-                  First Slide
-                </span>
-                <img
-                  src={blog.src}
-                  className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                  alt="..."
-                />
+
+              <div className='object-cover h-60 w-96 rounded-lg mr-3 mb-4 ' 
+              key={blog.id}
+               >
+                <Link to= {`/blogs/${blog.id}`} > 
+                  <img
+                    src={blog.imgText}
+                    alt="" 
+                    className=" im1 object-cover h-56 w-96 rounded-lg mr-3 mb-4" 
+                  />
+                </Link>  
+
               </div>
+             
+          
             );
-          })}
-        </div>
 
-        <div className="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
-          <button
-            type="button"
-            className="w-3 h-3 rounded-full"
-            aria-current="false"
-            aria-label="Slide 1"
-            data-carousel-slide-to="0"
-          />
-          <button
-            type="button"
-            className="w-3 h-3 rounded-full"
-            aria-current="false"
-            aria-label="Slide 2"
-            data-carousel-slide-to="1"
-          />
-          <button
-            type="button"
-            className="w-3 h-3 rounded-full"
-            aria-current="false"
-            aria-label="Slide 3"
-            data-carousel-slide-to="2"
-          />
-        </div>
+            
+          })}   
+          </div> 
 
-        <button
-          type="button"
-          className="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-          data-carousel-prev
-        >
-          <span className="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg
-              aria-hidden="true"
-              className="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-            <span className="sr-only">Previous</span>
-          </span>
-        </button>
-        <button
-          type="button"
-          className="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-          data-carousel-next
-        >
-          <span className="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg
-              aria-hidden="true"
-              className="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-            <span className="sr-only">Next</span>
-          </span>
-        </button>
-      </div>
+      <button
+        type="button"
+        className="text-xl md:text-5xl hover:cursor-pointer border-2 pb-2 px-5 border-black rounded-md h-1/2 my-10 md:ml-4 mx-36 md:mx-0"
+        onClick={() => handleRightClick()}
+      >
+        &#8250;
+      </button>
     </div>
   );
 }
-
 export default RecentBlogs;
+
+
+// _____________________________________carsoul filter______________________________________________________________________________________________________
+// {blogs
+//   .filter((f) => f.active === true)
+//   .sort((a, b) => {
+//       if (a.pos > b.pos) {
+//         return 1;
+//       } 
+//         return -1;
+    
+//     })
+    
+//   .map((blog) => ( 
+   
+//       <div className='object-cover h-60 w-96 rounded-lg mr-3 mb-4 '
+//       key={blog.id}
+//       // style={{backgroundImage: `url(${blog.coverImg})` }}
+//       >
+        
+//         {/* <h1 className="text-2xl font-medium mb-12 mt-4 mx-2 my-2">
+//           {blog.blogtitle}
+//         </h1> */}
+//       <Link to= {`/blogs/${blog.id}`}> 
+//         <img
+//           src={blog.coverImg}
+//           alt="" 
+//           className=" im1 object-cover h-48 w-96 rounded-lg mr-3 mb-4"
+//         /> 
+//         </Link>
+//       </div>
+//   ))}
+

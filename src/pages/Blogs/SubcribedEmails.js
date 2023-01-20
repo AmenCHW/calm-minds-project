@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 import { collection, addDoc } from 'firebase/firestore';
 // import { ref, listAll, getDownloadURL } from 'firebase/storage';
 import { ReactComponent as SendIcon } from '../../icons/send.svg';
@@ -6,9 +6,6 @@ import { db } from '../../firebase-config';
 
 function SubcribedEmails() {
   const [newEmailInput, setNewEmailInput] = useState({});
-
-  
-
 
   // __________this handling subscribtion email input___________________
   const handleOnChange = (event) => {
@@ -33,31 +30,25 @@ function SubcribedEmails() {
   };
 
   return (
-    <div className="mx-auto  px-10 py-10">
-      <div className="mx-auto lg:max-w-7xl ">
-        
-       
-        <div className=" flex mr-4 ">
-          <form className="flex" onSubmit={handleSubmit}>
-            <input
-              className=" border-2 lg:px-3 px-0 border-[#718096] rounded-l-md"
-              placeholder="Enter your e-mail"
-              type="email"
-              name="email"
-              value={newEmailInput.email}
-              onChange={handleOnChange}
-            />
-            <button
-              className="p-2 border-y-2 border-r-2 border-[#718096] rounded-r-md bg-cyan-500 active:pr-1 active:pl-1 active:bg-cyan-400"
-              type="submit"
-              aria-label="Send"
-            >
-              {' '}
-              <SendIcon />
-            </button>
-          </form>
-        </div>  
-      </div>
+    <div className="mx-auto">
+      <form className="flex justify-start" onSubmit={handleSubmit}>
+        <input
+          className="border-2 border-[#718096] rounded-l-md w-auto placeholder:pl-2"
+          placeholder="Enter your e-mail"
+          type="email"
+          name="email"
+          value={newEmailInput.email}
+          onChange={handleOnChange}
+        />
+        <button
+          className="p-2 border-y-2 border-r-2 border-[#718096] rounded-r-md bg-cyan-500 active:pr-1 active:pl-1 active:bg-cyan-400"
+          type="submit"
+          aria-label="Send"
+        >
+
+          <SendIcon />
+        </button>
+      </form>
     </div>
   );
 }
