@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, prevState} from 'react';
 import {deleteUser} from 'firebase/auth';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { collection, query, where, getDocs, deleteDoc, doc, updateDoc } from 'firebase/firestore';
@@ -22,13 +22,28 @@ function EditProfile() {
 //     familySize: 0,
 //     phonenumber: 0,
 // });
-const [gender, setGender]= useState(`${userDetails.gender}`)
-const [fullName, setFullName]= useState(`${userDetails.fullName}`)
-const [birthDate, setbirthDate]= useState(`${userDetails.birthDate}`)
-const [educationLevel, setEducationLevel]= useState(`${userDetails.educationLevel}`)
-const [hobbies, setHobbies]= useState(`${userDetails.hobbies}`)
-const [familySize, setFamilySize]= useState(`${userDetails.familySize}`)
-const [phonenumber, setPhoneNumber]= useState(`${userDetails.phonenumber}`)
+// const [gender, setGender]= useState(`${userDetails.gender}`)
+// const [fullName, setFullName]= useState(`${userDetails.fullName}`)
+// const [birthDate, setbirthDate]= useState(`${userDetails.birthDate}`)
+// const [educationLevel, setEducationLevel]= useState(`${userDetails.educationLevel}`)
+// const [hobbies, setHobbies]= useState(`${userDetails.hobbies}`)
+// const [familySize, setFamilySize]= useState(`${userDetails.familySize}`)
+// const [phonenumber, setPhoneNumber]= useState(`${userDetails.phonenumber}`)
+
+const [inputValues, setInputValue] = useState({
+  gender: `${userDetails.gender}`,
+  fullName: `${userDetails.fullName}`,
+  birthDate: `${userDetails.birthDate}`,
+  educationLevel: `${userDetails.educationLevel}`,
+  hobbies: `${userDetails.hobbies}`,
+  familySize: `${userDetails.familySize}`,
+  phonenumber: `${userDetails.phonenumber}`
+});
+
+const handleChange = (e) => {
+  setInputValue({...prevState, ...inputValues, [e.target.name]: e.target.value });
+}
+
 
 // console.log(fullName)
 
@@ -51,18 +66,17 @@ const [phonenumber, setPhoneNumber]= useState(`${userDetails.phonenumber}`)
     const handleSubmit = async (e) => {
       e.preventDefault();
    
-
       try {
         const docRef = doc(db, "users", `${user.uid}`)
         await updateDoc(docRef, {
-          gender: gender,
-          fullName: fullName,
-          birthDate: birthDate,
+          gender: inputValues.gender,
+          fullName: inputValues.fullName,
+          birthDate: inputValues.birthDate,
           // photoURL: photoURL,
-          educationLevel: educationLevel,
-          hobbies: hobbies,
-          familySize: familySize,
-          phonenumber: phonenumber,
+          educationLevel: inputValues.educationLevel,
+          hobbies: inputValues.hobbies,
+          familySize: inputValues.familySize,
+          phonenumber: inputValues.phonenumber,
       })  } catch (error) {
           console.log(error.message);
       }
@@ -175,7 +189,8 @@ const [phonenumber, setPhoneNumber]= useState(`${userDetails.phonenumber}`)
                 <input
                   type="text"
                   id="name"
-                  onChange={(e) => setFullName(e.target.value)}
+                  name="fullName"
+                  onChange={(e) => handleChange(e)}
                  defaultValue={userDetails.fullName}
                   className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md"
                 />
@@ -185,7 +200,7 @@ const [phonenumber, setPhoneNumber]= useState(`${userDetails.phonenumber}`)
                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
                   Education Level: 
                 </span>
-                <select onChange={(e) => (e) => setEducationLevel(e.target.value)} defaultValue={userDetails.educationLevel} className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md text-xl">
+                <select onChange={(e) => handleChange(e)} defaultValue={userDetails.educationLevel} name="educationLevel" className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md text-xl">
                   <option value="select....">select...</option>
                   <option value="Highschool">Highschool</option>
                   <option value="Diploma">Diploma</option>
@@ -205,7 +220,8 @@ const [phonenumber, setPhoneNumber]= useState(`${userDetails.phonenumber}`)
                 <input
                   type="text"
                   id="hobbies"
-                  onChange={(e) => setHobbies(e.target.value)}
+                  name="hobbies"
+                  onChange={(e) => handleChange(e)}
                   defaultValue={userDetails.hobbies}
                   className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md"
                 />
@@ -223,7 +239,8 @@ const [phonenumber, setPhoneNumber]= useState(`${userDetails.phonenumber}`)
                     type="number"
                     min={1}
                     id="family-size"
-                    onChange={(e) => setFamilySize(e.target.value)}
+                    name="familySize"
+                    onChange={(e) => handleChange(e)}
                     defaultValue={userDetails.familySize}
                     className="border-2 rounded-lg h-16 w-[68px] border-gray-100 pl-4 shadow-md"
                   />
@@ -237,7 +254,7 @@ const [phonenumber, setPhoneNumber]= useState(`${userDetails.phonenumber}`)
                 <span className=" mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
                   Gender
                 </span>
-                <select onChange={(e) => setGender(e.target.value)} defaultValue={userDetails.gender} className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md text-xl">
+                <select onChange={(e) => handleChange(e)} name="gender" defaultValue={userDetails.gender} className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md text-xl">
                   <option value="select....">select...</option>
                   <option value="male">male</option>
                   <option value="female">female</option>
@@ -254,7 +271,8 @@ const [phonenumber, setPhoneNumber]= useState(`${userDetails.phonenumber}`)
                 <input
                   type="date"
                   id="date"
-                  onChange={(e) => setbirthDate(e.target.value)}
+                  name="birthDate"
+                  onChange={(e) => handleChange(e)}
                   defaultValue={userDetails.birthDate}
                   className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md"
                 />
@@ -270,6 +288,7 @@ const [phonenumber, setPhoneNumber]= useState(`${userDetails.phonenumber}`)
                 <input
                   type="email"
                   id="email"
+                  name="email"
                   defaultValue={userDetails.email}
                   className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md"
                 />
@@ -285,7 +304,8 @@ const [phonenumber, setPhoneNumber]= useState(`${userDetails.phonenumber}`)
                 <input
                   type="tel"
                   id="phone"
-                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  name="phonenumber"
+                  onChange={(e) => handleChange(e)}
                   defaultValue={userDetails.phonenumber}
                   className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md"
                 />
