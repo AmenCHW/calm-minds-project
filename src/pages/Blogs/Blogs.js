@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { collection,  getDocs } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 // import { ref, listAll, getDownloadURL } from 'firebase/storage';
 
 import { db } from '../../firebase-config';
@@ -36,7 +36,7 @@ function Blogs() {
   //   });
   // }, []);
 
-  
+
   return (
     <div className="mx-auto  px-10 py-10">
       <div className="mx-auto lg:max-w-7xl ">
@@ -62,17 +62,17 @@ function Blogs() {
             );
           })}
         </div>
- {/* _____________________subscribtion__________________________________________________________________________________________________- */}
-       <div className='mt-3 '>
+        {/* _____________________subscribtion__________________________________________________________________________________________________- */}
+        <div className='mt-3 '>
           <h3 className="text-xl sm:text-xl md:text-2xl  mb-2 mt-8 items-start font-medium">
             SIGN UP FOR THE HEALING BLOG
           </h3>
-          <p >A weekly, ad-free Blog that helps you stay in the know.</p>
-          <SubcribedEmails /> 
+          <p>A weekly, ad-free Blog that helps you stay in the know.</p>
+          <div className='pt-5'><SubcribedEmails /></div>
         </div>
-       
-          {/* _____________________Recommended blog images _________________________________________________________________________________ -*/}
-          <div className="py-10 ">
+
+        {/* _____________________Recommended blog images _________________________________________________________________________________ -*/}
+        <div className="py-10 ">
           <div className="mx-2 my-3">
             <h3 className="text-2xl sm:text-2xl md:text-3xl format-normal leading-normal pt-5 mt-10 font-medium">
               RECOMMENED FOR YOU{' '}
@@ -84,8 +84,8 @@ function Blogs() {
                     className="object-cover h-60 w-96 rounded-lg mr-3 mb-4 "
                     key={blog.id}
                   >
-                   
-                    <Link to= {`/blogs/${blog.id}`}>
+
+                    <Link to={`/blogs/${blog.id}`}>
                       <img
                         src={blog.imgText}
                         alt=""

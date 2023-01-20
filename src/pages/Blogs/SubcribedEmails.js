@@ -30,25 +30,26 @@ function SubcribedEmails() {
   };
 
   return (
-    <div className="mx-auto">
-      <form className="flex justify-start" onSubmit={handleSubmit}>
-        <input
-          className="border-2 border-[#718096] rounded-l-md w-auto placeholder:pl-2"
-          placeholder="Enter your e-mail"
-          type="email"
-          name="email"
-          value={newEmailInput.email}
-          onChange={handleOnChange}
-        />
-        <button
-          className="p-2 border-y-2 border-r-2 border-[#718096] rounded-r-md bg-cyan-500 active:pr-1 active:pl-1 active:bg-cyan-400"
-          type="submit"
-          aria-label="Send"
-        >
-
-          <SendIcon />
-        </button>
-      </form>
+    <div className="mx-auto flex justify-start ">
+      <div className=''>
+        <form className="flex" onSubmit={handleSubmit}>
+          <input
+            className="border-2 border-[#718096] rounded-l-md w-auto placeholder:pl-2"
+            placeholder="Enter your e-mail"
+            type="email"
+            name="email"
+            value={newEmailInput.email}
+            onChange={handleOnChange}
+          />
+          <button
+            className="p-2 border-y-2 border-r-2 border-[#718096] rounded-r-md bg-cyan-500 active:pr-1 active:pl-1 active:bg-cyan-400"
+            type="submit"
+            aria-label="Send"
+          >
+            <SendIcon />
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

@@ -40,7 +40,7 @@ function Footer() {
           We&apos;ll never spam you or share your email
         </p>
 
-        <div className='flex lg:justify-start mt-5'>
+        <div className='mt-5'>
           <SubcribedEmails />
         </div>
 
