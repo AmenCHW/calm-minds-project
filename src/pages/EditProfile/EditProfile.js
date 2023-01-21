@@ -16,16 +16,16 @@ function EditProfile() {
   const [perc, setPerc] = useState(null)
   // const fullNameInfo = userDetails.fullName
  
-  const [inputValues, setInputValue] = useState({
-    gender: "",
-    fullName: "",
-    birthDate: "",
-    photoURL: "",
-    educationLevel: "",
-    hobbies: "",
-    familySize: 1,
-    phonenumber: 0,
-});
+//   const [inputValues, setInputValue] = useState({
+//     gender: "",
+//     fullName: "",
+//     birthDate: "",
+//     photoURL: "",
+//     educationLevel: "",
+//     hobbies: "",
+//     familySize: 1,
+//     phonenumber: 0,
+// });
 // const [gender, setGender]= useState(`${userDetails.gender}`)
 // const [fullName, setFullName]= useState(`${userDetails.fullName}`)
 // const [birthDate, setbirthDate]= useState(`${userDetails.birthDate}`)
@@ -34,15 +34,15 @@ function EditProfile() {
 // const [familySize, setFamilySize]= useState(`${userDetails.familySize}`)
 // const [phonenumber, setPhoneNumber]= useState(`${userDetails.phonenumber}`)
 
-// const [inputValues, setInputValue] = useState({
-//   gender: userDetails.gender,
-//   fullName: userDetails.fullName,
-//   birthDate: userDetails.birthDate,
-//   educationLevel: userDetails.educationLevel,
-//   hobbies: userDetails.hobbies,
-//   familySize: userDetails.familySize,
-//   phonenumber: userDetails.phonenumber
-// });
+const [inputValues, setInputValue] = useState({
+  gender: userDetails.gender,
+  fullName: userDetails.fullName,
+  birthDate: userDetails.birthDate,
+  educationLevel: userDetails.educationLevel,
+  hobbies: userDetails.hobbies,
+  familySize: userDetails.familySize,
+  phonenumber: userDetails.phonenumber
+});
 
 console.log(userDetails)
 console.log(userDetails.fullName)
@@ -110,6 +110,7 @@ const handleChange = (e) => {
             return docm.data();
           });
           setUserDetails(usersData[0])
+          setInputValue(usersData[0])
           console.log(usersData[0])
       })
   }
@@ -126,7 +127,7 @@ const handleChange = (e) => {
       const name = new Date().getTime() + file.name
       console.log(name);
       const storageRef = ref(storage, file.name);
-      const uploadTask = uploadBytesResumable(storageRef, file.name);
+      const uploadTask = uploadBytesResumable(storageRef, file);
 
       uploadTask.on('state_changed', 
   (snapshot) => {
@@ -204,7 +205,7 @@ const handleChange = (e) => {
                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
                   Education Level: 
                 </span>
-                <select onChange={(e) => handleChange(e)} defaultValue={userDetails.educationLevel} name="educationLevel" className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md text-xl">
+                <select onChange={(e) => handleChange(e)} defaultValue={userDetails.educationLevel} key={userDetails.educationLevel} name="educationLevel" className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md text-xl">
                   <option value="select....">select...</option>
                   <option value="Highschool">Highschool</option>
                   <option value="Diploma">Diploma</option>
@@ -258,7 +259,7 @@ const handleChange = (e) => {
                 <span className=" mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
                   Gender
                 </span>
-                <select onChange={(e) => handleChange(e)} name="gender" defaultValue={userDetails.gender} className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md text-xl">
+                <select onChange={(e) => handleChange(e)} name="gender" defaultValue={userDetails.gender} key={userDetails.educationLevel} className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md text-xl">
                   <option value="select....">select...</option>
                   <option value="male">male</option>
                   <option value="female">female</option>
