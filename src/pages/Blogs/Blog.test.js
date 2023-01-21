@@ -1,10 +1,10 @@
 import React from "react";
  import {render,screen } from "@testing-library/react"
-import About from "./About";
+import Blogs from "./Blogs";
 import renderer from 'react-test-renderer' 
 
 test("first snapshot testing",()=>{
-    const component=renderer.create( <About/>).toJSON()  
+    const component=renderer.create( <Blogs/>).toJSON()  
     expect( component).toMatchSnapshot();
 })
 
@@ -12,7 +12,7 @@ test("first snapshot testing",()=>{
 
 test("test healing", async() => {
     render(
-       <About title ="Healing" />
+       <Blogs title ="Healing" />
    );
  const headingElement = screen.getAllByText(/healing/i);
    expect(headingElement).toBeInTheDocument;
