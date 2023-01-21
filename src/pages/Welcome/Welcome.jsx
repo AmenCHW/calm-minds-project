@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import image from '../../img/image5.svg';
 import image2 from '../../img/image1.svg';
 
-export default function welcome() {
+export default function Welcome() {
   return (
     <div>
       <div
