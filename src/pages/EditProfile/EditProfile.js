@@ -5,7 +5,7 @@ import { collection, query, where, getDocs, deleteDoc, doc, updateDoc } from 'fi
 import { useNavigate } from 'react-router-dom';
 import {db, storage, auth } from '../../firebase-config';
 import { UserAuth } from '../../context/AuthContext';
-// import profileimage from './profileimage.png';
+import profileimage from './profileimage.png';
 // import { input } from '@testing-library/user-event/dist/types/event';
 
  
@@ -174,7 +174,7 @@ const handleChange = (e) => {
 
       <div className="flex flex-wrap justify-center md:justify-evenly">
         <div>
-          <img src={userDetails.photoURL} alt="profile-pic" />
+          <img className='max-w-xs max-h-xs rounded-full aspect-square object-cover' src={userDetails.photoURL? userDetails.photoURL:profileimage} alt="profile-pic" />
         </div>
 
         <div className="">
@@ -259,7 +259,7 @@ const handleChange = (e) => {
                 <span className=" mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
                   Gender
                 </span>
-                <select onChange={(e) => handleChange(e)} name="gender" defaultValue={userDetails.gender} key={userDetails.educationLevel} className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md text-xl">
+                <select onChange={(e) => handleChange(e)} name="gender" defaultValue={userDetails.gender} key={userDetails.gender} className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md text-xl">
                   <option value="select....">select...</option>
                   <option value="male">male</option>
                   <option value="female">female</option>
