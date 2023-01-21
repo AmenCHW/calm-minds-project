@@ -5,23 +5,27 @@ import { collection, query, where, getDocs, deleteDoc, doc, updateDoc } from 'fi
 import { useNavigate } from 'react-router-dom';
 import {db, storage, auth } from '../../firebase-config';
 import { UserAuth } from '../../context/AuthContext';
-import profileimage from './profileimage.png';
+// import profileimage from './profileimage.png';
 // import { input } from '@testing-library/user-event/dist/types/event';
 
  
 function EditProfile() {
 
+
   const [userDetails, setUserDetails] = useState({})
-//   const [inputValues, setInputValue] = useState({
-//     gender: "",
-//     fullName: "",
-//     birthDate: "",
-//     // photoURL: "",
-//     educationLevel: "",
-//     hobbies: "",
-//     familySize: 0,
-//     phonenumber: 0,
-// });
+  const [perc, setPerc] = useState(null)
+  // const fullNameInfo = userDetails.fullName
+ 
+  const [inputValues, setInputValue] = useState({
+    gender: "",
+    fullName: "",
+    birthDate: "",
+    photoURL: "",
+    educationLevel: "",
+    hobbies: "",
+    familySize: 1,
+    phonenumber: 0,
+});
 // const [gender, setGender]= useState(`${userDetails.gender}`)
 // const [fullName, setFullName]= useState(`${userDetails.fullName}`)
 // const [birthDate, setbirthDate]= useState(`${userDetails.birthDate}`)
@@ -30,26 +34,22 @@ function EditProfile() {
 // const [familySize, setFamilySize]= useState(`${userDetails.familySize}`)
 // const [phonenumber, setPhoneNumber]= useState(`${userDetails.phonenumber}`)
 
-const hob = "skii"
+// const [inputValues, setInputValue] = useState({
+//   gender: userDetails.gender,
+//   fullName: userDetails.fullName,
+//   birthDate: userDetails.birthDate,
+//   educationLevel: userDetails.educationLevel,
+//   hobbies: userDetails.hobbies,
+//   familySize: userDetails.familySize,
+//   phonenumber: userDetails.phonenumber
+// });
 
-const [inputValues, setInputValue] = useState({
-  gender: userDetails.gender,
-  fullName: userDetails.fullName,
-  birthDate: userDetails.birthDate,
-  educationLevel: userDetails.educationLevel,
-  hobbies: hob,
-  familySize: userDetails.familySize,
-  phonenumber: userDetails.phonenumber
-});
+console.log(userDetails)
+console.log(userDetails.fullName)
 
 const handleChange = (e) => {
   setInputValue({...inputValues, [e.target.name]: e.target.value });
 }
-
-console.log(userDetails.fullName)
-console.log(inputValues.fullName)
-console.log(userDetails.hobbies)
-console.log(inputValues.hobbies)
 
   const navigate = useNavigate();
   const { user, logOut } = UserAuth();
@@ -76,7 +76,7 @@ console.log(inputValues.hobbies)
           gender: inputValues.gender,
           fullName: inputValues.fullName,
           birthDate: inputValues.birthDate,
-          // photoURL: photoURL,
+          photoURL: inputValues.photoURL,
           educationLevel: inputValues.educationLevel,
           hobbies: inputValues.hobbies,
           familySize: inputValues.familySize,
@@ -86,6 +86,7 @@ console.log(inputValues.hobbies)
       }
   }
 
+  console.log(inputValues.photoURL)
 
   const handleDelete = async () => {
           try {
@@ -106,8 +107,6 @@ console.log(inputValues.hobbies)
       .then((querySnapshot) => {
         const usersData = querySnapshot.docs
           .map((docm) => {
-            // eslint-disable-next-line 
-            // console.log(doc.id, " => ", doc.data().isTherapist);
             return docm.data();
           });
           setUserDetails(usersData[0])
@@ -135,6 +134,7 @@ console.log(inputValues.hobbies)
     // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
     console.log( `Upload is ${progress} % done`);
+    setPerc(progress)
     switch (snapshot.state) {
       case 'paused':
         console.log('Upload is paused');
@@ -153,7 +153,7 @@ console.log(inputValues.hobbies)
     // Handle successful uploads on complete
     // For instance, get the download URL: https://firebasestorage.googleapis.com/...
     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-      console.log('File available at', downloadURL);
+      setInputValue((prev)=>({...prev, photoURL:downloadURL}))
     });
   }
 );
@@ -173,7 +173,7 @@ console.log(inputValues.hobbies)
 
       <div className="flex flex-wrap justify-center md:justify-evenly">
         <div>
-          <img src={profileimage} alt="profile-pic" />
+          <img src={userDetails.photoURL} alt="profile-pic" />
         </div>
 
         <div className="">
@@ -210,7 +210,7 @@ console.log(inputValues.hobbies)
                   <option value="Diploma">Diploma</option>
                   <option value="bachelor">Bachelor&apos;s Degree</option>
                   <option value="master">Master&apos;s Degree</option>
-                  <option value="phd">phD</option>
+                  <option value="phd">phd</option>
                 </select>
               </div>
 
@@ -325,6 +325,7 @@ console.log(inputValues.hobbies)
                 <input
                   type="file"
                   id="image"
+                  name="photoURL"
                   onChange={(e)=> setFile(e.target.files[0])}
                   className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] items-center py-auto border-gray-100 pl-4 shadow-md"
                 />
@@ -364,6 +365,7 @@ console.log(inputValues.hobbies)
 
               <div className="flex flex-wrap justify-center lg:justify-between mt-12">
                 <button
+                  disabled={perc !== null && perc < 100}
                   type="submit"
                   className="bg-[#2DD3E3] py-3 text-2xl border-2 rounded-lg border-[#2DD3E3] px-3 lg:px-0 lg:w-[220px] my-2 lg:my-0 mx-2"
                 >
