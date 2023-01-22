@@ -24,12 +24,10 @@ function Signup() {
 
 
   const handleChange = ()=> setFullName (`${firstName} ${lastName}`)
-  console.log(fullName)
       useEffect(() => {
         handleChange();
     }, [firstName, lastName]);  
 
-    console.log(fullName)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
