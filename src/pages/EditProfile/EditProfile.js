@@ -79,7 +79,7 @@ const handleChange = (e) => {
       e.preventDefault();
 
       if (newPassword !== confirmPassword){
-        setNotMatching("Password and Email are not matching")
+        setNotMatching("Password and Confrim Password are not matching")
       } else {
       const refresh = () => {
         navigate(0)
@@ -198,7 +198,7 @@ const handleChange = (e) => {
         Please fill all the fields with correct and valid details to complete
         your profile.
       </h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} netlify name="formSubmit">
       <div className="flex flex-wrap justify-center md:justify-evenly">
         <div className='flex flex-col items-center'>
           <img className='max-w-xs max-h-xs rounded-full aspect-square object-cover ' src={userDetails.photoURL? userDetails.photoURL:profileimage} alt="profile-pic" />
@@ -246,8 +246,8 @@ const handleChange = (e) => {
                   <option value="select....">select...</option>
                   <option value="Highschool">Highschool</option>
                   <option value="Diploma">Diploma</option>
-                  <option value="bachelor">Bachelor&apos;s Degree</option>
-                  <option value="master">Master&apos;s Degree</option>
+                  <option value="bachelor">Bachelors Degree</option>
+                  <option value="master">Masters Degree</option>
                   <option value="phd">phd</option>
                 </select>
               </div>
