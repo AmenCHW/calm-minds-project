@@ -367,7 +367,6 @@ const handleChange = (e) => {
               </label>
               <label
                 className="flex flex-col items-center sm:flex-row sm:flex-wrap justify-center sm:justify-between mt-6"
-                htmlFor="image"
               >
                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
                   ID
