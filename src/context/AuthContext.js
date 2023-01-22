@@ -88,7 +88,7 @@ export const AuthContextProvider = ({ children }) => {
                         userId: `${result.user.uid}`,
                         email,
                         isTherapist: false,
-
+                        IDURL: "",
                         gender: '',
                         fullName: fullName,
                         birthDate: birthDate,

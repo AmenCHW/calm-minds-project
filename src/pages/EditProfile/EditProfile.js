@@ -83,6 +83,7 @@ const handleChange = (e) => {
           fullName: inputValues.fullName,
           birthDate: inputValues.birthDate,
           photoURL: inputValues.photoURL,
+          IDURL: inputValues.IDURL,
           educationLevel: inputValues.educationLevel,
           hobbies: inputValues.hobbies,
           familySize: inputValues.familySize,
@@ -126,51 +127,56 @@ const handleChange = (e) => {
       fetchSingleUserData();
   }, [user])
 
+  
   const [file, setFile] = useState('')
-  useEffect(()=>{
+  const [IDImage, setIDImage] = useState('')
+  
+  const uploadFile = (fileState, setStateFn, urlKey) => {
     const uploadFile = ()=> {
-
-      const name = new Date().getTime() + file.name
+      const name = new Date().getTime() + fileState.name
       console.log(name);
-      const storageRef = ref(storage, file.name);
-      const uploadTask = uploadBytesResumable(storageRef, file);
-
+      const storageRef = ref(storage, fileState.name);
+      const uploadTask = uploadBytesResumable(storageRef, fileState);
+  
       uploadTask.on('state_changed', 
-  (snapshot) => {
-    // Observe state change events such as progress, pause, and resume
-    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    console.log( `Upload is ${progress} % done`);
-    setPerc(progress)
-    switch (snapshot.state) {
-      case 'paused':
-        console.log('Upload is paused');
-        break;
-      case 'running':
-        console.log('Upload is running');
-        break;
-        default:
-          break;
-    }
-  }, 
-  (error) => {
-    console.log(error)
-  }, 
-  () => {
-    // Handle successful uploads on complete
-    // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-      setInputValue((prev)=>({...prev, photoURL:downloadURL}))
-    });
-  }
-);
-
-
+      (snapshot) => {
+        // Observe state change events such as progress, pause, and resume
+        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log( `Upload is ${progress} % done`);
+        setPerc(progress)
+        switch (snapshot.state) {
+          case 'paused':
+            console.log('Upload is paused');
+            break;
+          case 'running':
+            console.log('Upload is running');
+            break;
+            default:
+              break;
+        }
+      }, 
+      (error) => {
+        console.log(error)
+      }, 
+      () => {
+        // Handle successful uploads on complete
+        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          setInputValue((prev)=>({...prev, [urlKey]:downloadURL}))
+        });
+      }
+    );
     };
     // eslint-disable-next-line
-    file && uploadFile();
-  }, [file])
-
+    fileState && uploadFile();
+  }
+  
+  useEffect(()=>{
+    uploadFile(file, setFile, 'photoURL')
+    uploadFile(IDImage, setIDImage, 'IDURL')
+  }, [file, IDImage])
+  
   return (
     <div className="mx-auto lg:max-w-7xl px-10 py-10">
       <h1 className="text-center text-[#FF0000] text-2xl mb-9">
@@ -343,7 +349,7 @@ const handleChange = (e) => {
                   type="file"
                   id="image"
                   name="IDURL"
-                  onChange={(e)=> setFile(e.target.files[0])}
+                  onChange={(e)=> setIDImage(e.target.files[0])}
                   className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] items-center py-auto border-gray-100 pl-4 shadow-md"
                 />
               </label>
