@@ -15,7 +15,7 @@ function EditProfile() {
 
   const [userDetails, setUserDetails] = useState({})
   const [perc, setPerc] = useState(null)
-    const { user, logOut } = UserAuth();
+  const { user, logOut } = UserAuth();
   // const fullNameInfo = userDetails.fullName
  
 //   const [inputValues, setInputValue] = useState({
@@ -46,6 +46,8 @@ const [inputValues, setInputValue] = useState({
   phonenumber: userDetails.phonenumber
 });
 
+
+/* eslint-disable */
 console.log(userDetails)
 console.log(userDetails.fullName)
 
