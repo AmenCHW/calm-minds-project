@@ -18,6 +18,7 @@ import BlogDetails from './pages/Blogs/BlogDetails';
 import EditProfile from './pages/EditProfile/EditProfile';
 import TherapistProfile from './pages/Therapist Profile/TherapistProfile';
 import SignUpThanks from './pages/Signup/SignUpThanks';
+import ContactThanks from './pages/Contact/ContactThanks';
 
 
 function App() {
@@ -42,7 +43,8 @@ function App() {
           <Route path="/RequirementPage" element={<CounselorRequirement />} />
           <Route path="/profile" element={<EditProfile />} />
           <Route path="/therapist/profile" element={<TherapistProfile />} />
-          <Route path="/thanks" element={<SignUpThanks />} />
+          <Route path="/signup-thanks" element={<SignUpThanks />} />
+          <Route path="/contact-thanks" element={<ContactThanks />} />
 
         </Routes> 
 

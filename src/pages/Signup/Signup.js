@@ -138,7 +138,7 @@ function Signup() {
                 Log In
               </button>
             </Link>
-            <Link to="/thanks">
+            <Link to="/signup-thanks">
               <button
                 className="w-28 h-12 md:w-48 md:h-16 border border-[#2DD3E3] font-medium text-2xl rounded-md  hover:bg-[#aaf1f7] bg-[#2DD3E3] text-black focus:shadow-xl"
                 type="submit"
