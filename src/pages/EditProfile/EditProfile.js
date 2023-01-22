@@ -46,7 +46,7 @@ const [inputValues, setInputValue] = useState({
   phonenumber: userDetails.phonenumber
 });
 
-
+const [confirmPassword, setConfirmPassword] = useState('');
 /* eslint-disable */
 console.log(userDetails)
 console.log(userDetails.fullName)
@@ -72,9 +72,15 @@ const handleChange = (e) => {
     // }
 
     const [newPassword, setNewPassword] = useState('')
+    const [notMatching, setNotMatching] = useState('');
+
 
     const handleSubmit = async (e) => {
       e.preventDefault();
+
+      if (newPassword !== confirmPassword){
+        setNotMatching("Password and Email are not matching")
+      } else {
       const refresh = () => {
         navigate(0)
         navigate('/profile')
@@ -98,7 +104,7 @@ const handleChange = (e) => {
           phonenumber: inputValues.phonenumber,
       }), refresh() } catch (error) {
           console.log(error.message);
-      }
+      }}
   }
 
   console.log(inputValues.photoURL)
@@ -392,6 +398,7 @@ const handleChange = (e) => {
                 <input
                   type="password"
                   id="password"
+                  onChange={(e)=>setNewPassword(e.target.value)}
                   className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md"
                 />
               </label>
@@ -406,10 +413,11 @@ const handleChange = (e) => {
                 <input
                   type="password"
                   id="password"
-                  onChange={(e)=>setNewPassword(e.target.value)}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                   className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md"
                 />
               </label>
+              <h2 className="text-red-500 py-4 px-3.5 m-1">{notMatching}</h2>
 
               <div className="flex flex-wrap justify-center lg:justify-between mt-12">
                 <button
