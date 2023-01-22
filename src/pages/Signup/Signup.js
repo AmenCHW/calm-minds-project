@@ -22,19 +22,20 @@ function Signup() {
     e.preventDefault();
     setError('');
 
-    if(email === confirmEmail && password !== confirmPassword){
+    if (email === confirmEmail && password !== confirmPassword) {
       setNotMatching("Password is not matching")
-    } else if (email !== confirmEmail && password === confirmPassword){
+    } else if (email !== confirmEmail && password === confirmPassword) {
       setNotMatching("Email is not matching")
-    } else if (email !== confirmEmail && password !== confirmPassword){
+    } else if (email !== confirmEmail && password !== confirmPassword) {
       setNotMatching("Password and Email are not matching")
-    } else if (email === confirmEmail && password === confirmPassword)
-    {try {
-      await createUser(email, password);
-      navigate('/')
-    } catch (error) {
-      setError(error.message);
-    }} else {
+    } else if (email === confirmEmail && password === confirmPassword) {
+      try {
+        await createUser(email, password);
+        navigate('/')
+      } catch (error) {
+        setError(error.message);
+      }
+    } else {
       setNotMatching("Password or Email are not matching")
     }
   };
@@ -137,12 +138,14 @@ function Signup() {
                 Log In
               </button>
             </Link>
-            <button
-              className="w-28 h-12 md:w-48 md:h-16 border border-[#2DD3E3] font-medium text-2xl rounded-md  hover:bg-[#aaf1f7] bg-[#2DD3E3] text-black focus:shadow-xl"
-              type="submit"
-            >
-              Sign Up
-            </button>
+            <Link to="/thanks">
+              <button
+                className="w-28 h-12 md:w-48 md:h-16 border border-[#2DD3E3] font-medium text-2xl rounded-md  hover:bg-[#aaf1f7] bg-[#2DD3E3] text-black focus:shadow-xl"
+                type="submit"
+              >
+                Sign Up
+              </button>
+            </Link>
           </div>
         </form>
         <div className="w-full flex mt-10 px-10">
@@ -153,7 +156,7 @@ function Signup() {
           <div className="w-2/5 border-t mt-2 border-[#2DD3E3]" />
         </div>
         <div className="w-full flex place-content-center gap-12 mt-4">
-          <FacebookIcon className="cursor-pointer " onClick={handleFacebookSignIn}/>
+          <FacebookIcon className="cursor-pointer " onClick={handleFacebookSignIn} />
           <GoogleIcon className="cursor-pointer" onClick={handleGoogleSignIn} />
         </div>
       </div>

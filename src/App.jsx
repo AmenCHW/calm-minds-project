@@ -17,6 +17,7 @@ import BlogDetails from './pages/Blogs/BlogDetails';
 // import RecommendedDetails from './pages/Blogs/RecommendedDetails';
 import EditProfile from './pages/EditProfile/EditProfile';
 import TherapistProfile from './pages/Therapist Profile/TherapistProfile';
+import SignUpThanks from './pages/Signup/SignUpThanks';
 
 
 function App() {
@@ -41,6 +42,8 @@ function App() {
           <Route path="/RequirementPage" element={<CounselorRequirement />} />
           <Route path="/profile" element={<EditProfile />} />
           <Route path="/therapist/profile" element={<TherapistProfile />} />
+          <Route path="/thanks" element={<SignUpThanks />} />
+
         </Routes> 
 
       <Footer />
