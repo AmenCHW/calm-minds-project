@@ -16,7 +16,25 @@ function EditProfile() {
   const [userDetails, setUserDetails] = useState({})
   const [perc, setPerc] = useState(null)
     const { user, logOut } = UserAuth();
-
+  // const fullNameInfo = userDetails.fullName
+ 
+//   const [inputValues, setInputValue] = useState({
+//     gender: "",
+//     fullName: "",
+//     birthDate: "",
+//     photoURL: "",
+//     educationLevel: "",
+//     hobbies: "",
+//     familySize: 1,
+//     phonenumber: 0,
+// });
+// const [gender, setGender]= useState(`${userDetails.gender}`)
+// const [fullName, setFullName]= useState(`${userDetails.fullName}`)
+// const [birthDate, setbirthDate]= useState(`${userDetails.birthDate}`)
+// const [educationLevel, setEducationLevel]= useState(`${userDetails.educationLevel}`)
+// const [hobbies, setHobbies]= useState(`${userDetails.hobbies}`)
+// const [familySize, setFamilySize]= useState(`${userDetails.familySize}`)
+// const [phonenumber, setPhoneNumber]= useState(`${userDetails.phonenumber}`)
 
 const [inputValues, setInputValue] = useState({
   gender: userDetails.gender,
@@ -28,6 +46,8 @@ const [inputValues, setInputValue] = useState({
   phonenumber: userDetails.phonenumber
 });
 
+console.log(userDetails)
+console.log(userDetails.fullName)
 
 const handleChange = (e) => {
   setInputValue({...inputValues, [e.target.name]: e.target.value });
@@ -45,6 +65,9 @@ const handleChange = (e) => {
         console.log(error)
       })};
 
+    //   const handleChange = (e) => {
+    //     setInputValue({ ...inputValues, [e.target.name]: e.target.value });
+    // }
 
     const [newPassword, setNewPassword] = useState('')
 
@@ -74,6 +97,7 @@ const handleChange = (e) => {
       }
   }
 
+  console.log(inputValues.photoURL)
 
 
   const handleDelete = async (oldPassword) => {
@@ -99,6 +123,7 @@ const handleChange = (e) => {
           });
           setUserDetails(usersData[0])
           setInputValue(usersData[0])
+          console.log(usersData[0])
       })
   }
 

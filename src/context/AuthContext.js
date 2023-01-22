@@ -6,8 +6,7 @@ import {
     signInWithPopup, signInWithRedirect,
     onAuthStateChanged,
     signOut,
-    FacebookAuthProvider,
-    // deleteUser
+    FacebookAuthProvider
 } from 'firebase/auth';
 import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from '../firebase-config';
@@ -140,8 +139,6 @@ export const AuthContextProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
 
-
-
     const facebookSignIn = () => {
         const provider = new FacebookAuthProvider();
         if ((window.innerWidth > 1024)) {
@@ -197,30 +194,7 @@ export const AuthContextProvider = ({ children }) => {
         }
 
     };
-
-
-    const updateUser = async (fullName, birthDate, gender, educationLevel, hobbies, familySize, phonenumber) => {
-
-
-                try {
-                    const docRef = doc(db, "users", `${result.user.uid}`)
-                    await updateDoc(docRef), {
-                        gender: gender,
-                        fullName: fullName,
-                        birthDate: birthDate,
-                        // photoURL: photoURL,
-                        educationLevel: educationLevel,
-                        hobbies: hobbies,
-                        familySize: familySize,
-                        phonenumber: phonenumber,
-                    };
-                    // console.log("Document written with ID: ", docRef.id);
-                } catch (e) {
-                    console.error(e);
-                }
-    }
     
-
 
     const logOut = () => {
         signOut(auth)
@@ -249,7 +223,7 @@ export const AuthContextProvider = ({ children }) => {
     return (
 
         <TherapistContext.Provider value={{ createTherapist, therapist }} >
-            <UserContext.Provider value={{ createUser, signIn, googleSignIn, user, logOut, facebookSignIn, updateUser }}>
+            <UserContext.Provider value={{ createUser, signIn, googleSignIn, user, logOut, facebookSignIn }}>
                 {children}
             </UserContext.Provider>
         </TherapistContext.Provider>
