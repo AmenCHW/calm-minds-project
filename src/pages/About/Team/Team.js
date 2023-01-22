@@ -1,5 +1,5 @@
 import React from 'react';
-import constTeam from './ConstTeam';
+import TeamObject from './TeamObject';
 
 function Team() {
   return (
@@ -14,7 +14,7 @@ function Team() {
         </h4>
         {/* maping over the objects */}
         <div className="flex flex-wrap px-0 pb-24   lg:justify-between   ">
-          {constTeam.map((element) => {
+          {TeamObject.map((element) => {
             return (
               <div
                 key={element.id}

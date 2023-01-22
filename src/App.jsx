@@ -3,9 +3,9 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar';
 import Home from './pages/Home/Home';
 import Blogs from './pages/Blogs/Blogs';
-import About from './pages/About/About';
-import Team from './pages/Team/Team';
-import Careers from './pages/Careers/Careers';
+import AboutUs from './pages/About/AboutUs/AboutUs';
+import Team from './pages/About/Team/Team'
+import Careers from './pages/About/Careers/Careers';
 import Contact from './pages/Contact/ContactUs';
 import LogIn from './pages/LogIn/LogIn';
 import Footer from './Footer';
@@ -31,7 +31,7 @@ function App() {
           <Route path="/blogs" element={<Blogs />} />
            <Route path="/blogs/:id" element={<BlogDetails />} />
            
-          <Route path="/about" element={<About />} />
+          <Route path="/about" element={<AboutUs />} />
           <Route path="/team" element={<Team />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="/contact" element={<Contact />} />

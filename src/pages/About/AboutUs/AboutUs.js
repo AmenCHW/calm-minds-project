@@ -1,7 +1,7 @@
 import React from 'react';
-import image from './components/images/therapist.jpg';
+import image from '../img/therapist.jpg'; // src/pages/About/AboutUs/images/therapist.jpg
 
-function About() {
+function AboutUs() {
   const descriptionMain =
     "At Healing, we believe there is a better way to do things. A more valuable way where customers are earned rather than bought. We're obsessively passionate about it, and our mission is to help people achieve it. We focus on search engine optimization. It's one of the least understood and least transparent aspects of great marketing, and we see that as an opportunity. We're excited to simplify SEO for everyone through our software, education, and community.";
   const descriptionFounder =
@@ -33,4 +33,4 @@ function About() {
   );
 }
 
-export default About;
+export default AboutUs;
