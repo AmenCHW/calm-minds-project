@@ -1,120 +1,118 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { TherapistAuth } from '../../context/AuthContext';
-
-
 
 function TherapistCreate() {
 
-    const [inputValues, setInputValue] = useState({
-        username: "",
-        email: "",
-        city: "",
-        licensenumber: "",
-        password: "",
-        confirmPassword: "",
-    });
+  const [inputValues, setInputValue] = useState({
+    username: "",
+    email: "",
+    city: "",
+    licensenumber: "",
+    password: "",
+    confirmPassword: "",
+  });
 
-    const [validation, setValidation] = useState({
-        username: "",
-        email: "",
-        city: "",
-        licensenumber: "",
-        password: "",
-        confirmPassword: "",
-    });
+  const [validation, setValidation] = useState({
+    username: "",
+    email: "",
+    city: "",
+    licensenumber: "",
+    password: "",
+    confirmPassword: "",
+  });
 
-    // handle submit updates
-    const handleChange = (e) => {
-        setInputValue({ ...inputValues, [e.target.name]: e.target.value });
+  // handle submit updates
+  const handleChange = (e) => {
+    setInputValue({ ...inputValues, [e.target.name]: e.target.value });
+  }
+
+  const checkValidation = () => {
+
+    const errors = JSON.parse(JSON.stringify(validation));
+
+    // User Name validation
+    const usernameCondition = "^[A-Za-z]{3,16}$"
+    if (!inputValues.username.trim()) {
+      errors.username = "User Name is required";
+    } else if (inputValues.username.length < 3 || inputValues.username.length > 16) {
+      errors.username = "User Name should be 3-16 characters";
+    } else if (!inputValues.username.match(usernameCondition)) {
+      errors.username = "User Name should only consist of letters";
+    } else {
+      errors.username = "";
     }
 
-    const checkValidation = () => {
-
-        const errors = JSON.parse(JSON.stringify(validation));
-
-        // User Name validation
-        const usernameCondition = "^[A-Za-z]{3,16}$"
-        if (!inputValues.username.trim()) {
-            errors.username = "User Name is required";
-        } else if (inputValues.username.length < 3 || inputValues.username.length > 16) {
-            errors.username = "User Name should be 3-16 characters";
-        } else if (!inputValues.username.match(usernameCondition)) {
-            errors.username = "User Name should only consist of letters";
-        } else {
-            errors.username = "";
-        }
-
-        // City validation
-        const cityCondition = "^[A-Za-z]{3,16}$"
-        if (!inputValues.city.trim()) {
-            errors.city = "City is required";
-        } else if (!inputValues.city.match(cityCondition)) {
-            errors.city = "City should be 3-16 characters and only consist of letters";
-        } else {
-            errors.city = "";
-        }
-
-        // License Number validation
-        if (!inputValues.licensenumber.trim()) {
-            errors.licensenumber = "License Number is required";
-        } else {
-            errors.licensenumber = "";
-        }
-
-        // Email validation
-        const emailCondition = "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/";
-        if (!inputValues.email.trim()) {
-            errors.email = "Email is required";
-        } else if (!inputValues.email.match(emailCondition)) {
-            errors.email = "Please enter a valid email address";
-        } else {
-            errors.email = "";
-        }
-
-        // Password validation
-        const passwordcondition = "(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+])[A-Za-z0-9!@#$%^&*()_+]{8,20}$"
-        const passwordvalue = inputValues.password;
-        if (!passwordvalue) {
-            errors.password = "Password is required";
-        } else if (!passwordvalue.match(passwordcondition)) {
-            errors.password = "Password should be 8-20 characters and include at least 1 letter, 1 number & 1 special character";
-        } else {
-            errors.password = "";
-        }
-
-        // matchPassword validation
-        if (!inputValues.confirmPassword) {
-            errors.confirmPassword = "Password confirmation is required";
-        } else if (inputValues.confirmPassword !== inputValues.password) {
-            errors.confirmPassword = "Password does not match confirmation password";
-        } else {
-            errors.confirmPassword = "";
-        }
-
-        setValidation(errors);
-    };
-
-    useEffect(() => {
-        checkValidation();
-    }, [inputValues]);
-
-    const [, setError] = useState('');
-    const { createTherapist } = TherapistAuth();
-    const navigate = useNavigate();
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setError('');
-
-        try {
-            await createTherapist(inputValues.email, inputValues.password, inputValues.username, inputValues.city, inputValues.licensenumber);
-            navigate('/')
-        } catch (error) {
-            setError(error.message);
-        }
+    // City validation
+    const cityCondition = "^[A-Za-z]{3,16}$"
+    if (!inputValues.city.trim()) {
+      errors.city = "City is required";
+    } else if (!inputValues.city.match(cityCondition)) {
+      errors.city = "City should be 3-16 characters and only consist of letters";
+    } else {
+      errors.city = "";
     }
-    
+
+    // License Number validation
+    if (!inputValues.licensenumber.trim()) {
+      errors.licensenumber = "License Number is required";
+    } else {
+      errors.licensenumber = "";
+    }
+
+    // Email validation
+    const emailCondition = "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/";
+    if (!inputValues.email.trim()) {
+      errors.email = "Email is required";
+    } else if (!inputValues.email.match(emailCondition)) {
+      errors.email = "Please enter a valid email address";
+    } else {
+      errors.email = "";
+    }
+
+    // Password validation
+    const passwordcondition = "(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+])[A-Za-z0-9!@#$%^&*()_+]{8,20}$"
+    const passwordvalue = inputValues.password;
+    if (!passwordvalue) {
+      errors.password = "Password is required";
+    } else if (!passwordvalue.match(passwordcondition)) {
+      errors.password = "Password should be 8-20 characters and include at least 1 letter, 1 number & 1 special character";
+    } else {
+      errors.password = "";
+    }
+
+    // matchPassword validation
+    if (!inputValues.confirmPassword) {
+      errors.confirmPassword = "Password confirmation is required";
+    } else if (inputValues.confirmPassword !== inputValues.password) {
+      errors.confirmPassword = "Password does not match confirmation password";
+    } else {
+      errors.confirmPassword = "";
+    }
+
+    setValidation(errors);
+  };
+
+  useEffect(() => {
+    checkValidation();
+  }, [inputValues]);
+
+  const [, setError] = useState('');
+  const { createTherapist } = TherapistAuth();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+
+    try {
+      await createTherapist(inputValues.email, inputValues.password, inputValues.username, inputValues.city, inputValues.licensenumber);
+      navigate('/')
+    } catch (error) {
+      setError(error.message);
+    }
+  }
+
   return (
     <div className=" flex-col mx-auto lg:max-w-7xl px-10 py-10">
       <form onSubmit={handleSubmit}>
@@ -214,17 +212,19 @@ function TherapistCreate() {
           </div>
         </div>
         <div>
-          <button
-            className=" mt-12 w-48 h-16 bg-[#2dd3e3] rounded-md hover:bg-[#4dd9e9] font-normal text-2xl"
-            type="submit"
-          >
-            CREATE
-          </button>                
-                </div>
-            </form>
-
+          <Link to="/therapist-thanks">
+            <button
+              className=" mt-12 w-48 h-16 bg-[#2dd3e3] rounded-md hover:bg-[#4dd9e9] font-normal text-2xl"
+              type="submit"
+            >
+              CREATE
+            </button>
+          </Link>
         </div>
-    );
+      </form>
+
+    </div>
+  );
 }
 
 export default TherapistCreate;

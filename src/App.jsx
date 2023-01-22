@@ -14,12 +14,12 @@ import TherapistCreate from './pages/Therapist Create/TherapistCreate';
 import Signup from './pages/Signup/Signup';
 import CounselorRequirement from './pages/Requirement/RequirementPage';
 import BlogDetails from './pages/Blogs/BlogDetails';
-// import RecommendedDetails from './pages/Blogs/RecommendedDetails';
 import EditProfile from './pages/EditProfile/EditProfile';
 import TherapistProfile from './pages/Therapist Profile/TherapistProfile';
 import SignUpThanks from './pages/Signup/SignUpThanks';
 import ContactThanks from './pages/Contact/ContactThanks';
 import SubscribeThanks from './components/SubscribeThanks';
+import TherapistThanks from './pages/Therapist Create/TherapistThanks';
 
 
 function App() {
@@ -46,6 +46,7 @@ function App() {
           <Route path="/signup-thanks" element={<SignUpThanks />} />
           <Route path="/contact-thanks" element={<ContactThanks />} />
           <Route path="/subscribe-thanks" element={<SubscribeThanks />} />
+          <Route path="/therapist-thanks" element={<TherapistThanks />} />
         </Routes> 
 
       <Footer />
