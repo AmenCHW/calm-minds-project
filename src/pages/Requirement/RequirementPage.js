@@ -24,7 +24,6 @@ export default function Requirement() {
     <div className="flex flex-wrap mx-auto lg:max-w-7xl px-10 py-10 font-[ 'Poppins']">
       <div>
         <h1 className="text-3xl sm:text-4xl md:text-5xl format-normal leading-normal pt-5">
-          {' '}
           WHY WORK WITH HEALING ?
         </h1>
         {RequiredsObject.map((element) => {

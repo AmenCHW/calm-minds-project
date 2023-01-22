@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Ticket() {
   return (
@@ -16,6 +17,7 @@ export default function Ticket() {
             5 TICKETS
           </h1>
           <p className="pt-5 text-gray-500"> 10 $</p>
+          <Link to="/buyTicket"  className="focus:text-[#FEE89E]" >
           <button
             className="my-4 bg-[#2DD3E3] hover:bg-[#7decf6] text-black 
                   font-bold py-2 px-4 border-b-4 border-[#2DD3E3] hover:border-[#42e4f3] rounded"
@@ -23,6 +25,7 @@ export default function Ticket() {
           >
             PURCHASE
           </button>
+          </Link>
         </div>
 
         <div className="flex flex-col w-96 lg:w-[40%] xl:w-[30%] border-4 border-[#FBFBFB] shadow-2xl shadow-[#B2ABAB] rounded-3xl p-10 mt-8 text-center justify-center items-center mx-4">
@@ -30,6 +33,7 @@ export default function Ticket() {
             25 TICKETS
           </h1>
           <p className="pt-5 text-gray-500"> 40 $</p>
+          <Link to="/buyTicket" >
           <button
             className="my-4 bg-[#2DD3E3] hover:bg-[#7decf6] text-black 
             font-bold py-2 px-4 border-b-4 border-[#2DD3E3] hover:border-[#42e4f3] rounded"
@@ -37,6 +41,7 @@ export default function Ticket() {
           >
             PURCHASE
           </button>
+          </Link>
         </div>
 
         <div className="flex flex-col w-96 lg:w-[40%] xl:w-[30%] border-4 border-[#FBFBFB] shadow-2xl shadow-[#B2ABAB] rounded-3xl p-10 mt-8 text-center justify-center items-center mx-4">
@@ -44,6 +49,7 @@ export default function Ticket() {
             50 TICKETS
           </h1>
           <p className="pt-5 text-gray-500"> 70 $</p>
+          <Link to="/buyTicket" >
           <button
             className="my-4 bg-[#2DD3E3] hover:bg-[#7decf6] text-black 
             font-bold py-2 px-4 border-b-4 border-[#2DD3E3] hover:border-[#42e4f3] rounded"
@@ -51,6 +57,7 @@ export default function Ticket() {
           >
             PURCHASE
           </button>
+          </Link>
         </div>
       </div>
     </div>
