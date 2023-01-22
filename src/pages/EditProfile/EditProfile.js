@@ -76,8 +76,9 @@ const handleChange = (e) => {
     const handleSubmit = async (e) => {
       e.preventDefault();
       const refresh = () => {
-        window.location.reload(true)
+        navigate(0)
         window.scrollTo(0, 0)
+
       }
     
    

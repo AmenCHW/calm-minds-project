@@ -27,6 +27,8 @@ export const AuthContextProvider = ({ children }) => {
                 async (result) => {
                     /* eslint-disable */
                     console.log("google sign in result", result)
+                    console.log("google sign in result", result.user.email)
+                    console.log("google sign in result", result.user.displayName)
 
                     try {
                         const docRef = await setDoc(doc(db, "users", `${result.user.uid}`), {
@@ -35,6 +37,15 @@ export const AuthContextProvider = ({ children }) => {
                             email: `${result.user.email}`,
                             photoURL: `${result.user.photoURL}`,
                             isTherapist: false,
+                            userId: `${result.user.uid}`,
+                            IDURL: "",
+                            gender: '',
+                            birthDate: 0,
+                            educationLevel: "",
+                            hobbies: "",
+                            familySize: 1,
+                            phonenumber: 0,
+                            book_an_appointment: {},
 
                         });
                         /* eslint-disable */
@@ -60,6 +71,15 @@ export const AuthContextProvider = ({ children }) => {
                             email: `${result.user.email}`,
                             photoURL: `${result.user.photoURL}`,
                             isTherapist: false,
+                            userId: `${result.user.uid}`,
+                            IDURL: "",
+                            gender: '',
+                            birthDate: 0,
+                            educationLevel: "",
+                            hobbies: "",
+                            familySize: 1,
+                            phonenumber: 0,
+                            book_an_appointment: {},
 
                         });
                         /* eslint-disable */
@@ -154,7 +174,15 @@ export const AuthContextProvider = ({ children }) => {
                             email: `${result.user.email}`,
                             photoURL: `${result.user.photoURL}`,
                             isTherapist: false,
-
+                            userId: `${result.user.uid}`,
+                            IDURL: "",
+                            gender: '',
+                            birthDate: 0,
+                            educationLevel: "",
+                            hobbies: "",
+                            familySize: 1,
+                            phonenumber: 0,
+                            book_an_appointment: {},
                         });
                         /* eslint-disable */
                         console.log("Document written with ID: ", docRef.id);
@@ -179,6 +207,15 @@ export const AuthContextProvider = ({ children }) => {
                             email: `${result.user.email}`,
                             photoURL: `${result.user.photoURL}`,
                             isTherapist: false,
+                            userId: `${result.user.uid}`,
+                            IDURL: "",
+                            gender: '',
+                            birthDate: 0,
+                            educationLevel: "",
+                            hobbies: "",
+                            familySize: 1,
+                            phonenumber: 0,
+                            book_an_appointment: {},
 
                         });
                         /* eslint-disable */
