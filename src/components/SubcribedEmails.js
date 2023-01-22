@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { collection, addDoc } from 'firebase/firestore';
-import { ReactComponent as SendIcon } from '../../icons/send.svg';
-import { db } from '../../firebase-config';
+import { ReactComponent as SendIcon } from '../icons/send.svg';
+import { db } from '../firebase-config';
 
 function SubcribedEmails() {
   const [newEmailInput, setNewEmailInput] = useState({});

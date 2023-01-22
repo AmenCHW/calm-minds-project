@@ -8,7 +8,7 @@ import Team from './pages/About/Team/Team'
 import Careers from './pages/About/Careers/Careers';
 import Contact from './pages/Contact/ContactUs';
 import LogIn from './pages/LogIn/LogIn';
-import Footer from './Footer';
+import Footer from './components/Footer';
 import BookingPage from './pages/Booking/BookingPage';
 import TherapistCreate from './pages/Therapist Create/TherapistCreate';
 import Signup from './pages/Signup/Signup';

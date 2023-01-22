@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ReactComponent as TwitterIcon } from './icons/twitter.svg';
-import { ReactComponent as FacebookIcon } from './icons/google.svg';
-import { ReactComponent as GoogleIcon } from './icons/facebook.svg';
-import SubcribedEmails from './pages/Blogs/SubcribedEmails';
+import { ReactComponent as TwitterIcon } from '../icons/twitter.svg';
+import { ReactComponent as FacebookIcon } from '../icons/google.svg';
+import { ReactComponent as GoogleIcon } from '../icons/facebook.svg';
+import SubcribedEmails from './SubcribedEmails';
 
 const MenuObject = [
   {

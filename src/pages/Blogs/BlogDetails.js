@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getDoc, doc } from 'firebase/firestore';
 import { useParams } from 'react-router-dom';
 import { db } from '../../firebase-config';
-import SubcribedEmails from "./SubcribedEmails"
+import SubcribedEmails from "../../components/SubcribedEmails"
 import RecommendedBlogs from "./RecommendedBlogs"
 
 const BlogDetails = () => {
