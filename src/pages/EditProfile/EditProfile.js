@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {deleteUser, updatePassword} from 'firebase/auth';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { collection, query, where, getDocs, deleteDoc, doc, updateDoc } from 'firebase/firestore';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {db, storage, auth } from '../../firebase-config';
 import { UserAuth } from '../../context/AuthContext';
 import profileimage from './profileimage.png';
@@ -53,7 +53,7 @@ const handleChange = (e) => {
   setInputValue({...inputValues, [e.target.name]: e.target.value });
 }
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
 
    const userDel = auth.currentUser
@@ -79,10 +79,10 @@ const handleChange = (e) => {
       if (newPassword !== confirmPassword){
         setNotMatching("Password and Confrim Password are not matching")
       } else {
-      // const refresh = () => {
-      //   navigate(0)
-      //   window.scrollTo(0, 0)
-      // }
+      const refresh = () => {
+        navigate(0)
+        window.scrollTo(0, 0)
+      }
     
    
       try {
@@ -98,7 +98,7 @@ const handleChange = (e) => {
           hobbies: inputValues.hobbies,
           familySize: inputValues.familySize,
           phonenumber: inputValues.phonenumber,
-      })} catch (error) {
+      }), refresh() } catch (error) {
           console.log(error.message);
       }}
   }
@@ -194,7 +194,7 @@ const handleChange = (e) => {
         Please fill all the fields with correct and valid details to complete
         your profile.
       </h1>
-      <form onSubmit={handleSubmit} netlify name="formSubmit">
+      <form onSubmit={handleSubmit}>
       <div className="flex flex-wrap justify-center md:justify-evenly">
         <div className='flex flex-col items-center'>
           <img className='max-w-xs max-h-xs rounded-full aspect-square object-cover ' src={userDetails.photoURL? userDetails.photoURL:profileimage} alt="profile-pic" />
