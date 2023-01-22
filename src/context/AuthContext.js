@@ -140,6 +140,8 @@ export const AuthContextProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
 
+
+
     const facebookSignIn = () => {
         const provider = new FacebookAuthProvider();
         if ((window.innerWidth > 1024)) {

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {deleteUser} from 'firebase/auth';
+import {deleteUser, updatePassword} from 'firebase/auth';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { collection, query, where, getDocs, deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
@@ -15,25 +15,8 @@ function EditProfile() {
 
   const [userDetails, setUserDetails] = useState({})
   const [perc, setPerc] = useState(null)
-  // const fullNameInfo = userDetails.fullName
- 
-//   const [inputValues, setInputValue] = useState({
-//     gender: "",
-//     fullName: "",
-//     birthDate: "",
-//     photoURL: "",
-//     educationLevel: "",
-//     hobbies: "",
-//     familySize: 1,
-//     phonenumber: 0,
-// });
-// const [gender, setGender]= useState(`${userDetails.gender}`)
-// const [fullName, setFullName]= useState(`${userDetails.fullName}`)
-// const [birthDate, setbirthDate]= useState(`${userDetails.birthDate}`)
-// const [educationLevel, setEducationLevel]= useState(`${userDetails.educationLevel}`)
-// const [hobbies, setHobbies]= useState(`${userDetails.hobbies}`)
-// const [familySize, setFamilySize]= useState(`${userDetails.familySize}`)
-// const [phonenumber, setPhoneNumber]= useState(`${userDetails.phonenumber}`)
+    const { user, logOut } = UserAuth();
+
 
 const [inputValues, setInputValue] = useState({
   gender: userDetails.gender,
@@ -45,15 +28,13 @@ const [inputValues, setInputValue] = useState({
   phonenumber: userDetails.phonenumber
 });
 
-console.log(userDetails)
-console.log(userDetails.fullName)
 
 const handleChange = (e) => {
   setInputValue({...inputValues, [e.target.name]: e.target.value });
 }
 
   const navigate = useNavigate();
-  const { user, logOut } = UserAuth();
+
 
    const userDel = auth.currentUser
     const userDelete = () => {deleteUser(userDel).then(() => {
@@ -64,9 +45,8 @@ const handleChange = (e) => {
         console.log(error)
       })};
 
-    //   const handleChange = (e) => {
-    //     setInputValue({ ...inputValues, [e.target.name]: e.target.value });
-    // }
+
+    const [newPassword, setNewPassword] = useState('')
 
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -78,6 +58,7 @@ const handleChange = (e) => {
    
       try {
         const docRef = doc(db, "users", `${user.uid}`)
+        await updatePassword(auth.currentUser, newPassword);
         await updateDoc(docRef, {
           gender: inputValues.gender,
           fullName: inputValues.fullName,
@@ -93,9 +74,9 @@ const handleChange = (e) => {
       }
   }
 
-  console.log(inputValues.photoURL)
 
-  const handleDelete = async () => {
+
+  const handleDelete = async (oldPassword) => {
           try {
             await deleteDoc(doc(db, "users", `${user.uid}`));
             userDelete()
@@ -118,7 +99,6 @@ const handleChange = (e) => {
           });
           setUserDetails(usersData[0])
           setInputValue(usersData[0])
-          console.log(usersData[0])
       })
   }
 
@@ -127,7 +107,7 @@ const handleChange = (e) => {
       fetchSingleUserData();
   }, [user])
 
-  
+
   const [file, setFile] = useState('')
   const [IDImage, setIDImage] = useState('')
   
@@ -345,12 +325,27 @@ const handleChange = (e) => {
                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
                   Upload ID
                 </span>
+
                 <input
                   type="file"
                   id="image"
                   name="IDURL"
                   onChange={(e)=> setIDImage(e.target.files[0])}
                   className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] items-center py-auto border-gray-100 pl-4 shadow-md"
+                />
+              </label>
+              <label
+                className="flex flex-col items-center sm:flex-row sm:flex-wrap justify-center sm:justify-between mt-6"
+                htmlFor="image"
+              >
+                <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
+                  ID
+                </span>
+
+                <img
+                  src={userDetails.IDURL}
+                  alt='Id Image'
+                  className="border-2 rounded-lg aspect-rectangle w-24 items-center py-auto border-gray-100  shadow-md object-cover sm:mr-52"
                 />
               </label>
 
@@ -382,6 +377,7 @@ const handleChange = (e) => {
                 <input
                   type="password"
                   id="password"
+                  onChange={(e)=>setNewPassword(e.target.value)}
                   className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md"
                 />
               </label>
