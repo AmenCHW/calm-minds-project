@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`first snapshot testing 1`] = `
+<div
+  className="mx-auto lg:max-w-7xl px-10 py-10"
+>
+  <h1
+    className="pt-5 text-3xl md:text-5xl format-normal leading-normal"
+  />
+  <p
+    className="mt-2 text-2xl text-gray-500"
+  />
+  <div>
+    <div>
+      <form
+        className="p-6 mt-9 mb-12 mx-auto w-auto md:w-[700px] h-auto sm:h-[500px] border-2 border-[#E5E5E5] rounded-md shadow-lg bg-white"
+        onSubmit={[Function]}
+      >
+        <h1
+          className="text-2xl sm:text-3xl font-normal pb-8 text-left"
+        >
+          What Type Of Counseling Are You Looking For?
+        </h1>
+        <div
+          className="flex flex-col"
+        >
+          <div
+            className="form-check pt-4 text-2xl sm:text-3xl font-normal"
+          >
+            <input
+              checked={false}
+              id={1}
+              name="exampleRadios"
+              onChange={[Function]}
+              type="radio"
+              value="Individual"
+            />
+            <label
+              className="form-check-label"
+              htmlFor={1}
+            >
+              Individual Counseling
+            </label>
+          </div>
+          <div
+            className="form-check pt-4 text-2xl sm:text-3xl font-normal"
+          >
+            <input
+              checked={false}
+              id={2}
+              name="exampleRadios"
+              onChange={[Function]}
+              type="radio"
+              value="Teen"
+            />
+            <label
+              className="form-check-label"
+              htmlFor={2}
+            >
+              Teen Counseling (For My Child)
+            </label>
+          </div>
+          <button
+            className="bg-[#2DD3E3] text-1xl sm:text-2xl px-6 py-3 font-normal border-2 border-[#2DD3E3] rounded-md place-self-start mt-5"
+            disabled={true}
+            onClick={[Function]}
+            type="submit"
+          >
+            NEXT
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;
