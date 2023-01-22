@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { collection, addDoc } from 'firebase/firestore';
 import { ReactComponent as SendIcon } from '../icons/send.svg';
 import { db } from '../firebase-config';
@@ -37,13 +38,15 @@ function SubcribedEmails() {
           value={newEmailInput.email}
           onChange={handleOnChange}
         />
-        <button
-          className="p-2 border-y-2 border-r-2 border-[#718096] rounded-r-md bg-cyan-500 active:pr-1 active:pl-1 active:bg-cyan-400"
-          type="submit"
-          aria-label="Send"
-        >
-          <SendIcon />
-        </button>
+        <Link to="/subscribe-thanks">
+          <button
+            className="p-2 border-y-2 border-r-2 border-[#718096] rounded-r-md bg-cyan-500 active:pr-1 active:pl-1 active:bg-cyan-400"
+            type="submit"
+            aria-label="Send"
+          >
+            <SendIcon />
+          </button>
+        </Link>
       </form>
     </div>
   );

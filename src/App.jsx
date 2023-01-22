@@ -19,6 +19,7 @@ import EditProfile from './pages/EditProfile/EditProfile';
 import TherapistProfile from './pages/Therapist Profile/TherapistProfile';
 import SignUpThanks from './pages/Signup/SignUpThanks';
 import ContactThanks from './pages/Contact/ContactThanks';
+import SubscribeThanks from './components/SubscribeThanks';
 
 
 function App() {
@@ -31,8 +32,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/" element={<Home />} />
           <Route path="/blogs" element={<Blogs />} />
-           <Route path="/blogs/:id" element={<BlogDetails />} />
-           
+           <Route path="/blogs/:id" element={<BlogDetails />} /> 
           <Route path="/about" element={<AboutUs />} />
           <Route path="/team" element={<Team />} />
           <Route path="/careers" element={<Careers />} />
@@ -45,7 +45,7 @@ function App() {
           <Route path="/therapist/profile" element={<TherapistProfile />} />
           <Route path="/signup-thanks" element={<SignUpThanks />} />
           <Route path="/contact-thanks" element={<ContactThanks />} />
-
+          <Route path="/subscribe-thanks" element={<SubscribeThanks />} />
         </Routes> 
 
       <Footer />
