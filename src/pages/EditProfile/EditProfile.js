@@ -2,14 +2,12 @@ import React, {useEffect, useState} from 'react';
 import {deleteUser, updatePassword} from 'firebase/auth';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { collection, query, where, getDocs, deleteDoc, doc, updateDoc } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import {db, storage, auth } from '../../firebase-config';
 import { UserAuth } from '../../context/AuthContext';
 import profileimage from './profileimage.png';
 import UpdateImage from './edit.png'
-// import { input } from '@testing-library/user-event/dist/types/event';
 
- 
 function EditProfile() {
 
 
@@ -55,7 +53,7 @@ const handleChange = (e) => {
   setInputValue({...inputValues, [e.target.name]: e.target.value });
 }
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
 
    const userDel = auth.currentUser
@@ -81,12 +79,10 @@ const handleChange = (e) => {
       if (newPassword !== confirmPassword){
         setNotMatching("Password and Confrim Password are not matching")
       } else {
-      const refresh = () => {
-        navigate(0)
-        navigate('/profile')
-        window.scrollTo(0, 0)
-
-      }
+      // const refresh = () => {
+      //   navigate(0)
+      //   window.scrollTo(0, 0)
+      // }
     
    
       try {
@@ -102,7 +98,7 @@ const handleChange = (e) => {
           hobbies: inputValues.hobbies,
           familySize: inputValues.familySize,
           phonenumber: inputValues.phonenumber,
-      }), refresh() } catch (error) {
+      })} catch (error) {
           console.log(error.message);
       }}
   }
