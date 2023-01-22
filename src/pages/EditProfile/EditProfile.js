@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import {db, storage, auth } from '../../firebase-config';
 import { UserAuth } from '../../context/AuthContext';
 import profileimage from './profileimage.png';
+import UpdateImage from './edit.png'
 // import { input } from '@testing-library/user-event/dist/types/event';
 
  
@@ -69,6 +70,11 @@ const handleChange = (e) => {
 
     const handleSubmit = async (e) => {
       e.preventDefault();
+      const refresh = () => {
+        window.location.reload(true)
+        window.scrollTo(0, 0)
+      }
+    
    
       try {
         const docRef = doc(db, "users", `${user.uid}`)
@@ -81,7 +87,7 @@ const handleChange = (e) => {
           hobbies: inputValues.hobbies,
           familySize: inputValues.familySize,
           phonenumber: inputValues.phonenumber,
-      })  } catch (error) {
+      }), refresh() } catch (error) {
           console.log(error.message);
       }
   }
@@ -171,10 +177,20 @@ const handleChange = (e) => {
         Please fill all the fields with correct and valid details to complete
         your profile.
       </h1>
-
+      <form onSubmit={handleSubmit}>
       <div className="flex flex-wrap justify-center md:justify-evenly">
-        <div>
-          <img className='max-w-xs max-h-xs rounded-full aspect-square object-cover' src={userDetails.photoURL? userDetails.photoURL:profileimage} alt="profile-pic" />
+        <div className='flex flex-col items-center'>
+          <img className='max-w-xs max-h-xs rounded-full aspect-square object-cover ' src={userDetails.photoURL? userDetails.photoURL:profileimage} alt="profile-pic" />
+         <span className='flex flex-col items-center rounded-full  w-20 hover:cursor-pointer hover:shadow-lg relative z-0 border-2 border-black'>   <img src={UpdateImage} alt='Update Image'/>
+          <input 
+                  type="file"
+                  placeholder='edit'
+                  id="image"
+                  name="photoURL"
+                  onChange={(e)=> setFile(e.target.files[0])}
+                  className=" rounded-lg  w-full h-10 items-center hover:cursor-pointer absolute inset-0 z-10 opacity-0"
+                />
+         </span>
         </div>
 
         <div className="">
@@ -183,7 +199,7 @@ const handleChange = (e) => {
           </h1>
 
           <div className="px-2 sm:px-0">
-            <form onSubmit={handleSubmit}>
+            
               <label
                 className="flex flex-col items-center sm:flex-row sm:flex-wrap justify-center sm:justify-between mt-10"
                 htmlFor="name"
@@ -326,7 +342,7 @@ const handleChange = (e) => {
                 <input
                   type="file"
                   id="image"
-                  name="photoURL"
+                  name="IDURL"
                   onChange={(e)=> setFile(e.target.files[0])}
                   className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] items-center py-auto border-gray-100 pl-4 shadow-md"
                 />
@@ -388,7 +404,7 @@ const handleChange = (e) => {
                   CANCEL
                 </button>
               </div>
-            </form>
+            
           </div>
 
           <div>
@@ -424,6 +440,7 @@ const handleChange = (e) => {
           </div>
         </div>
       </div>
+      </form>
     </div>
   );
 }
