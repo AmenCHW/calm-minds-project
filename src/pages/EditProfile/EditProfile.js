@@ -77,6 +77,7 @@ const handleChange = (e) => {
       e.preventDefault();
       const refresh = () => {
         navigate(0)
+        navigate('/profile')
         window.scrollTo(0, 0)
 
       }
