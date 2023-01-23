@@ -14,25 +14,6 @@ function EditProfile() {
   const [userDetails, setUserDetails] = useState({})
   const [perc, setPerc] = useState(null)
   const { user, logOut } = UserAuth();
-  // const fullNameInfo = userDetails.fullName
- 
-//   const [inputValues, setInputValue] = useState({
-//     gender: "",
-//     fullName: "",
-//     birthDate: "",
-//     photoURL: "",
-//     educationLevel: "",
-//     hobbies: "",
-//     familySize: 1,
-//     phonenumber: 0,
-// });
-// const [gender, setGender]= useState(`${userDetails.gender}`)
-// const [fullName, setFullName]= useState(`${userDetails.fullName}`)
-// const [birthDate, setbirthDate]= useState(`${userDetails.birthDate}`)
-// const [educationLevel, setEducationLevel]= useState(`${userDetails.educationLevel}`)
-// const [hobbies, setHobbies]= useState(`${userDetails.hobbies}`)
-// const [familySize, setFamilySize]= useState(`${userDetails.familySize}`)
-// const [phonenumber, setPhoneNumber]= useState(`${userDetails.phonenumber}`)
 
 const [inputValues, setInputValue] = useState({
   gender: userDetails.gender,
@@ -45,9 +26,6 @@ const [inputValues, setInputValue] = useState({
 });
 
 const [confirmPassword, setConfirmPassword] = useState('');
-/* eslint-disable */
-console.log(userDetails)
-console.log(userDetails.fullName)
 
 const handleChange = (e) => {
   setInputValue({...inputValues, [e.target.name]: e.target.value });
@@ -58,10 +36,8 @@ const handleChange = (e) => {
 
    const userDel = auth.currentUser
     const userDelete = () => {deleteUser(userDel).then(() => {
-        /* eslint-disable */
         console.log("user deleted")
       }).catch((error) => {
-        /* eslint-disable */
         console.log(error)
       })};
 
@@ -98,15 +74,14 @@ const handleChange = (e) => {
           hobbies: inputValues.hobbies,
           familySize: inputValues.familySize,
           phonenumber: inputValues.phonenumber,
-      }), refresh() } catch (error) {
-          console.log(error.message);
+      }); refresh() } catch (error) {
+          alert(error)
       }}
   }
 
-  console.log(inputValues.photoURL)
 
 
-  const handleDelete = async (oldPassword) => {
+  const handleDelete = async () => {
           try {
             await deleteDoc(doc(db, "users", `${user.uid}`));
             userDelete()
@@ -119,8 +94,6 @@ const handleChange = (e) => {
 }
 
   const fetchSingleUserData = async () => {
-    // eslint-disable-next-line
-    // console.log('user.uid:', user.uid);
     await getDocs(query(collection(db, "users"), where("userId", "==", user.uid)))
       .then((querySnapshot) => {
         const usersData = querySnapshot.docs
@@ -129,7 +102,6 @@ const handleChange = (e) => {
           });
           setUserDetails(usersData[0])
           setInputValue(usersData[0])
-          console.log(usersData[0])
       })
   }
 
@@ -143,7 +115,7 @@ const handleChange = (e) => {
   const [IDImage, setIDImage] = useState('')
   
   const uploadFile = (fileState, setStateFn, urlKey) => {
-    const uploadFile = ()=> {
+    const uploadFiles = ()=> {
       const name = new Date().getTime() + fileState.name
       console.log(name);
       const storageRef = ref(storage, fileState.name);
@@ -154,14 +126,11 @@ const handleChange = (e) => {
         // Observe state change events such as progress, pause, and resume
         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log( `Upload is ${progress} % done`);
         setPerc(progress)
         switch (snapshot.state) {
           case 'paused':
-            console.log('Upload is paused');
             break;
           case 'running':
-            console.log('Upload is running');
             break;
             default:
               break;
@@ -180,7 +149,7 @@ const handleChange = (e) => {
     );
     };
     // eslint-disable-next-line
-    fileState && uploadFile();
+    fileState && uploadFiles();
   }
   
   useEffect(()=>{
@@ -198,11 +167,11 @@ const handleChange = (e) => {
       <div className="flex flex-wrap justify-center md:justify-evenly">
         <div className='flex flex-col items-center'>
           <img className='max-w-xs max-h-xs rounded-full aspect-square object-cover ' src={userDetails.photoURL? userDetails.photoURL:profileimage} alt="profile-pic" />
-         <span className='flex flex-col items-center rounded-full  w-20 hover:cursor-pointer hover:shadow-lg relative z-0 border-2 border-black'>   <img src={UpdateImage} alt='Update Image'/>
+         <span className='flex flex-col items-center rounded-full  w-20 hover:cursor-pointer hover:shadow-lg relative z-0 border-2 border-black'>   <img src={UpdateImage} alt='Update'/>
           <input 
                   type="file"
                   placeholder='edit'
-                  id="image"
+                  id="profileImage"
                   name="photoURL"
                   onChange={(e)=> setFile(e.target.files[0])}
                   className=" rounded-lg  w-full h-10 items-center hover:cursor-pointer absolute inset-0 z-10 opacity-0"
@@ -365,7 +334,7 @@ const handleChange = (e) => {
                   className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] items-center py-auto border-gray-100 pl-4 shadow-md"
                 />
               </label>
-              <label
+              <div
                 className="flex flex-col items-center sm:flex-row sm:flex-wrap justify-center sm:justify-between mt-6"
               >
                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
@@ -374,10 +343,10 @@ const handleChange = (e) => {
 
                 <img
                   src={userDetails.IDURL}
-                  alt='Id Image'
+                  alt='Id'
                   className="border-2 rounded-lg aspect-rectangle w-24 items-center py-auto border-gray-100  shadow-md object-cover sm:mr-52"
                 />
-              </label>
+              </div>
 
               <h1 className="pt-16 text-3xl md:text-5xl format-normal leading-normal text-center md:text-left">
                 Security
@@ -407,7 +376,7 @@ const handleChange = (e) => {
                 </span>
                 <input
                   type="password"
-                  id="password"
+                  id="confirmPassword"
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md"
                 />
