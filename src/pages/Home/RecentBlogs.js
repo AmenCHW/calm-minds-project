@@ -7,12 +7,13 @@ import { Link } from 'react-router-dom';
 
 function RecentBlogs() {
   const [blogs, setBlog] = useState([]);
+  console.log("tessssssssssssssssssssssssst")
   // ____________________________ blog id_____________________________________________________________________________________________________________________________
    const userCollectionRef = collection(db, 'blogCollection');
     useEffect(() => {
     const fetchBlogImage = async () => {
       const data = await getDocs(userCollectionRef);
-      setBlog(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      setBlog(data.docs.map((doc, i) => ({ ...doc.data(), id: doc.id, active: i<3 })));
     };
 
     fetchBlogImage();

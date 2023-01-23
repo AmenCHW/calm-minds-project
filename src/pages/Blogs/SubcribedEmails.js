@@ -5,7 +5,7 @@ import { ReactComponent as SendIcon } from '../../icons/send.svg';
 import { db } from '../../firebase-config';
 
 function SubcribedEmails() {
-  const [newEmailInput, setNewEmailInput] = useState({});
+  const [newEmailInput, setNewEmailInput] = useState({email: ""});
 
   
 

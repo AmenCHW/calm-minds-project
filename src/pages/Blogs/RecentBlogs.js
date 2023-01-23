@@ -12,7 +12,7 @@ function RecentBlogs() {
     useEffect(() => {
     const fetchBlogImage = async () => {
       const data = await getDocs(userCollectionRef);
-      setBlog(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      setBlog(data.docs.map((doc, i) => ({ ...doc.data(), id: doc.id, active: i<3 })));
     };
 
     fetchBlogImage();
@@ -94,7 +94,7 @@ function RecentBlogs() {
 
 
       
-         {blogs.map((blog) => {
+         {blogs.filter(b=> b.active).map((blog) => {
             return (
 
               <div className='object-cover h-60 w-96 rounded-lg mr-3 mb-4 ' 
