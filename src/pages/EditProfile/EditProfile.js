@@ -35,15 +35,8 @@ const handleChange = (e) => {
 
 
    const userDel = auth.currentUser
-    const userDelete = () => {deleteUser(userDel).then(() => {
-        console.log("user deleted")
-      }).catch((error) => {
-        console.log(error)
-      })};
+    const userDelete = () => {deleteUser(userDel)};
 
-    //   const handleChange = (e) => {
-    //     setInputValue({ ...inputValues, [e.target.name]: e.target.value });
-    // }
 
     const [newPassword, setNewPassword] = useState('')
     const [notMatching, setNotMatching] = useState('');
@@ -60,8 +53,6 @@ const handleChange = (e) => {
         window.scrollTo(0, 0)
       }
     
-   
-      try {
         const docRef = doc(db, "users", `${user.uid}`)
         await updatePassword(auth.currentUser, newPassword);
         await updateDoc(docRef, {
@@ -74,23 +65,16 @@ const handleChange = (e) => {
           hobbies: inputValues.hobbies,
           familySize: inputValues.familySize,
           phonenumber: inputValues.phonenumber,
-      }); refresh() } catch (error) {
-          alert(error)
-      }}
+      }); refresh() }
   }
 
 
 
   const handleDelete = async () => {
-          try {
             await deleteDoc(doc(db, "users", `${user.uid}`));
             userDelete()
             logOut()
             navigate('/signup')
-        } catch (e) {
-            console.error("Error adding document: ", e);
-        }
-
 }
 
   const fetchSingleUserData = async () => {
@@ -114,6 +98,8 @@ const handleChange = (e) => {
   const [file, setFile] = useState('')
   const [IDImage, setIDImage] = useState('')
   
+          /* eslint-disable */
+
   const uploadFile = (fileState, setStateFn, urlKey) => {
     const uploadFiles = ()=> {
       const name = new Date().getTime() + fileState.name
@@ -148,8 +134,9 @@ const handleChange = (e) => {
       }
     );
     };
-    // eslint-disable-next-line
-    fileState && uploadFiles();
+        fileState && uploadFiles();
+                /* eslint-disable */
+
   }
   
   useEffect(()=>{
