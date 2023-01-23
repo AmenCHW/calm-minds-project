@@ -4,35 +4,32 @@ import TeamObject from './TeamObject';
 function Team() {
   return (
     <div className="mx-auto lg:max-w-7xl px-10 py-10">
-      <h1 className="  pt-5 text-3xl md:text-5xl format-normal leading-normal">
+      <h1 className="pt-5 text-3xl sm:text-4xl md:text-5xl format-normal leading-normal">
         WE ARE HEALING, NICE TO MEET YOU!
       </h1>
 
-      <div className="mt-32 px-4 ">
-        <h4 className=" text-3xl  py-14    lg:mx-0  mx-2 pl-5 sm:ml-10 justify-center ">
-          Meet the Team!
-        </h4>
-        {/* maping over the objects */}
-        <div className="flex flex-wrap px-0 pb-24   lg:justify-between   ">
-          {TeamObject.map((element) => {
-            return (
-              <div
-                key={element.id}
-                className="flex flex-col border-solid rounded-3xl bg-[#EAF8F9] justify-center
-            pb-28  px-0 my-4 ml-10 lg:mx-2 sm:justify-center "
-              >
-                <img
-                  className="w-35 h-40 "
-                  src={element.src}
-                  alt={element.alt}
-                />
-                <hr className="border-[#a3e635] border-4 bg-[#a3e635]" />
-                <p className="text-center py-4  "> {element.Name}</p>
-                <p className=" pl-4 max-w-[150px]  ">{element.title}</p>
-              </div>
-            );
-          })}
-        </div>
+      <h4 className="text-[#424A4F] text-2xl md:text-3xl py-14 md:mt-32">
+        Meet the Team!
+      </h4>
+
+      <div className="flex flex-wrap pb-24">
+        {TeamObject.map(({ id, src, alt, Name, title }) => {
+          return (
+            <div
+              key={id}
+              className="flex flex-col border-solid rounded-3xl bg-[#EAF8F9] max-w-[160px]
+            pb-28 my-4 mx-7 sm:ml-0 lg:mr-14"
+            >
+              <img
+                className="h-full border-b-8 border-[#a3e635]"
+                src={src}
+                alt={alt}
+              />
+              <p className="text-center py-4 px-2"> {Name}</p>
+              <p className="text-center px-1">{title}</p>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
