@@ -32,7 +32,7 @@ function Blogs() {
       <div>
         {blogs.map((blog) => {
           return (
-            <div>
+            <div key={blog.id}>
               <h1 className="text-xl md:text-3xl lg:text-5xl font-medium mb-12 mt-4">
                 {blog.blogtitle}
               </h1>

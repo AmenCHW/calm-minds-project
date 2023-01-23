@@ -19,7 +19,7 @@ const BlogDetails = () => {
   }, [params.listingId]);
 
   return (
-    <div className="mx-auto px-10 py-10 lg:max-w-7xl">
+    <div key={blog.ID} className="mx-auto px-10 py-10 lg:max-w-7xl">
 
       <div>
         <img

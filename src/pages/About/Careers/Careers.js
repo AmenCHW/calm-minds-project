@@ -6,6 +6,7 @@ import { db } from '../../../firebase-config';
 function Careers() {
   const [carees, setCarees] = useState([]);
   const userCollectionRef = collection(db, 'careers');
+
   useEffect(() => {
     const fetchBlogImage = async () => {
       const data = await getDocs(userCollectionRef);
@@ -76,7 +77,7 @@ function Careers() {
       <div>
         {carees.map((caree) => {
           return (
-            <div className="mx-auto lg:max-w-7xl px-10 py-4">
+            <div key={caree.id} className="mx-auto lg:max-w-7xl px-10 py-4">
               <div className="lg:flex lg:justify-between ">
                 <div className="lg:flex text-start lg:space-x-4 text-[#2DD3E3] text-3xl">
                   <h1>{caree.work} |</h1>

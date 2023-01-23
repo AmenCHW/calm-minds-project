@@ -84,7 +84,7 @@ function LogIn() {
                 Login
               </button>
 
-              <Link to="/signup" className="focus:text-[#FEE89E]">
+              <Link to="/signup">
                 <button
                   type="button"
                   className="bg-[#FFFFFF] hover:bg-[#aaf1f7] border-[#a2f4fb] hover:border-[#96eff7] text-[#2DD3E3] 
