@@ -38,14 +38,14 @@ function TherapistProfile() {
             navigate(0)
             window.scrollTo(0, 0)
           }
-         try {const docRef = doc(db, "users", `${user.uid}`)
+         const docRef = doc(db, "users", `${user.uid}`)
           await updateDoc(docRef, {
             username: inputValues.username,
             birthDate: inputValues.birthDate,
             photoURL: inputValues.photoURL,
             bio: inputValues.bio,
             phonenumber: inputValues.phonenumber,
-        }); refresh()}  catch(err) {console.log(err)}
+        }); refresh()
     }
   
   
