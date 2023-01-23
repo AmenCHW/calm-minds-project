@@ -25,7 +25,6 @@ export default function welcome() {
             className="mx-auto mt-10 lg:mt-0 lg:mx-0"
           />
         </div>
-        <div />
       </div>
     </div>
   );
