@@ -27,14 +27,14 @@ export const AuthContextProvider = ({ children }) => {
                 async (result) => {
                     /* eslint-disable */
                     console.log("google sign in result", result)
-                    console.log("google sign in result", result.user.email)
+                    console.log("google sign in result", result.user.providerData[0].email)
                     console.log("google sign in result", result.user.displayName)
 
                     try {
                         const docRef = await setDoc(doc(db, "users", `${result.user.uid}`), {
                             userId: `${result.user.uid}`,
                             fullname: `${result.user.displayName}`,
-                            email: `${result.user.email}`,
+                            email: `${result.user.providerData[0].email}`,
                             photoURL: `${result.user.photoURL}`,
                             isTherapist: false,
                             userId: `${result.user.uid}`,
@@ -49,7 +49,7 @@ export const AuthContextProvider = ({ children }) => {
 
                         });
                         /* eslint-disable */
-                        console.log("Document written with ID: ", docRef.id);
+                        // console.log("Document written with ID: ", docRef.id);
                     } catch (e) {
                         /* eslint-disable */
                         console.error("Error adding document: ", e);
@@ -68,7 +68,7 @@ export const AuthContextProvider = ({ children }) => {
                         const docRef = await setDoc(doc(db, "users", `${result.user.uid}`), {
                             userId: `${result.user.uid}`,
                             fullname: `${result.user.displayName}`,
-                            email: `${result.user.email}`,
+                            email: `${result.user.providerData[0].email}`,
                             photoURL: `${result.user.photoURL}`,
                             isTherapist: false,
                             userId: `${result.user.uid}`,
@@ -171,7 +171,7 @@ export const AuthContextProvider = ({ children }) => {
                         const docRef = await setDoc(doc(db, "users", `${result.user.uid}`), {
                             userId: `${result.user.uid}`,
                             fullname: `${result.user.displayName}`,
-                            email: `${result.user.email}`,
+                            email: `${result.user.providerData[0].email}`,
                             photoURL: `${result.user.photoURL}`,
                             isTherapist: false,
                             userId: `${result.user.uid}`,
@@ -204,7 +204,7 @@ export const AuthContextProvider = ({ children }) => {
                         const docRef = await setDoc(doc(db, "users", `${result.user.uid}`), {
                             userId: `${result.user.uid}`,
                             fullname: `${result.user.displayName}`,
-                            email: `${result.user.email}`,
+                            email: `${result.user.providerData[0].email}`,
                             photoURL: `${result.user.photoURL}`,
                             isTherapist: false,
                             userId: `${result.user.uid}`,
