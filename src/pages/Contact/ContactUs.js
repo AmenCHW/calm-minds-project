@@ -139,7 +139,7 @@ export default function  Contact() {
   return (
     <div className="mx-auto lg:max-w-7xl px-10 py-10">
       <h1 className="pt-5 text-3xl md:text-5xl format-normal leading-normal">
-        SEND US YOUR REQUEST!
+        {t('SEND US YOUR REQUEST!')}
       </h1>
 
       <p className="mt-2 text-2xl">
