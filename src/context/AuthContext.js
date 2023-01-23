@@ -107,6 +107,7 @@ export const AuthContextProvider = ({ children }) => {
                         birthDate: 1111-11-11,
                         phonenumber: 123,
                         email,
+                        photoURL: '',
                         isTherapist: true,
                         username,
                         city,
