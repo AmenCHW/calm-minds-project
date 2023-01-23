@@ -5,6 +5,9 @@ import renderer from 'react-test-renderer'
 import { renderHook } from "@testing-library/react-hooks";
 
 
+
+
+
 test("first snapshot testing",()=>{
     const component=renderer.create( < SubcribedEmails/>).toJSON()  
     expect( component).toMatchSnapshot();
@@ -27,9 +30,9 @@ console.log(btn)
   describe("when rendered", () => {
     it("expect email to be empty", () => {
       const { result } = renderHook(
-        () => SubcribedEmails("Test string"));
-      
-      expect(result.current.newEmailInput).toEqual(undefined);
+        () => <SubcribedEmails />);
+      console.log(result)
+      expect(result.current.newEmailInput.email).toEqual('');
     });
   });
 
