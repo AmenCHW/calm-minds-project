@@ -15,7 +15,7 @@ function BookingButton() {
                    py-2 px-4 border-b-4 border-[#2DD3E3] hover:border-blue-500 rounded"
         type="button"
       >
-        {user ? <Link to="/bookingPage" className="focus:text-[#FEE89E]">BOOK AN APPOINTMENT</Link> : <Link to="/signup" className="focus:text-[#FEE89E]">SIGN UP</Link>}
+        {user ? <Link to="/bookingPage" >BOOK AN APPOINTMENT</Link> : <Link to="/signup" className="focus:text-[#FEE89E]">SIGN UP</Link>}
       </button>
 
     </div>
