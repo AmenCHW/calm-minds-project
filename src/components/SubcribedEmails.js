@@ -35,7 +35,7 @@ function SubcribedEmails() {
     <div className="mx-auto flex justify-start lg:max-w-7xl">
       <form className="flex" onSubmit={handleSubmit}>
         <input
-          className="border-2 border-[#718096] rounded-l-md w-auto placeholder:pl-2"
+          className="border-2 border-[#718096] rounded-l-md w-auto placeholder:pl-2 pl-2"
           placeholder="Enter your e-mail"
           type="email"
           name="email"
