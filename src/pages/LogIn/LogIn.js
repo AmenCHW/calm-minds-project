@@ -65,14 +65,14 @@ function LogIn() {
               onChange={(e) => setEmail(e.target.value)}
               type="text"
               placeholder="Your Email"
-              className="border-2 rounded h-14 border-[#E5E5E5] my-4 w-full placeholder:pl-3"
+              className="border-2 rounded h-14 border-[#E5E5E5] my-4 w-full placeholder:pl-3 pl-3"
             />
 
             <input
               onChange={(e) => setPassword(e.target.value)}
               type="password"
               placeholder="Your Password"
-              className="border-2 rounded h-14 border-[#E5E5E5] my-5 mb-8 w-full placeholder:pl-3"
+              className="border-2 rounded h-14 border-[#E5E5E5] my-5 mb-8 w-full placeholder:pl-3 pl-3"
             />
 
             <div className='flex flex-wrap justify-between'>
