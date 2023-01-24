@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../../firebase-config';
 import contactimage from './contactimage.png';
@@ -16,6 +16,8 @@ export default function Contact() {
     details: null,
   })
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -25,7 +27,10 @@ export default function Contact() {
       details: formData.details,
       type_of_contact: formData.type_of_contact,
     })
+
+    navigate('/contact-thanks')
   };
+
 
   return (
     <div className="mx-auto lg:max-w-7xl px-10 py-10">

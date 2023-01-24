@@ -19,6 +19,7 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    navigate('/signup-thanks')
 
     if (email === confirmEmail && password !== confirmPassword) {
       setNotMatching("Password is not matching")
@@ -141,15 +142,13 @@ function Signup() {
                 </button>
               </Link>
 
-              <Link to="/signup-thanks">
-                <button
-                  className="shadow-xl bg-[#2DD3E3] hover:bg-[#66e0eb] border-[#2DD3E3] hover:border-[#41d6e4] text-[#000000] 
+              <button
+                className="shadow-xl bg-[#2DD3E3] hover:bg-[#66e0eb] border-[#2DD3E3] hover:border-[#41d6e4] text-[#000000] 
                   border-2 font-bold my-5 py-2 px-14 lg:px-10 xl:px-14 rounded"
-                  type="submit"
-                >
-                  Signup
-                </button>
-              </Link>
+                type="submit"
+              >
+                Signup
+              </button>
             </div>
           </form>
 

@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { collection, addDoc } from 'firebase/firestore';
 import { ReactComponent as SendIcon } from '../icons/send.svg';
 import { db } from '../firebase-config';
 
 function SubcribedEmails() {
   const [newEmailInput, setNewEmailInput] = useState({});
+
+  const navigate = useNavigate();
 
   // __________this handling subscription email input___________________
   const handleOnChange = (event) => {
@@ -25,6 +27,8 @@ function SubcribedEmails() {
     setNewEmailInput({
       email: '',
     });
+
+    navigate('/subscribe-thanks')
   };
 
   return (
@@ -38,15 +42,13 @@ function SubcribedEmails() {
           value={newEmailInput.email}
           onChange={handleOnChange}
         />
-        <Link to="/subscribe-thanks">
-          <button
-            className="p-2 border-y-2 border-r-2 border-[#718096] rounded-r-md bg-cyan-500 active:pr-1 active:pl-1 active:bg-cyan-400"
-            type="submit"
-            aria-label="Send"
-          >
-            <SendIcon />
-          </button>
-        </Link>
+        <button
+          className="p-2 border-y-2 border-r-2 border-[#718096] rounded-r-md bg-cyan-500 active:pr-1 active:pl-1 active:bg-cyan-400"
+          type="submit"
+          aria-label="Send"
+        >
+          <SendIcon />
+        </button>
       </form>
     </div>
   );

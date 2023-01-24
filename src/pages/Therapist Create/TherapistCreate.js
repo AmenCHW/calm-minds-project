@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { TherapistAuth } from '../../context/AuthContext';
 
 function TherapistCreate() {
@@ -104,6 +104,7 @@ function TherapistCreate() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    navigate('/therapist-thanks');
 
     try {
       await createTherapist(inputValues.email, inputValues.password, inputValues.username, inputValues.city, inputValues.licensenumber);
@@ -212,14 +213,13 @@ function TherapistCreate() {
           </div>
         </div>
         <div>
-          <Link to="/therapist-thanks">
-            <button
-              className=" mt-12 w-48 h-16 bg-[#2dd3e3] rounded-md hover:bg-[#4dd9e9] font-normal text-2xl"
-              type="submit"
-            >
-              CREATE
-            </button>
-          </Link>
+
+          <button
+            className=" mt-12 w-48 h-16 bg-[#2dd3e3] rounded-md hover:bg-[#4dd9e9] font-normal text-2xl"
+            type="submit"
+          >
+            CREATE
+          </button>
         </div>
       </form>
 
