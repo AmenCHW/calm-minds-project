@@ -1,7 +1,10 @@
 import React from "react";
- // import {screen} from "@testing-library/react"
+// import {render} from "@testing-library/react"
 import Requirement from "./RequirementPage";
 import renderer from 'react-test-renderer' 
+
+
+
 
 test("first snapshot testing",()=>{
     const component=renderer.create( <Requirement/>).toJSON()  
