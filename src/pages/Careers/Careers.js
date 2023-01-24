@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../firebase-config';
 
-function Careers() {
+function Careers({t}) {
   const [carees, setCarees] = useState([]);
   const userCollectionRef = collection(db, 'careers');
   useEffect(() => {
@@ -20,25 +20,19 @@ function Careers() {
       <div className="mx-auto lg:max-w-7xl px-10 py-10">
         <div className="mb-24">
           <h1 className="font-medium lg:text-6xl text-4xl  ">
-            CAREERS AT HEALING
+            {t("CAREERS AT HEALING")}
           </h1>
           <p className="lg:text-3xl lg:opacity-50 text-3xl">
-            Be a part of making people feel better.
+            {t("Be a part of making people feel better.")}
           </p>
         </div>
 
         <p className="lg:text-[1.2vw] text-[6vw]">
-          Our SEO software cuts through mountains of data to surface critical
-          insights. We build and maintain systems that process massive amounts
-          of data (we&#39;re talking 36 trillion records per day and multiple
-          petabytes of storage.) We model transparent and empathetic marketing
-          for the world. We educate our community, making every effort to help
-          them improve their skill. And we do it all by fostering a culture that
-          encourages accountability, empathy, and transparency.
+          {t("Our SEO software cuts through mountains of data to surface critical insights. We build and maintain systems that process massive amounts of data (we're talking 36 trillion records per day and multiple petabytes of storage.) We model transparent and empathetic marketing for the world. We educate our community, making every effort to help them improve their skill. And we do it all by fostering a culture that encourages accountability, empathy, and transparency.")}
         </p>
         <div>
           <p className="mt-16 lg:text-[1vw]  text-[6vw]">
-            What role will you play?
+            {t("What role will you play?")}
           </p>
 
           <Link to="/bookingPage" className="focus:text-[#FEE89E]">
@@ -47,7 +41,7 @@ function Careers() {
                   font-bold py-2 text-[4vw] px-4 border-b-4 border-[#2DD3E3] hover:border-blue-500 rounded"
               type="button"
             >
-              SEE OUR OPEN LIST
+              {t("SEE OUR OPEN LIST")}
             </button>
           </Link>
         </div>

@@ -49,7 +49,7 @@ function App() {
 
           <Route path="/about" element={<About t={t} />} />
           <Route path="/team" element={<Team t={t} />} />
-          <Route path="/careers" element={<Careers />} />
+          <Route path="/careers" element={<Careers t={t}/>} />
           <Route path="/contact" element={<Contact t={t} />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/bookingPage" element={<BookingPage />} />
