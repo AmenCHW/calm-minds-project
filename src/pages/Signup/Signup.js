@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Image from './SignupImage.png';
 import { UserAuth } from '../../context/AuthContext';
@@ -15,6 +15,17 @@ function Signup() {
   const [notMatching, setNotMatching] = useState('');
   const { createUser } = UserAuth();
   const navigate = useNavigate();
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [fullName, setFullName] = useState('')
+  const [birthDate, setBirthDate] = useState('')
+
+
+  const handleChange = () => setFullName(`${firstName} ${lastName}`)
+  useEffect(() => {
+    handleChange();
+  }, [firstName, lastName]);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -82,11 +93,13 @@ function Signup() {
           <form onSubmit={handleSubmit} className="flex-col shadow-lg border-2 rounded-lg  p-10 border-t-0 mx-auto md:mr-2 xl:mr-0">
             <div className="flex flex-col place-items-center sm:flex-row">
               <input
+                onChange={(e) => setFirstName(e.target.value)}
                 className="border-2 rounded h-14 border-[#E5E5E5] my-4 w-full placeholder:pl-3 pl-3"
                 type="text"
                 placeholder="First Name"
               />
               <input
+                onChange={(e) => setLastName(e.target.value)}
                 className="border-2 rounded h-14 border-[#E5E5E5] my-4 w-full placeholder:pl-3 sm:ml-3 pl-3"
                 type="text"
                 placeholder="Last Name"
@@ -125,6 +138,7 @@ function Signup() {
               <h2 className="lg:w-2/5 ">Birth Date:</h2>
 
               <input
+                onChange={(e) => setBirthDate(e.target.value)}
                 className="border-2 rounded h-14 border-[#E5E5E5] my-4 w-full placeholder:pl-3 pl-3 pr-3"
                 type="date"
                 placeholder="Day"
