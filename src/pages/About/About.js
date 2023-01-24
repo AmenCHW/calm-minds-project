@@ -5,9 +5,9 @@ function About({t}) {
   return (
     <div className="">
       <div className="mx-auto text-center px-10 md:px-32 lg:px-48 sm:text-left bg-white font-poppins pt-12">
-        <h2 className="font-normal text-5xl pb-2">HEALING!</h2>
+        <h2 className="font-normal text-5xl pb-2">{t("HEALING!")}</h2>
         <h3 className="font-light text-2xl text-[#808080] pb-16 leading-6">
-          some cool one liner !
+          {t("some cool one liner !")}
         </h3>
         <p className="font-normal leading-7 text-[#424A4F] text-xl pb-20 sm:pb-40">
               {t("At Healing, we believe there is a better way to do things. A more valuable way where customers are earned rather than bought. We're obsessively passionate about it, and our mission is to help people achieve it. We focus on search engine optimization. It's one of the least understood and least transparent aspects of great marketing, and we see that as an opportunity. We're excited to simplify SEO for everyone through our software, education, and community.")}
