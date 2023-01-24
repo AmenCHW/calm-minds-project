@@ -9,9 +9,6 @@ function Booking() {
 
   const { user } = UserAuth();
 
-  // eslint-disable-next-line
-  { user && console.log('user sent', user) }
-
   const [step, setStep] = useState(1)
   const [pageTitle, setPageTitle] = useState('')
   const [pageText, setPageText] = useState('')
@@ -24,11 +21,6 @@ function Booking() {
     issues: null,
     what_brings_you_here: null,
   })
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  }
-
 
   useEffect(() => {
     if (step < 6) {
@@ -47,10 +39,6 @@ function Booking() {
   }, [step]);
 
   useEffect(() => {
-    if (!user) {
-      // eslint-disable-next-line
-      alert("please signup before booking an appointment")
-    }
     if (user && user.uid)
       updateDoc(doc(db, 'users', user.uid), {
         book_an_appointment: {
@@ -64,29 +52,25 @@ function Booking() {
       }).then(response => {
         // eslint-disable-next-line
         console.log(response)
-        // eslint-disable-next-line
-        console.log("updated")
       }).catch(error => {
         // eslint-disable-next-line
         console.log(error.message)
       })
   }, [formData])
 
-
-
   return (
     <div className='mx-auto lg:max-w-7xl px-10 py-10'>
 
-      <h1 className='pt-5 text-3xl md:text-5xl format-normal leading-normal'>
+      <h1 className='pt-5 text-3xl sm:text-4xl md:text-5xl format-normal leading-normal'>
         {pageTitle}
       </h1>
 
-      <p className='mt-2 text-2xl text-gray-500'>
+      <p className='mt-2 text-xl md:text-2xl text-gray-500'>
         {pageText}
       </p>
 
       <div>
-        <BookingForms step={step} setStep={setStep} formData={formData} setFormData={setFormData} handleSubmit={handleSubmit} />
+        <BookingForms step={step} setStep={setStep} formData={formData} setFormData={setFormData} />
       </div>
 
     </div>

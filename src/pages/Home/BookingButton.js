@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { UserAuth } from '../../context/AuthContext';
 
-
 function BookingButton() {
 
   const { user } = UserAuth();

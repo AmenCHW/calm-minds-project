@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { counselingTypeObject1, relationshipStatusObject2, therapyBeforeObject3, SpecificQualitiesObject4, issuesObject5 } from './BookingFormsObject';
 
 
-function BookingForms({ step, setStep, formData, setFormData, handleSubmit }) {
+function BookingForms({ step, setStep, formData, setFormData }) {
     const [checked, setChecked] = useState('')
 
     const ChangeFormQuestion = () => {
@@ -66,6 +66,10 @@ function BookingForms({ step, setStep, formData, setFormData, handleSubmit }) {
         FormStyle();
         FormButtton();
     }, [step]);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    }
 
     function DisplayRadioButtons() {
         let radioButtons;

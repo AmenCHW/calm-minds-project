@@ -31,9 +31,6 @@ function NavBar() {
 
   const { user, logOut } = UserAuth();
 
-  // eslint-disable-next-line
-  // { user && console.log('user sent', user) }
-
   const handleSignOut = async () => {
     try {
       await logOut()
@@ -45,14 +42,11 @@ function NavBar() {
 
 
   const fetchSingleUserData = async () => {
-    // eslint-disable-next-line
-    // console.log('user.uid:', user.uid);
+
     await getDocs(query(collection(db, "users"), where("userId", "==", user.uid)))
       .then((querySnapshot) => {
         const usersData = querySnapshot.docs
           .map((doc) => {
-            // eslint-disable-next-line 
-            // console.log(doc.id, " => ", doc.data().isTherapist);
             return doc.data();
           });
 
