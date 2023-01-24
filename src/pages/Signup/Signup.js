@@ -6,6 +6,7 @@ import { ReactComponent as FacebookIcon } from '../../icons/facebookBlue.svg';
 import { ReactComponent as GoogleIcon } from '../../icons/googleBlue.svg';
 
 function Signup() {
+
   const [email, setEmail] = useState('');
   const [confirmEmail, setConfirmEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -14,36 +15,37 @@ function Signup() {
   const [notMatching, setNotMatching] = useState('');
   const { createUser } = UserAuth();
   const navigate = useNavigate();
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [fullName, setFullName] = useState('');
-  const [birthDate, setBirthDate] = useState('');
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [fullName, setFullName] = useState('')
+  const [birthDate, setBirthDate] = useState('')
 
-  const handleChange = () => setFullName(`${firstName} ${lastName}`);
+
+  const handleChange = () => setFullName(`${firstName} ${lastName}`)
   useEffect(() => {
     handleChange();
   }, [firstName, lastName]);
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    navigate('/signup-thanks');
 
     if (email === confirmEmail && password !== confirmPassword) {
-      setNotMatching('Password is not matching');
+      setNotMatching("Password is not matching")
     } else if (email !== confirmEmail && password === confirmPassword) {
-      setNotMatching('Email is not matching');
+      setNotMatching("Email is not matching")
     } else if (email !== confirmEmail && password !== confirmPassword) {
-      setNotMatching('Password and Email are not matching');
+      setNotMatching("Password and Email are not matching")
     } else if (email === confirmEmail && password === confirmPassword) {
       try {
         await createUser(email, password, fullName, birthDate);
-        navigate('/');
+        navigate('/')
       } catch (error) {
         setError(error.message);
       }
     } else {
-      setNotMatching('Password or Email are not matching');
+      setNotMatching("Password or Email are not matching")
     }
   };
 
@@ -52,7 +54,7 @@ function Signup() {
   const handleGoogleSignIn = async () => {
     try {
       await googleSignIn();
-      navigate('/');
+      navigate('/')
     } catch (error) {
       // eslint-disable-next-line
       console.log(error);
@@ -64,12 +66,14 @@ function Signup() {
   const handleFacebookSignIn = async () => {
     try {
       await facebookSignIn();
-      navigate('/');
+      navigate('/')
     } catch (error) {
       // eslint-disable-next-line
-      alert('This account already exists');
+      alert("This account already exists")
+
     }
   };
+
 
   return (
     <div className="flex flex-wrap-reverse place-items-center p-6 lg:flex-row lg:pt-24 mx-auto lg:max-w-7xl px-10 py-10">
@@ -82,10 +86,7 @@ function Signup() {
         <h2 className="font-normal text-5xl text-center lg:text-left mb-8">
           SIGNUP NOW
         </h2>
-        <form
-          onSubmit={handleSubmit}
-          className="lg:w-full px-8 py-10 flex flex-col bg-white rounded-md drop-shadow-xl"
-        >
+        <form onSubmit={handleSubmit} className="lg:w-full px-8 py-10 flex flex-col bg-white rounded-md drop-shadow-xl">
           <div className="flex flex-col place-items-center lg:flex-row m-1">
             <input
               onChange={(e) => setFirstName(e.target.value)}
@@ -135,6 +136,7 @@ function Signup() {
               type="date"
               placeholder="Day"
             />
+
           </div>
           <div className="flex mt-2 lg:mt-8 lg:w-full place-content-center gap-8">
             <Link to="/login">
@@ -161,10 +163,7 @@ function Signup() {
           <div className="w-2/5 border-t mt-2 border-[#2DD3E3]" />
         </div>
         <div className="w-full flex place-content-center gap-12 mt-4">
-          <FacebookIcon
-            className="cursor-pointer "
-            onClick={handleFacebookSignIn}
-          />
+          <FacebookIcon className="cursor-pointer " onClick={handleFacebookSignIn} />
           <GoogleIcon className="cursor-pointer" onClick={handleGoogleSignIn} />
         </div>
       </div>
