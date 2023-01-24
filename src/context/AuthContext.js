@@ -187,7 +187,7 @@ export const AuthContextProvider = ({ children }) => {
         return () => {
             unsubscribe();
         };
-    }, []);
+    }, [user]);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentTherapist) => {
@@ -196,7 +196,7 @@ export const AuthContextProvider = ({ children }) => {
         return () => {
             unsubscribe();
         };
-    }, []);
+    }, [user]);
 
     return (
         /* eslint-disable */
