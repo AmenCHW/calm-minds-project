@@ -1,12 +1,11 @@
 import React from 'react';
 import profileimage from './profileimage.png';
 
-function EditProfile() {
+function EditProfile({t}) {
   return (
     <div className="mx-auto lg:max-w-7xl px-10 py-10">
       <h1 className="text-center text-[#FF0000] text-2xl mb-9">
-        Please fill all the fields with correct and valid details to complete
-        your profile.
+        {t("Please fill all the fields with correct and valid details to complete your profile.")}
       </h1>
 
       <div className="flex flex-wrap justify-center md:justify-evenly">
@@ -16,7 +15,7 @@ function EditProfile() {
 
         <div className="">
           <h1 className="pt-5 text-3xl md:text-5xl format-normal leading-normal text-center md:text-left">
-            PROFILE INFO
+            {t("PROFILE INFO")}
           </h1>
 
           <div className="px-2 sm:px-0">
@@ -26,7 +25,7 @@ function EditProfile() {
                 htmlFor="name"
               >
                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
-                  Full Name
+                  {t("Full Name")}
                 </span>
                 <input
                   type="text"
@@ -37,10 +36,10 @@ function EditProfile() {
 
               <div className=" flex flex-col items-center sm:flex-row sm:flex-wrap justify-center mt-6 sm:justify-between">
                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
-                  Education Level
+                  {t("Education Level")}
                 </span>
                 <select className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md text-xl">
-                  <option value="select....">select...</option>
+                  <option value="select....">{t("select...")}</option>
                   <option value="due_date">option 1</option>
                   <option value="asc">option 2</option>
                   <option value="desc">option 3</option>
@@ -52,7 +51,7 @@ function EditProfile() {
                 htmlFor="hobbies"
               >
                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
-                  Hobbies
+                  {t("Hobbies")}
                 </span>
                 <input
                   type="text"
@@ -66,7 +65,7 @@ function EditProfile() {
                 htmlFor="family-size"
               >
                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
-                  Family Size
+                  {t("Family Size")}
                 </span>
                 <div className="flex sm:flex-wrap sm:flex-start w-1/2 lg:w-[470px]">
                   <input
@@ -75,19 +74,19 @@ function EditProfile() {
                     className="border-2 rounded-lg h-16 w-[68px] border-gray-100 pl-4 shadow-md"
                   />
                   <span className="text-2xl font-normal text-center sm:text-start ml-3 sm:ml-10 mt-3">
-                    Member(s)
+                    {t("Member(s)")}
                   </span>
                 </div>
               </label>
 
               <div className=" flex flex-col items-center sm:flex-row sm:flex-wrap justify-center mt-6 sm:justify-between">
                 <span className=" mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
-                  Gender
+                  {t("Gender")}
                 </span>
                 <select className="border-2 rounded-lg h-16 w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md text-xl">
-                  <option value="select....">select...</option>
-                  <option value="male">male</option>
-                  <option value="female">female</option>
+                  <option value="select....">{t("select...")}</option>
+                  <option value="male">{t("male")}</option>
+                  <option value="female">{t("female")}</option>
                 </select>
               </div>
 
@@ -96,7 +95,7 @@ function EditProfile() {
                 htmlFor="date"
               >
                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
-                  Birth Date
+                  {t("Birth Date")}
                 </span>
                 <input
                   type="date"
@@ -110,7 +109,7 @@ function EditProfile() {
                 htmlFor="email"
               >
                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
-                  Email
+                  {t("Email")}
                 </span>
                 <input
                   type="email"
@@ -124,7 +123,7 @@ function EditProfile() {
                 htmlFor="phone"
               >
                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
-                  Phone Number
+                  {t("Phone Number")}
                 </span>
                 <input
                   type="tel"
@@ -138,7 +137,7 @@ function EditProfile() {
                 htmlFor="image"
               >
                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
-                  Upload ID
+                  {t("Upload ID")}
                 </span>
                 <input
                   type="file"
@@ -148,7 +147,7 @@ function EditProfile() {
               </label>
 
               <h1 className="pt-16 text-3xl md:text-5xl format-normal leading-normal text-center md:text-left">
-                Security
+                {t("Security")}
               </h1>
 
               <label
@@ -156,7 +155,7 @@ function EditProfile() {
                 htmlFor="password"
               >
                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
-                  Password
+                  {t("Password")}
                 </span>
                 <input
                   type="password"
@@ -170,7 +169,7 @@ function EditProfile() {
                 htmlFor="password"
               >
                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
-                  Confirm Password
+                  {t("Confirm Password")}
                 </span>
                 <input
                   type="password"
@@ -184,21 +183,21 @@ function EditProfile() {
                   type="button"
                   className="bg-[#2DD3E3] py-3 text-2xl border-2 rounded-lg border-[#2DD3E3] px-3 lg:px-0 lg:w-[220px] my-2 lg:my-0 mx-2"
                 >
-                  SAVE CHANGES
+                  {t("SAVE CHANGES")}
                 </button>
 
                 <button
                   type="button"
                   className="bg-[#2DD3E3] py-3 text-2xl border-2 rounded-lg border-[#2DD3E3] px-3 lg:px-0 lg:w-[220px] my-2 lg:my-0 mx-2"
                 >
-                  DELETE ACCOUNT
+                  {t("DELETE ACCOUNT")}
                 </button>
 
                 <button
                   type="button"
                   className="bg-[#2DD3E3] py-3 text-2xl border-2 rounded-lg border-[#2DD3E3] px-3 lg:px-0 lg:w-[220px] my-2 lg:my-0 mx-2"
                 >
-                  CANCEL
+                  {t("CANCEL")}
                 </button>
               </div>
             </form>
@@ -206,31 +205,31 @@ function EditProfile() {
 
           <div>
             <h1 className="pt-16 text-3xl md:text-5xl format-normal leading-normal text-center md:text-left">
-              Payment Methods & Tickets
+              {t("Payment Methods & Tickets")}
             </h1>
 
             <div className="flex flex-col items-center sm:flex-row sm:flex-wrap pt-10 justify-center md:justify-start">
               <div className="flex flex-col">
                 <p className="pb-3 text-xl text-center sm:text-start">
-                  3 Cards Added
+                  {t("3 Cards Added")}
                 </p>
                 <button
                   type="button"
                   className="bg-[#2DD3E3] py-3 text-2xl border-2 rounded-lg border-[#2DD3E3] px-3 lg:px-0 lg:w-[220px]"
                 >
-                  SHOW CARDS
+                  {t("SHOW CARDS")}
                 </button>
               </div>
 
               <div className="flex flex-col sm:ml-5 pt-5 sm:pt-0">
                 <p className="pb-3 text-xl text-center sm:text-start">
-                  10 Tickets Remaining
+                  {t("10 Tickets Remaining")}
                 </p>
                 <button
                   type="button"
                   className="bg-[#2DD3E3] py-3 text-2xl border-2 rounded-lg border-[#2DD3E3] px-3 lg:px-0 lg:w-[220px]"
                 >
-                  BUY TICKETS
+                  {t("BUY TICKETS")}
                 </button>
               </div>
             </div>

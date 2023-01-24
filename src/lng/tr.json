@@ -19,13 +19,46 @@
 	"I am interested in Healing Online for my organization.":"Kuruluşum için Healing Online ile ilgileniyorum.",
 	"I have a billing related question.":"Faturalandırma ile ilgili bir sorum var",
 	"Find Us At":"bizi bul",
-	"Full Name:":"Ad Soyad",
+	"Full Name":"Ad Soyad",
 	"Email":"E-Posta",
 	"Details":"Detaylar",
 	"Enter your full name here...":"adınızı burda yazin...",
 	"Enter your email address here...":"E-postanizi burda yazin...",
 	"Enter your details here...":"Ayrıntılarınızı burda yazin...",
-	"SUBMIT":"gönder"
+	"SUBMIT":"gönder",
+	"Please fill all the fields with correct and valid details to complete your profile.":"Profilinizi tamamlamak için lütfen tüm alanları doğru ve geçerli bilgilerle doldurun.",
+	"PROFILE INFO":"PROFİL BİLGİSİ",
+	"Education Level":"Eğitim Seviyesi",
+	"select...":"seç",
+	"Hobbies":"Hobbies",
+	"Family Size":"Aile boyu",
+	"Member(s)":"kişi",
+	"Gender":"cins",
+	"male":"erkek",
+	"female":"kız",
+	"Birth Date":"Doğum günü",
+	"Phone Number":"Telefon numarası",
+	"Upload ID":"Kimliği Yükle",
+	"Security":"Güvenlik",
+	"Password":"şifre",
+	"Confirm Password":"Şifreyi Onayla",
+	"SAVE CHANGES":"DEĞİŞİKLİKLERİ KAYDET",
+	"DELETE ACCOUNT":"HESABI SİL",
+	"CANCEL":"İPTAL ETMEK",
+	"Payment Methods & Tickets":"Ödeme Yöntemleri ve Biletler",
+	"3 Cards Added":"3 Kart Eklendi",
+	"SHOW CARDS":"KARTLARI GÖSTER",
+	"10 Tickets Remaining":"Kalan 10 Bilet",
+	"BUY TICKETS":"BİLET SATIN AL"
+
+
+
+
+
+
+
+
+
 	
 
 

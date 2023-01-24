@@ -55,7 +55,7 @@ function App() {
           <Route path="/bookingPage" element={<BookingPage />} />
           <Route path="/therapist/create" element={<TherapistCreate />} />
           <Route path="/RequirementPage" element={<CounselorRequirement />} />
-          <Route path="/profile" element={<EditProfile />} />
+          <Route path="/profile" element={<EditProfile t={t} />} />
           <Route path="/therapist/profile" element={<TherapistProfile />} />
         </Routes>
         <Footer />
