@@ -14,7 +14,6 @@ function RecentBlogs() {
     };
 
     fetchBlogImage();
-
   }, []);
   //  _________________________________________ Carsoul_____________________________________________________________________________________________________________
 
@@ -56,7 +55,8 @@ function RecentBlogs() {
           return 1;
         }
         return -1;
-      }).pop(1).idx;
+      })
+      .pop(1).idx;
 
     // minimize pos
     prevState.find((f) => f.active === false).pos =
@@ -75,8 +75,8 @@ function RecentBlogs() {
     setBlog(prevState);
   };
   return (
-    <div className=' bg-[#EAF8F9]'>
-      <div className='mx-auto lg:max-w-7xl px-10 py-10'>
+    <div className=" bg-[#EAF8F9]">
+      <div className="mx-auto lg:max-w-7xl px-10 py-10">
         <h1 className="text-3xl sm:text-4xl md:text-5xl format-normal leading-normal pt-10 pb-10 lg:pb-24">
           RECENT BLOGS
         </h1>
@@ -92,11 +92,11 @@ function RecentBlogs() {
           <div className="flex-col flex md:flex-row gap-2 sm:gap-4 place-items-center">
             {blogs.map((blog) => {
               return (
-
-                <div className='object-cover h-60 w-auto xl:w-96 rounded-lg mr-3 mb-4 '
+                <div
+                  className="object-cover h-60 w-auto xl:w-96 rounded-lg mr-3 mb-4 "
                   key={blog.id}
                 >
-                  <Link to={`/blogs/${blog.id}`} >
+                  <Link to={`/blogs/${blog.id}`}>
                     <img
                       src={blog.imgText}
                       alt=""
@@ -121,4 +121,3 @@ function RecentBlogs() {
   );
 }
 export default RecentBlogs;
-

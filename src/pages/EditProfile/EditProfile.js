@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { deleteUser, updatePassword } from 'firebase/auth';
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { collection, query, where, getDocs, deleteDoc, doc, updateDoc } from 'firebase/firestore';
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  deleteDoc,
+  doc,
+  updateDoc,
+} from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { db, storage, auth } from '../../firebase-config';
 import { UserAuth } from '../../context/AuthContext';
 import profileimage from './profileimage.png';
-import UpdateImage from './edit.png'
+import UpdateImage from './edit.png';
 
 function EditProfile() {
-
-
-  const [userDetails, setUserDetails] = useState({})
-  const [perc, setPerc] = useState(null)
+  const [userDetails, setUserDetails] = useState({});
+  const [perc, setPerc] = useState(null);
   const { user, logOut } = UserAuth();
 
   const [inputValues, setInputValue] = useState({
@@ -22,38 +28,37 @@ function EditProfile() {
     educationLevel: userDetails.educationLevel,
     hobbies: userDetails.hobbies,
     familySize: userDetails.familySize,
-    phonenumber: userDetails.phonenumber
+    phonenumber: userDetails.phonenumber,
   });
 
   const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleChange = (e) => {
     setInputValue({ ...inputValues, [e.target.name]: e.target.value });
-  }
+  };
 
   const navigate = useNavigate();
 
+  const userDel = auth.currentUser;
+  const userDelete = () => {
+    deleteUser(userDel);
+  };
 
-  const userDel = auth.currentUser
-  const userDelete = () => { deleteUser(userDel) };
-
-
-  const [newPassword, setNewPassword] = useState('')
+  const [newPassword, setNewPassword] = useState('');
   const [notMatching, setNotMatching] = useState('');
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (newPassword !== confirmPassword) {
-      setNotMatching("Password and Confrim Password are not matching")
+      setNotMatching('Password and Confrim Password are not matching');
     } else {
       const refresh = () => {
-        navigate(0)
-        window.scrollTo(0, 0)
-      }
+        navigate(0);
+        window.scrollTo(0, 0);
+      };
 
-      const docRef = doc(db, "users", `${user.uid}`)
+      const docRef = doc(db, 'users', `${user.uid}`);
       await updatePassword(auth.currentUser, newPassword);
       await updateDoc(docRef, {
         gender: inputValues.gender,
@@ -65,55 +70,54 @@ function EditProfile() {
         hobbies: inputValues.hobbies,
         familySize: inputValues.familySize,
         phonenumber: inputValues.phonenumber,
-      }); refresh()
+      });
+      refresh();
     }
-  }
-
-
+  };
 
   const handleDelete = async () => {
-    await deleteDoc(doc(db, "users", `${user.uid}`));
-    userDelete()
-    logOut()
-    navigate('/signup')
-  }
+    await deleteDoc(doc(db, 'users', `${user.uid}`));
+    userDelete();
+    logOut();
+    navigate('/signup');
+  };
 
   const fetchSingleUserData = async () => {
-    await getDocs(query(collection(db, "users"), where("userId", "==", user.uid)))
-      .then((querySnapshot) => {
-        const usersData = querySnapshot.docs
-          .map((docm) => {
-            return docm.data();
-          });
-        setUserDetails(usersData[0])
-        setInputValue(usersData[0])
-      })
-  }
+    await getDocs(
+      query(collection(db, 'users'), where('userId', '==', user.uid))
+    ).then((querySnapshot) => {
+      const usersData = querySnapshot.docs.map((docm) => {
+        return docm.data();
+      });
+      setUserDetails(usersData[0]);
+      setInputValue(usersData[0]);
+    });
+  };
 
   useEffect(() => {
-    if (user && user.uid)
-      fetchSingleUserData();
-  }, [user])
+    if (user && user.uid) fetchSingleUserData();
+  }, [user]);
 
-
-  const [file, setFile] = useState('')
-  const [IDImage, setIDImage] = useState('')
+  const [file, setFile] = useState('');
+  const [IDImage, setIDImage] = useState('');
 
   /* eslint-disable */
 
   const uploadFile = (fileState, setStateFn, urlKey) => {
     const uploadFiles = () => {
-      const name = new Date().getTime() + fileState.name
+      const name = new Date().getTime() + fileState.name;
       console.log(name);
       const storageRef = ref(storage, fileState.name);
       const uploadTask = uploadBytesResumable(storageRef, fileState);
 
-      uploadTask.on('state_changed',
+      uploadTask.on(
+        'state_changed',
         (snapshot) => {
           // Observe state change events such as progress, pause, and resume
           // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          setPerc(progress)
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          setPerc(progress);
           switch (snapshot.state) {
             case 'paused':
               break;
@@ -124,26 +128,25 @@ function EditProfile() {
           }
         },
         (error) => {
-          console.log(error)
+          console.log(error);
         },
         () => {
           // Handle successful uploads on complete
           // For instance, get the download URL: https://firebasestorage.googleapis.com/...
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            setInputValue((prev) => ({ ...prev, [urlKey]: downloadURL }))
+            setInputValue((prev) => ({ ...prev, [urlKey]: downloadURL }));
           });
         }
       );
     };
     fileState && uploadFiles();
     /* eslint-disable */
-
-  }
+  };
 
   useEffect(() => {
-    uploadFile(file, setFile, 'photoURL')
-    uploadFile(IDImage, setIDImage, 'IDURL')
-  }, [file, IDImage])
+    uploadFile(file, setFile, 'photoURL');
+    uploadFile(IDImage, setIDImage, 'IDURL');
+  }, [file, IDImage]);
 
   return (
     <div className="mx-auto lg:max-w-7xl px-10 py-10">
@@ -153,12 +156,18 @@ function EditProfile() {
       </h1>
       <form onSubmit={handleSubmit}>
         <div className="flex flex-wrap md:justify-evenly">
-          <div className='flex flex-col items-center mx-auto'>
-            <img className='max-w-xs max-h-xs rounded-full aspect-square object-cover ' src={userDetails.photoURL ? userDetails.photoURL : profileimage} alt="profile-pic" />
-            <span className='flex flex-col items-center rounded-full  w-20 hover:cursor-pointer hover:shadow-lg border-2 border-black'>   <img src={UpdateImage} alt='Update' />
+          <div className="flex flex-col items-center mx-auto">
+            <img
+              className="max-w-xs max-h-xs rounded-full aspect-square object-cover "
+              src={userDetails.photoURL ? userDetails.photoURL : profileimage}
+              alt="profile-pic"
+            />
+            <span className="flex flex-col items-center rounded-full  w-20 hover:cursor-pointer hover:shadow-lg border-2 border-black">
+              {' '}
+              <img src={UpdateImage} alt="Update" />
               <input
                 type="file"
-                placeholder='edit'
+                placeholder="edit"
                 id="profileImage"
                 name="photoURL"
                 onChange={(e) => setFile(e.target.files[0])}
@@ -173,7 +182,6 @@ function EditProfile() {
             </h1>
 
             <div className="">
-
               <label
                 className="flex flex-col sm:flex-row sm:flex-wrap sm:justify-between mt-10"
                 htmlFor="name"
@@ -195,7 +203,13 @@ function EditProfile() {
                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
                   Education Level:
                 </span>
-                <select onChange={(e) => handleChange(e)} defaultValue={userDetails.educationLevel} key={userDetails.educationLevel} name="educationLevel" className="border-2 rounded-lg h-16 w-full sm:w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md text-xl">
+                <select
+                  onChange={(e) => handleChange(e)}
+                  defaultValue={userDetails.educationLevel}
+                  key={userDetails.educationLevel}
+                  name="educationLevel"
+                  className="border-2 rounded-lg h-16 w-full sm:w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md text-xl"
+                >
                   <option value="select....">select...</option>
                   <option value="Highschool">Highschool</option>
                   <option value="Diploma">Diploma</option>
@@ -249,7 +263,13 @@ function EditProfile() {
                 <span className=" mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
                   Gender
                 </span>
-                <select onChange={(e) => handleChange(e)} name="gender" defaultValue={userDetails.gender} key={userDetails.gender} className="border-2 rounded-lg h-16 w-full sm:w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md text-xl">
+                <select
+                  onChange={(e) => handleChange(e)}
+                  name="gender"
+                  defaultValue={userDetails.gender}
+                  key={userDetails.gender}
+                  className="border-2 rounded-lg h-16 w-full sm:w-1/2 lg:w-[470px] border-gray-100 pl-4 shadow-md text-xl"
+                >
                   <option value="select....">select...</option>
                   <option value="male">male</option>
                   <option value="female">female</option>
@@ -322,16 +342,14 @@ function EditProfile() {
                   className="border-2 rounded-lg h-16 w-full sm:w-1/2 lg:w-[470px] py-auto border-gray-100 pl-4 shadow-md"
                 />
               </label>
-              <div
-                className="flex flex-col items-center sm:flex-row sm:flex-wrap justify-center sm:justify-between mt-6"
-              >
+              <div className="flex flex-col items-center sm:flex-row sm:flex-wrap justify-center sm:justify-between mt-6">
                 <span className="mb-5 text-2xl font-normal text-start mr-3 md:mr-10 mt-3">
                   ID
                 </span>
 
                 <img
                   src={userDetails.IDURL}
-                  alt='Id'
+                  alt="Id"
                   className="border-2 rounded-lg aspect-rectangle w-24 items-center py-auto border-gray-100  shadow-md object-cover sm:mr-52"
                 />
               </div>
@@ -395,7 +413,6 @@ function EditProfile() {
                   CANCEL
                 </button>
               </div>
-
             </div>
 
             <div>
@@ -405,9 +422,7 @@ function EditProfile() {
 
               <div className="flex flex-col sm:flex-row pt-10 justify-start">
                 <div className="flex flex-col">
-                  <p className="pb-3 text-xl text-start">
-                    3 Cards Added
-                  </p>
+                  <p className="pb-3 text-xl text-start">3 Cards Added</p>
                   <button
                     type="button"
                     className="bg-[#2DD3E3] py-3 text-xl md:text-2xl border-2 rounded-lg border-[#2DD3E3] px-3 lg:px-0 lg:w-[220px]"

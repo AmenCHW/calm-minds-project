@@ -4,7 +4,7 @@ import NavBar from './components/NavBar/NavBar';
 import Home from './pages/Home/Home';
 import Blogs from './pages/Blogs/Blogs';
 import AboutUs from './pages/About/AboutUs/AboutUs';
-import Team from './pages/About/Team/Team'
+import Team from './pages/About/Team/Team';
 import Careers from './pages/About/Careers/Careers';
 import Contact from './pages/Contact/ContactUs';
 import LogIn from './pages/LogIn/LogIn';
@@ -21,18 +21,17 @@ import ContactThanks from './pages/Contact/ContactThanks';
 import SubscribeThanks from './components/SubscribeThanks';
 import TherapistThanks from './pages/Therapist Create/TherapistThanks';
 
-
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <NavBar />
+        <NavBar />
 
-       <Routes>
+        <Routes>
           <Route path="/signup" element={<Signup />} />
           <Route path="/" element={<Home />} />
           <Route path="/blogs" element={<Blogs />} />
-           <Route path="/blogs/:id" element={<BlogDetails />} /> 
+          <Route path="/blogs/:id" element={<BlogDetails />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/team" element={<Team />} />
           <Route path="/careers" element={<Careers />} />
@@ -47,9 +46,9 @@ function App() {
           <Route path="/contact-thanks" element={<ContactThanks />} />
           <Route path="/subscribe-thanks" element={<SubscribeThanks />} />
           <Route path="/therapist-thanks" element={<TherapistThanks />} />
-        </Routes> 
+        </Routes>
 
-      <Footer />
+        <Footer />
       </BrowserRouter>
     </div>
   );

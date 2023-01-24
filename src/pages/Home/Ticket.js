@@ -14,7 +14,10 @@ export default function Ticket() {
       <div className="flex flex-wrap">
         {TicketsObject.map(({ id, numberOfTickets, price }) => {
           return (
-            <div key={id} className="flex flex-col w-96 lg:w-[40%] xl:w-[30%] border-4 border-[#FBFBFB] shadow-lg shadow-[#B2ABAB] rounded-3xl p-10 mt-8 text-center justify-center items-center mx-4">
+            <div
+              key={id}
+              className="flex flex-col w-96 lg:w-[40%] xl:w-[30%] border-4 border-[#FBFBFB] shadow-lg shadow-[#B2ABAB] rounded-3xl p-10 mt-8 text-center justify-center items-center mx-4"
+            >
               <h1 className="pt-5 text-3xl md:text-5xl format-normal leading-normal">
                 {numberOfTickets}
               </h1>
@@ -27,9 +30,8 @@ export default function Ticket() {
                 PURCHASE
               </button>
             </div>
-          )
+          );
         })}
-
       </div>
     </div>
   );

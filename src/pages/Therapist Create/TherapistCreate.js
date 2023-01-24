@@ -3,91 +3,96 @@ import { useNavigate } from 'react-router-dom';
 import { TherapistAuth } from '../../context/AuthContext';
 
 function TherapistCreate() {
-
   const [inputValues, setInputValue] = useState({
-    username: "",
-    email: "",
-    city: "",
-    licensenumber: "",
-    password: "",
-    confirmPassword: "",
+    username: '',
+    email: '',
+    city: '',
+    licensenumber: '',
+    password: '',
+    confirmPassword: '',
   });
 
   const [validation, setValidation] = useState({
-    username: "",
-    email: "",
-    city: "",
-    licensenumber: "",
-    password: "",
-    confirmPassword: "",
+    username: '',
+    email: '',
+    city: '',
+    licensenumber: '',
+    password: '',
+    confirmPassword: '',
   });
 
   // handle submit updates
   const handleChange = (e) => {
     setInputValue({ ...inputValues, [e.target.name]: e.target.value });
-  }
+  };
 
   const checkValidation = () => {
-
     const errors = JSON.parse(JSON.stringify(validation));
 
     // User Name validation
-    const usernameCondition = "^[A-Za-z]{3,16}$"
+    const usernameCondition = '^[A-Za-z]{3,16}$';
     if (!inputValues.username.trim()) {
-      errors.username = "User Name is required";
-    } else if (inputValues.username.length < 3 || inputValues.username.length > 16) {
-      errors.username = "User Name should be 3-16 characters";
+      errors.username = 'User Name is required';
+    } else if (
+      inputValues.username.length < 3 ||
+      inputValues.username.length > 16
+    ) {
+      errors.username = 'User Name should be 3-16 characters';
     } else if (!inputValues.username.match(usernameCondition)) {
-      errors.username = "User Name should only consist of letters";
+      errors.username = 'User Name should only consist of letters';
     } else {
-      errors.username = "";
+      errors.username = '';
     }
 
     // City validation
-    const cityCondition = "^[A-Za-z]{3,16}$"
+    const cityCondition = '^[A-Za-z]{3,16}$';
     if (!inputValues.city.trim()) {
-      errors.city = "City is required";
+      errors.city = 'City is required';
     } else if (!inputValues.city.match(cityCondition)) {
-      errors.city = "City should be 3-16 characters and only consist of letters";
+      errors.city =
+        'City should be 3-16 characters and only consist of letters';
     } else {
-      errors.city = "";
+      errors.city = '';
     }
 
     // License Number validation
     if (!inputValues.licensenumber.trim()) {
-      errors.licensenumber = "License Number is required";
+      errors.licensenumber = 'License Number is required';
     } else {
-      errors.licensenumber = "";
+      errors.licensenumber = '';
     }
 
     // Email validation
-    const emailCondition = "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/";
+    const emailCondition =
+      "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/";
     if (!inputValues.email.trim()) {
-      errors.email = "Email is required";
+      errors.email = 'Email is required';
     } else if (!inputValues.email.match(emailCondition)) {
-      errors.email = "Please enter a valid email address";
+      errors.email = 'Please enter a valid email address';
     } else {
-      errors.email = "";
+      errors.email = '';
     }
 
     // Password validation
-    const passwordcondition = "(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+])[A-Za-z0-9!@#$%^&*()_+]{8,20}$"
+    const passwordcondition =
+      '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+])[A-Za-z0-9!@#$%^&*()_+]{8,20}$';
     const passwordvalue = inputValues.password;
     if (!passwordvalue) {
-      errors.password = "Password is required";
+      errors.password = 'Password is required';
     } else if (!passwordvalue.match(passwordcondition)) {
-      errors.password = "Password should be 8-20 characters and include at least 1 letter, 1 number & 1 special character";
+      errors.password =
+        'Password should be 8-20 characters and include at least 1 letter, 1 number & 1 special character';
     } else {
-      errors.password = "";
+      errors.password = '';
     }
 
     // matchPassword validation
     if (!inputValues.confirmPassword) {
-      errors.confirmPassword = "Password confirmation is required";
+      errors.confirmPassword = 'Password confirmation is required';
     } else if (inputValues.confirmPassword !== inputValues.password) {
-      errors.confirmPassword = "Password does not match confirmation password";
+      errors.confirmPassword = 'Password does not match confirmation password';
     } else {
-      errors.confirmPassword = "";
+      errors.confirmPassword = '';
     }
 
     setValidation(errors);
@@ -107,12 +112,18 @@ function TherapistCreate() {
     navigate('/therapist-thanks');
 
     try {
-      await createTherapist(inputValues.email, inputValues.password, inputValues.username, inputValues.city, inputValues.licensenumber);
-      navigate('/')
+      await createTherapist(
+        inputValues.email,
+        inputValues.password,
+        inputValues.username,
+        inputValues.city,
+        inputValues.licensenumber
+      );
+      navigate('/');
     } catch (error) {
       setError(error.message);
     }
-  }
+  };
 
   return (
     <div className=" flex-col mx-auto lg:max-w-7xl px-10 py-10">
@@ -133,8 +144,9 @@ function TherapistCreate() {
               className="border rounded-md p-2 w-full h-12 sm:w-96"
               required
             />
-            {validation.username && <p className='text-[red]'>{validation.username}</p>}
-
+            {validation.username && (
+              <p className="text-[red]">{validation.username}</p>
+            )}
           </div>
           <div className="mb-4">
             <h2 className=" font-normal text-2xl text-gray-500 ml-1 mb-1">
@@ -148,8 +160,9 @@ function TherapistCreate() {
               className="border rounded-md p-2 w-full h-12 sm:w-96"
               required
             />
-            {validation.email && <p className='text-[red]'>{validation.email}</p>}
-
+            {validation.email && (
+              <p className="text-[red]">{validation.email}</p>
+            )}
           </div>
           <div className="mb-4">
             <h2 className=" font-normal text-2xl text-gray-500 ml-1 mb-1">
@@ -163,8 +176,7 @@ function TherapistCreate() {
               className="border rounded-md p-2 w-full h-12 sm:w-96"
               required
             />
-            {validation.city && <p className='text-[red]'>{validation.city}</p>}
-
+            {validation.city && <p className="text-[red]">{validation.city}</p>}
           </div>
           <div className="mb-4">
             <h2 className=" font-normal text-2xl text-gray-500 ml-1 mb-1">
@@ -178,8 +190,9 @@ function TherapistCreate() {
               className="border rounded-md p-2 w-full h-12 sm:w-96"
               required
             />
-            {validation.licensenumber && <p className='text-[red]'>{validation.licensenumber}</p>}
-
+            {validation.licensenumber && (
+              <p className="text-[red]">{validation.licensenumber}</p>
+            )}
           </div>
           <div className="mb-4">
             <h2 className=" font-normal text-2xl text-gray-500 ml-1 mb-1">
@@ -193,8 +206,9 @@ function TherapistCreate() {
               className="border rounded-md p-2 w-full h-12 sm:w-96"
               required
             />
-            {validation.password && <p className='text-[red]'>{validation.password}</p>}
-
+            {validation.password && (
+              <p className="text-[red]">{validation.password}</p>
+            )}
           </div>
           <div className="mb-4">
             <h2 className=" font-normal text-2xl text-gray-500 ml-1 mb-1">
@@ -208,12 +222,12 @@ function TherapistCreate() {
               className="border rounded-md p-2 w-full h-12 sm:w-96"
               required
             />
-            {validation.confirmPassword && <p className='text-[red]'>{validation.confirmPassword}</p>}
-
+            {validation.confirmPassword && (
+              <p className="text-[red]">{validation.confirmPassword}</p>
+            )}
           </div>
         </div>
         <div>
-
           <button
             className=" mt-12 w-48 h-16 bg-[#2dd3e3] rounded-md hover:bg-[#4dd9e9] font-normal text-2xl"
             type="submit"
@@ -222,7 +236,6 @@ function TherapistCreate() {
           </button>
         </div>
       </form>
-
     </div>
   );
 }

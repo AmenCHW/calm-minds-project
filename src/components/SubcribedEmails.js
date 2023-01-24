@@ -28,7 +28,7 @@ function SubcribedEmails() {
       email: '',
     });
 
-    navigate('/subscribe-thanks')
+    navigate('/subscribe-thanks');
   };
 
   return (

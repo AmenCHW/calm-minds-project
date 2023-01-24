@@ -5,7 +5,6 @@ import { UserAuth } from '../../context/AuthContext';
 import { ReactComponent as FacebookIcon } from '../../icons/facebookBlue.svg';
 import { ReactComponent as GoogleIcon } from '../../icons/googleBlue.svg';
 
-
 function LogIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -15,21 +14,21 @@ function LogIn() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('')
+    setError('');
     try {
-      await signIn(email, password)
-      navigate('/')
+      await signIn(email, password);
+      navigate('/');
     } catch (error) {
       setError(error.message);
     }
-  }
+  };
 
   const { googleSignIn } = UserAuth();
 
   const handleGoogleSignIn = async () => {
     try {
       await googleSignIn();
-      navigate('/')
+      navigate('/');
     } catch (error) {
       // eslint-disable-next-line
       console.log(error);
@@ -41,26 +40,25 @@ function LogIn() {
   const handleFacebookSignIn = async () => {
     try {
       await facebookSignIn();
-      navigate('/')
+      navigate('/');
     } catch (error) {
       // eslint-disable-next-line
-      alert("This account already exists")
-
+      alert('This account already exists');
     }
   };
 
   return (
     <div className="mx-auto lg:max-w-7xl px-10 py-10">
-
-
       <div className="flex-wrap md:flex lg:my-10 justify-center lg:justify-between">
         <div>
-
           <h1 className="pt-5 md:pl-3 mb-10 text-3xl sm:text-4xl md:text-5xl format-normal leading-normal sm:ml-24 md:ml-0">
             LOGIN
           </h1>
 
-          <form onSubmit={handleSubmit} className="shadow-lg border-2 rounded-lg sm:w-[458px] p-10 border-t-0 mx-auto md:mr-2">
+          <form
+            onSubmit={handleSubmit}
+            className="shadow-lg border-2 rounded-lg sm:w-[458px] p-10 border-t-0 mx-auto md:mr-2"
+          >
             <input
               onChange={(e) => setEmail(e.target.value)}
               type="text"
@@ -75,7 +73,7 @@ function LogIn() {
               className="border-2 rounded h-14 border-[#E5E5E5] my-5 mb-8 w-full placeholder:pl-3 pl-3"
             />
 
-            <div className='flex flex-wrap justify-between'>
+            <div className="flex flex-wrap justify-between">
               <button
                 type="submit"
                 className="shadow-xl bg-[#2DD3E3] hover:bg-[#66e0eb] border-[#2DD3E3] hover:border-[#41d6e4] text-[#000000] 
@@ -105,8 +103,14 @@ function LogIn() {
           </div>
 
           <div className="w-full flex place-content-center gap-12 mt-4">
-            <FacebookIcon className="cursor-pointer -mt-0.5" onClick={handleFacebookSignIn} />
-            <GoogleIcon className="cursor-pointer" onClick={handleGoogleSignIn} />
+            <FacebookIcon
+              className="cursor-pointer -mt-0.5"
+              onClick={handleFacebookSignIn}
+            />
+            <GoogleIcon
+              className="cursor-pointer"
+              onClick={handleGoogleSignIn}
+            />
           </div>
         </div>
 
@@ -115,7 +119,6 @@ function LogIn() {
           alt="loading"
           className="mt-10 lg:mt-0 w-auto h-auto md:w-1/2 lg:pl-3"
         />
-
       </div>
     </div>
   );
