@@ -49,22 +49,16 @@ function Careers({t}) {
 
       <div className="w-full place-items-center py-10 flex flex-col bg-[#FEE89E] mb-10  sm:flex-row sm:p-10 sm:pl-20 sm:pr-8">
         <div className="w-full mx-auto lg:max-w-7xl px-10  ">
-          <h1 className="text-4xl text-[#424A4F]">OUR HIRING PHILOSOPHY</h1>
+          <h1 className="text-4xl text-[#424A4F]">{t("OUR HIRING PHILOSOPHY")}</h1>
           <p className="text-2xl text-[#424A4F] mt-8">
-            To build the very best SEO tools, we need a workforce that reflects
-            the diversity of our communities and customers. We want Online
-            Therapy to be a place where everyone feels welcome and engaged, bar
-            none. It&#39;s our mission and promise to interview a diverse and
-            representative slate of candidates before making an offer for our
-            open roles.
+            {t("To build the very best SEO tools, we need a workforce that reflects the diversity of our communities and customers. We want Online Therapy to be a place where everyone feels welcome and engaged, bar none. It's our mission and promise to interview a diverse and representative slate of candidates before making an offer for our open roles.")}
           </p>
         </div>
       </div>
       <div className="mx-auto lg:max-w-7xl px-10 py-10">
-        <h1 className="text-4xl text-[#424A4F]">CURRENT OPEN POSITIONS</h1>
+        <h1 className="text-4xl text-[#424A4F]">{t("CURRENT OPEN POSITIONS")}</h1>
         <p className="text-2xl opacity-50">
-          Please send us an email with the application title as the subject with
-          an attached CV in PDF format!
+          {t("Please send us an email with the application title as the subject with an attached CV in PDF format!")}
         </p>
       </div>
       <div>
