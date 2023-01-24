@@ -28,7 +28,7 @@ const addressObject = [
   },
 ];
 
-export default function  Contact() { 
+export default function  Contact({t}) { 
   const [name,setName]=useState({});
   const [newEmailInput, setNewEmailInput] = useState({});
   const [details,setDetails]=useState({});
