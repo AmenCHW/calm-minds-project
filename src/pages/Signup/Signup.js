@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Image from './SignupImage.png';
 import { UserAuth } from '../../context/AuthContext';
@@ -17,6 +17,17 @@ function Signup() {
   const [notMatching, setNotMatching] = useState('');
   const { createUser } = UserAuth();
   const navigate = useNavigate();
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [fullName, setFullName] = useState('')
+  const [birthDate, setBirthDate] = useState('')
+
+
+  const handleChange = ()=> setFullName (`${firstName} ${lastName}`)
+      useEffect(() => {
+        handleChange();
+    }, [firstName, lastName]);  
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,7 +41,7 @@ function Signup() {
       setNotMatching("Password and Email are not matching")
     } else if (email === confirmEmail && password === confirmPassword)
     {try {
-      await createUser(email, password);
+      await createUser(email, password, fullName, birthDate);
       navigate('/')
     } catch (error) {
       setError(error.message);
@@ -79,11 +90,13 @@ function Signup() {
         <form onSubmit={handleSubmit} className="lg:w-full px-8 py-10 flex flex-col bg-white rounded-md drop-shadow-xl">
           <div className="flex flex-col place-items-center lg:flex-row m-1">
             <input
+            onChange={(e)=> setFirstName(e.target.value)}
               className="border border-[#D1DBE3] py-4 px-3.5  w-full mb-2 lg:mb-0 lg:mr-1"
               type="text"
               placeholder="First Name"
             />
             <input
+            onChange={(e)=> setLastName(e.target.value)}
               className="border border-[#D1DBE3] py-4 px-3.5  w-full lg:ml-1"
               type="text"
               placeholder="Last Name"
@@ -119,6 +132,7 @@ function Signup() {
           <div className="flex flex-col w-full place-items-center py-4 px-1 lg:flex-row mb-1 place-content-around">
             <h2 className="lg:w-2/5">Birth Date:</h2>
             <input
+              onChange={(e) => setBirthDate(e.target.value)}
               className="border border-[#D1DBE3] py-4 px-3.5 w-full lg:w-full "
               type="date"
               placeholder="Day"

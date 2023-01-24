@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
@@ -25,24 +25,22 @@ export const AuthContextProvider = ({ children }) => {
         if ((window.innerWidth > 1024)) {
             signInWithPopup(auth, provider).then(
                 async (result) => {
-                    /* eslint-disable */
-                    console.log("google sign in result", result)
-
-                    try {
-                        const docRef = await setDoc(doc(db, "users", `${result.user.uid}`), {
+                    setDoc(doc(db, "users", `${result.user.uid}`), {
                             userId: `${result.user.uid}`,
-                            fullname: `${result.user.displayName}`,
-                            email: `${result.user.email}`,
+                            fullName: `${result.user.displayName}`,
+                            email: `${result.user.providerData[0].email}`,
                             photoURL: `${result.user.photoURL}`,
                             isTherapist: false,
+                            IDURL: "",
+                            gender: '',
+                            birthDate: 1111-11-11,
+                            educationLevel: "",
+                            hobbies: "",
+                            familySize: 1,
+                            phonenumber: 123,
+                            book_an_appointment: {},
 
                         });
-                        /* eslint-disable */
-                        console.log("Document written with ID: ", docRef.id);
-                    } catch (e) {
-                        /* eslint-disable */
-                        console.error("Error adding document: ", e);
-                    }
 
                 }
             )
@@ -50,24 +48,23 @@ export const AuthContextProvider = ({ children }) => {
         } else {
             signInWithRedirect(auth, provider).then(
                 async (result) => {
-                    /* eslint-disable */
-                    console.log("google sign in result", result)
-
-                    try {
-                        const docRef = await setDoc(doc(db, "users", `${result.user.uid}`), {
+                    
+                       await setDoc(doc(db, "users", `${result.user.uid}`), {
                             userId: `${result.user.uid}`,
-                            fullname: `${result.user.displayName}`,
-                            email: `${result.user.email}`,
+                            fullName: `${result.user.displayName}`,
+                            email: `${result.user.providerData[0].email}`,
                             photoURL: `${result.user.photoURL}`,
                             isTherapist: false,
+                            IDURL: "",
+                            gender: '',
+                            birthDate: 1111-11-11,
+                            educationLevel: "",
+                            hobbies: "",
+                            familySize: 1,
+                            phonenumber: 123,
+                            book_an_appointment: {},
 
                         });
-                        /* eslint-disable */
-                        console.log("Document written with ID: ", docRef.id);
-                    } catch (e) {
-                        /* eslint-disable */
-                        console.error("Error adding document: ", e);
-                    }
 
                 }
             )
@@ -76,25 +73,25 @@ export const AuthContextProvider = ({ children }) => {
 
     };
 
-    /* eslint-disable */
-    const createUser = (email, password) => {
+    const createUser = (email, password, fullName, birthDate) => {
         return createUserWithEmailAndPassword(auth, email, password).then(
             async (result) => {
-                console.log(result)
-
-                try {
-                    const docRef = await setDoc(doc(db, "users", `${result.user.uid}`), {
+                 await setDoc(doc(db, "users", `${result.user.uid}`), {
                         userId: `${result.user.uid}`,
-                        fullname: `${result.user.displayName}`,
                         email,
                         isTherapist: false,
-                        gender: true,
+                        IDURL: "",
+                        gender: '',
+                        fullName,
+                        birthDate,
+                        photoURL: '',
+                        educationLevel: "",
+                        hobbies: "",
+                        familySize: 1,
+                        phonenumber: 123,
                         book_an_appointment: {},
+
                     });
-                    // console.log("Document written with ID: ", docRef.id);
-                } catch (e) {
-                    console.error("Error adding document: ", e);
-                }
 
             }
         )
@@ -103,25 +100,19 @@ export const AuthContextProvider = ({ children }) => {
     const createTherapist = (email, password, username, city, licensenumber) => {
         return createUserWithEmailAndPassword(auth, email, password).then(
             async (result) => {
-                console.log(result)
-
-                try {
-                    const docRef = await setDoc(doc(db, "users", `${result.user.uid}`), {
+                 await setDoc(doc(db, "users", `${result.user.uid}`), {
                         userId: `${result.user.uid}`,
-                        fullname: " ",
+                        fullName: " ",
                         bio: " ",
-                        birthdate: " ",
-                        phonenumber: 0,
+                        birthDate: 1111-11-11,
+                        phonenumber: 123,
                         email,
+                        photoURL: '',
                         isTherapist: true,
-                        username: username,
-                        city: city,
-                        licensenumber: licensenumber
-                    });
-                    // console.log("Document written with ID: ", docRef.id);
-                } catch (e) {
-                    console.error("Error adding document: ", e);
-                }
+                        username,
+                        city,
+                        licensenumber
+                    });     
 
             }
         )
@@ -136,24 +127,22 @@ export const AuthContextProvider = ({ children }) => {
         if ((window.innerWidth > 1024)) {
             signInWithPopup(auth, provider).then(
                 async (result) => {
-                    /* eslint-disable */
-                    console.log("google sign in result", result)
-
-                    try {
-                        const docRef = await setDoc(doc(db, "users", `${result.user.uid}`), {
+                     await setDoc(doc(db, "users", `${result.user.uid}`), {
                             userId: `${result.user.uid}`,
-                            fullname: `${result.user.displayName}`,
-                            email: `${result.user.email}`,
+                            fullName: `${result.user.displayName}`,
+                            email: `${result.user.providerData[0].email}`,
                             photoURL: `${result.user.photoURL}`,
                             isTherapist: false,
-
+                            IDURL: "",
+                            gender: '',
+                            birthDate: 1111-11-11,
+                            educationLevel: "",
+                            hobbies: "",
+                            familySize: 1,
+                            phonenumber: 123,
+                            book_an_appointment: {},
                         });
-                        /* eslint-disable */
-                        console.log("Document written with ID: ", docRef.id);
-                    } catch (e) {
-                        /* eslint-disable */
-                        console.error("Error adding document: ", e);
-                    }
+                   
 
                 }
             )
@@ -161,24 +150,23 @@ export const AuthContextProvider = ({ children }) => {
         } else {
             signInWithRedirect(auth, provider).then(
                 async (result) => {
-                    /* eslint-disable */
-                    console.log("google sign in result", result)
-
-                    try {
-                        const docRef = await setDoc(doc(db, "users", `${result.user.uid}`), {
+                    await setDoc(doc(db, "users", `${result.user.uid}`), {
                             userId: `${result.user.uid}`,
-                            fullname: `${result.user.displayName}`,
-                            email: `${result.user.email}`,
+                            fullName: `${result.user.displayName}`,
+                            email: `${result.user.providerData[0].email}`,
                             photoURL: `${result.user.photoURL}`,
                             isTherapist: false,
+                            IDURL: "",
+                            gender: '',
+                            birthDate: 1111-11-11,
+                            educationLevel: "",
+                            hobbies: "",
+                            familySize: 1,
+                            phonenumber: 123,
+                            book_an_appointment: {},
 
                         });
-                        /* eslint-disable */
-                        console.log("Document written with ID: ", docRef.id);
-                    } catch (e) {
-                        /* eslint-disable */
-                        console.error("Error adding document: ", e);
-                    }
+                  
 
                 }
             )
@@ -186,9 +174,7 @@ export const AuthContextProvider = ({ children }) => {
         }
 
     };
-
-    /* eslint-disable */
-
+    
 
     const logOut = () => {
         signOut(auth)
@@ -197,30 +183,29 @@ export const AuthContextProvider = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
-            // console.log('User', currentUser)
         });
         return () => {
             unsubscribe();
         };
-    }, []);
+    }, [user]);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentTherapist) => {
             setTherapist(currentTherapist);
-            // console.log('Therapist', currentTherapist)
         });
         return () => {
             unsubscribe();
         };
-    }, []);
+    }, [user]);
 
     return (
-
+        /* eslint-disable */
         <TherapistContext.Provider value={{ createTherapist, therapist }} >
             <UserContext.Provider value={{ createUser, signIn, googleSignIn, user, logOut, facebookSignIn }}>
                 {children}
             </UserContext.Provider>
         </TherapistContext.Provider>
+        /* eslint-disable */
     )
 }
 
