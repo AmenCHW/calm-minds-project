@@ -21,6 +21,16 @@ test("test healing", async() => {
  });
 
 
+
+//  describe("About component", () => {
+//     it("should render About component correctly", () => {
+//       render(<About />);
+//       const element = screen.getByRole("heading");
+//       expect(element).toBeInTheDocument();
+//     });
+//   });
+
+
 test("first snapshot testing",()=>{
     const component=renderer.create( <About/>).toJSON()  
     expect( component).toMatchSnapshot();
@@ -30,10 +40,10 @@ test("first snapshot testing",()=>{
 
  
  
-//  it("test <p> ", async() => {
-//      render(
-//         <About paragraph ="some cool one liner!" />
-//     );
-//     const headingElement = screen.getByText(/About/i);  //case sensittive?
-//     expect(headingElement).toBeInTheDocument();
-//    });
+ it("test <p> ", async() => {
+     render(
+        <About paragraph ="some cool one liner!" />
+    );
+    const headingElement = screen.getByText(/About/i);  //case sensittive?
+    expect(headingElement).toBeInTheDocument();
+   });

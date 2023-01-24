@@ -1,9 +1,8 @@
 import React from 'react';
 import Communicate from './Communicate';
-
 import BookingSection from './BookingSectionHome';
-
-import RecentBlogs from '../Blogs/RecentBlogs';
+// import RecentBlogs2 from '../Blogs/Recentblog2';
+import RecentBlogs from '../Blogs/RecentBlogs'
 import Counselor from './Counselor';
 import Ticket from './Ticket';
 import Welcome from '../Welcome/welcome';
