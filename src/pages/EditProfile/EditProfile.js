@@ -162,7 +162,7 @@ function EditProfile() {
               src={userDetails.photoURL ? userDetails.photoURL : profileimage}
               alt="profile-pic"
             />
-            <span className="flex flex-col items-center rounded-full  w-20 hover:cursor-pointer hover:shadow-lg border-2 border-black">
+            <span className="flex flex-col items-center rounded-full relative z-0 w-20 hover:cursor-pointer hover:shadow-lg border-2 border-black">
               {' '}
               <img src={UpdateImage} alt="Update" />
               <input
