@@ -153,9 +153,9 @@ function EditProfile() {
       </h1>
       <form onSubmit={handleSubmit}>
         <div className="flex flex-wrap md:justify-evenly">
-          <div className='flex flex-col items-center' className='mx-auto'>
+          <div className='flex flex-col items-center mx-auto'>
             <img className='max-w-xs max-h-xs rounded-full aspect-square object-cover ' src={userDetails.photoURL ? userDetails.photoURL : profileimage} alt="profile-pic" />
-            <span className='flex flex-col items-center rounded-full  w-20 hover:cursor-pointer hover:shadow-lg relative z-0 border-2 border-black'>   <img src={UpdateImage} alt='Update' />
+            <span className='flex flex-col items-center rounded-full  w-20 hover:cursor-pointer hover:shadow-lg border-2 border-black'>   <img src={UpdateImage} alt='Update' />
               <input
                 type="file"
                 placeholder='edit'
