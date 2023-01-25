@@ -187,7 +187,7 @@ export default function  Contact({t}) {
             </div>
             <form  onSubmit={handleSubmit}>
             <label className=" flex flex-col mt-8 lg:mt-20" htmlFor="name">
-              <span className="mb-5 text-2xl font-normal">{t("Full Name:")}</span>
+              <span className="mb-5 text-2xl font-normal">{t("Full Name")}</span>
               <input
                 type="text"
                 
