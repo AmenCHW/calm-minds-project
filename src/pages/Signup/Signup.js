@@ -4,8 +4,6 @@ import Image from './SignupImage.png';
 import { UserAuth } from '../../context/AuthContext';
 import { ReactComponent as FacebookIcon } from '../../icons/facebookBlue.svg';
 import { ReactComponent as GoogleIcon } from '../../icons/googleBlue.svg';
-// import YearSelect from './YearSelect';
-// import MonthSelect from './MonthSelect';
 
 function Signup() {
 
@@ -23,29 +21,30 @@ function Signup() {
   const [birthDate, setBirthDate] = useState('')
 
 
-  const handleChange = ()=> setFullName (`${firstName} ${lastName}`)
-      useEffect(() => {
-        handleChange();
-    }, [firstName, lastName]);  
+  const handleChange = () => setFullName(`${firstName} ${lastName}`)
+  useEffect(() => {
+    handleChange();
+  }, [firstName, lastName]);
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
 
-    if(email === confirmEmail && password !== confirmPassword){
+    if (email === confirmEmail && password !== confirmPassword) {
       setNotMatching("Password is not matching")
-    } else if (email !== confirmEmail && password === confirmPassword){
+    } else if (email !== confirmEmail && password === confirmPassword) {
       setNotMatching("Email is not matching")
-    } else if (email !== confirmEmail && password !== confirmPassword){
+    } else if (email !== confirmEmail && password !== confirmPassword) {
       setNotMatching("Password and Email are not matching")
-    } else if (email === confirmEmail && password === confirmPassword)
-    {try {
-      await createUser(email, password, fullName, birthDate);
-      navigate('/')
-    } catch (error) {
-      setError(error.message);
-    }} else {
+    } else if (email === confirmEmail && password === confirmPassword) {
+      try {
+        await createUser(email, password, fullName, birthDate);
+        navigate('/')
+      } catch (error) {
+        setError(error.message);
+      }
+    } else {
       setNotMatching("Password or Email are not matching")
     }
   };
@@ -90,13 +89,13 @@ function Signup() {
         <form onSubmit={handleSubmit} className="lg:w-full px-8 py-10 flex flex-col bg-white rounded-md drop-shadow-xl">
           <div className="flex flex-col place-items-center lg:flex-row m-1">
             <input
-            onChange={(e)=> setFirstName(e.target.value)}
+              onChange={(e) => setFirstName(e.target.value)}
               className="border border-[#D1DBE3] py-4 px-3.5  w-full mb-2 lg:mb-0 lg:mr-1"
               type="text"
               placeholder="First Name"
             />
             <input
-            onChange={(e)=> setLastName(e.target.value)}
+              onChange={(e) => setLastName(e.target.value)}
               className="border border-[#D1DBE3] py-4 px-3.5  w-full lg:ml-1"
               type="text"
               placeholder="Last Name"
@@ -137,10 +136,7 @@ function Signup() {
               type="date"
               placeholder="Day"
             />
-            {/* <div className='flex mt-2 gap-2 lg:mt-0 lg:w-3/5 place-content-around'>
-                <MonthSelect />  
-                <YearSelect />
-               </div> */}
+
           </div>
           <div className="flex mt-2 lg:mt-8 lg:w-full place-content-center gap-8">
             <Link to="/login">
@@ -167,7 +163,7 @@ function Signup() {
           <div className="w-2/5 border-t mt-2 border-[#2DD3E3]" />
         </div>
         <div className="w-full flex place-content-center gap-12 mt-4">
-          <FacebookIcon className="cursor-pointer " onClick={handleFacebookSignIn}/>
+          <FacebookIcon className="cursor-pointer " onClick={handleFacebookSignIn} />
           <GoogleIcon className="cursor-pointer" onClick={handleGoogleSignIn} />
         </div>
       </div>

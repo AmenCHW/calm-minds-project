@@ -1,3 +1,4 @@
+
 import React from "react";
 // import {render} from "@testing-library/react"
 import Requirement from "./RequirementPage";
@@ -10,6 +11,7 @@ test("first snapshot testing",()=>{
     const component=renderer.create( <Requirement/>).toJSON()  
     expect( component).toMatchSnapshot();
 })
+
 
 // test("render 5 requirenments",()=>{
 //     const list=screen.getAllByRole("listitem")

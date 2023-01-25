@@ -1,3 +1,4 @@
+
 import React from "react";
 import {render,screen} from "@testing-library/react"
 import About from "./About";
@@ -28,5 +29,12 @@ it("test <p> ", async() => {
     const component=renderer.create( <About/>).toJSON()  
     expect( component).toMatchSnapshot();
 })
+
+
+test('first snapshot testing', () => {
+  const component = renderer.create(<About />).toJSON();
+  expect(component).toMatchSnapshot();
+});
+
 
 
