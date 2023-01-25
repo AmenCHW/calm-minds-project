@@ -21,7 +21,7 @@ function Team() {
             pb-28 my-4 mx-7 sm:ml-0 lg:mr-14"
             >
               <img
-                className="h-full border-b-8 border-[#a3e635]"
+                className="h-full border-b-8 border-[#a3e635] rounded-t-3xl"
                 src={src}
                 alt={alt}
               />

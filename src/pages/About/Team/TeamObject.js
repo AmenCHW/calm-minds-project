@@ -1,8 +1,7 @@
-import img1 from '../img/Rectangle.png';
-import img2 from '../img/Rectangle1.png';
-import img4 from '../img/Rectangle3.png';
-import img5 from '../img/Rectangle4.png';
-// import img6 from '../img/Rectangle 5.png';
+import img1 from '../img/IMG_20230125_191456_491.jpg';
+import img2 from '../img/istockphoto-849220498-170667a.jpg';
+import img4 from '../img/img.PNG';
+import img5 from '../img/sea.PNG';
 
 const TeamObject = [
   {
@@ -10,28 +9,28 @@ const TeamObject = [
     src: img1,
     alt: 'img1',
     Name: 'Ameen Abdulsamad',
-    title: 'Lead Engineer & Web Developer',
+    title: 'Web Developer',
   },
   {
     id: 2,
     src: img2,
     alt: 'img2',
     Name: 'Danah Osta',
-    title: 'Junior Designer & Web Developer',
+    title: 'Web Developer',
   },
   {
     id: 3,
     src: img5,
     alt: 'img3',
     Name: 'Huda Hamid',
-    title: 'Junior Designer & Web Developer',
+    title: 'Web Developer',
   },
   {
     id: 4,
     src: img4,
     alt: 'img4',
     Name: 'Hogr Honar',
-    title: 'Junior Designer & Web Developer',
+    title: 'Web Developer',
   },
 ];
 
