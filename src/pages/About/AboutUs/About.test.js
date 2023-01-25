@@ -1,10 +1,10 @@
 import React from 'react';
 // import {render} from "@testing-library/react"
-import About from './About';
 import renderer from 'react-test-renderer';
+import AboutUs from './AboutUs';
 
 test('first snapshot testing', () => {
-  const component = renderer.create(<About />).toJSON();
+  const component = renderer.create(<AboutUs/>).toJSON();
   expect(component).toMatchSnapshot();
 });
 
