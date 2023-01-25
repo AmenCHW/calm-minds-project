@@ -6,31 +6,29 @@ import contactimage from './contactimage.png';
 import { addressObject, radioObject } from './ContactObjects';
 
 export default function Contact() {
-
-  const [checked, setChecked] = useState('')
+  const [checked, setChecked] = useState('');
 
   const [formData, setFormData] = useState({
     type_of_contact: null,
     fullname: null,
     email: null,
     details: null,
-  })
+  });
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await addDoc(collection(db, "contact"), {
+    await addDoc(collection(db, 'contact'), {
       fullname: formData.fullname,
       email: formData.email,
       details: formData.details,
       type_of_contact: formData.type_of_contact,
-    })
+    });
 
-    navigate('/contact-thanks')
+    navigate('/contact-thanks');
   };
-
 
   return (
     <div className="mx-auto lg:max-w-7xl px-10 py-10">
@@ -47,7 +45,9 @@ export default function Contact() {
       <div className="flex flex-wrap justify-center lg:flex-nowrap lg:justify-between mt-8 md:mt-16">
         <div>
           <form onSubmit={handleSubmit}>
-            <p className="text-xl md:text-2xl font-semibold mb-4">Type of contact</p>
+            <p className="text-xl md:text-2xl font-semibold mb-4">
+              Type of contact
+            </p>
 
             <div className="flex flex-col">
               {radioObject.map(({ id, value }) => {
@@ -59,22 +59,30 @@ export default function Contact() {
                         name="type-of-contact"
                         value={value}
                         checked={value === checked}
-                        onChange={() => { setChecked(value); setFormData({ ...formData, type_of_contact: value }) }}
+                        onChange={() => {
+                          setChecked(value);
+                          setFormData({ ...formData, type_of_contact: value });
+                        }}
                         htmlFor={id}
                         className="mr-4"
                       />
-                      {value}</label>
+                      {value}
+                    </label>
                   </div>
                 );
               })}
             </div>
 
             <label className=" flex flex-col mt-8 lg:mt-20" htmlFor="name">
-              <span className="mb-5 text-xl md:text-2xl font-normal">Full Name:</span>
+              <span className="mb-5 text-xl md:text-2xl font-normal">
+                Full Name:
+              </span>
               <input
                 type="text"
                 name="name"
-                onChange={(e) => setFormData({ ...formData, fullname: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, fullname: e.target.value })
+                }
                 id="name"
                 placeholder="Enter your full name here..."
                 className="border-2 rounded-lg h-16 w-auto border-[#E5E5E5] pl-4
@@ -83,11 +91,15 @@ export default function Contact() {
             </label>
 
             <label className=" flex flex-col" htmlFor="email">
-              <span className="mb-5 text-xl md:text-2xl font-normal pt-5">Email:</span>
+              <span className="mb-5 text-xl md:text-2xl font-normal pt-5">
+                Email:
+              </span>
               <input
                 type="email"
                 name="email"
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
                 id="email"
                 placeholder="Enter your email address here..."
                 className="border-2 rounded-lg h-16 w-auto border-[#E5E5E5] pl-4
@@ -96,11 +108,15 @@ export default function Contact() {
             </label>
 
             <label className=" flex flex-col" htmlFor="details">
-              <span className="mb-5 text-xl md:text-2xl font-normal pt-5">Details:</span>
+              <span className="mb-5 text-xl md:text-2xl font-normal pt-5">
+                Details:
+              </span>
               <input
                 type="text"
                 name="details"
-                onChange={(e) => setFormData({ ...formData, details: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, details: e.target.value })
+                }
                 id="details"
                 placeholder="Enter your details here..."
                 className="border-2 rounded-lg h-40 w-auto sm:w-[500px] lg:w-[604px] border-[#E5E5E5] pl-4
@@ -114,7 +130,6 @@ export default function Contact() {
             >
               SUBMIT
             </button>
-
           </form>
         </div>
 
@@ -137,9 +152,8 @@ export default function Contact() {
               })}
             </div>
           </div>
-
         </div>
       </div>
-    </div >
+    </div>
   );
 }

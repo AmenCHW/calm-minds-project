@@ -9,9 +9,10 @@ function AboutUs() {
 
   return (
     <div className="">
-
       <div className="lg:max-w-7xl mx-auto py-10 px-10 sm:text-left bg-white font-poppins pt-12">
-        <h2 className="format-normal leading-normal text-3xl sm:text-4xl md:text-5xl pb-2">HEALING!</h2>
+        <h2 className="format-normal leading-normal text-3xl sm:text-4xl md:text-5xl pb-2">
+          HEALING!
+        </h2>
         <h3 className="font-light text-xl sm:text-2xl text-[#808080] pb-16 leading-6">
           some cool one liner !
         </h3>
@@ -20,9 +21,8 @@ function AboutUs() {
         </p>
       </div>
 
-      <div className='bg-[#EAF8F9]'>
+      <div className="bg-[#EAF8F9]">
         <div className="lg:max-w-7xl mx-auto py-10 px-10 text-left font-poppins pt-10 flex-wrap sm:flex">
-
           <div className="sm:w-2/5 pb-10 sm:pr-10">
             <img src={image} alt="Founder Pic" className="rounded-md" />
           </div>
@@ -33,10 +33,8 @@ function AboutUs() {
             </h2>
             <p className="text-xl">{descriptionFounder}</p>
           </div>
-
         </div>
       </div>
-
     </div>
   );
 }
