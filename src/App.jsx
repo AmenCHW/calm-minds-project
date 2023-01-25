@@ -47,15 +47,15 @@ function App() {
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/blogs/:id" element={<BlogDetails />} />
 
-          <Route path="/about" element={<About />} />
-          <Route path="/team" element={<Team />} />
-          <Route path="/careers" element={<Careers />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About t={t} />} />
+          <Route path="/team" element={<Team t={t} />} />
+          <Route path="/careers" element={<Careers t={t}/>} />
+          <Route path="/contact" element={<Contact t={t} />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/bookingPage" element={<BookingPage />} />
           <Route path="/therapist/create" element={<TherapistCreate />} />
           <Route path="/RequirementPage" element={<CounselorRequirement />} />
-          <Route path="/profile" element={<EditProfile />} />
+          <Route path="/profile" element={<EditProfile t={t} />} />
           <Route path="/therapist/profile" element={<TherapistProfile />} />
         </Routes>
         <Footer />
