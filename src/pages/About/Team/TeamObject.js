@@ -1,4 +1,4 @@
-import img1 from '../img/IMG_0143.jpg';
+import img1 from '../img/IMG_20230125_191456_491.jpg';
 import img2 from '../img/istockphoto-849220498-170667a.jpg';
 import img4 from '../img/img.PNG';
 import img5 from '../img/sea.PNG';
