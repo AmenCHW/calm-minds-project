@@ -1,7 +1,28 @@
 import React from 'react';
-// import {render} from "@testing-library/react"
+import {render,screen} from "@testing-library/react"
 import renderer from 'react-test-renderer';
 import AboutUs from './AboutUs';
+
+// _________________getAllByText_________________
+test("test healing", async() => {
+  render(
+     <AboutUs title ="Healing" />
+ );
+const headingElement = screen.getAllByText(/healing/i);
+ expect(headingElement).toBeInTheDocument;
+});
+
+
+// _________________testing title with getByText_________________
+it("test <p> ", async() => {
+   render(
+      <AboutUs title="about" />
+);
+  const headingElement = screen.getByText(/About/i);  //case sensittive?
+  expect(headingElement).toBeInTheDocument();
+ });
+
+
 
 test('first snapshot testing', () => {
   const component = renderer.create(<AboutUs/>).toJSON();
