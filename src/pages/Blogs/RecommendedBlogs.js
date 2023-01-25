@@ -22,7 +22,7 @@ function RecommendedBlogs() {
         RECOMMENED FOR YOU
       </h3>
       <div className="flex flex-wrap mt-6">
-        {blogs.slice(1, 3).map((blog) => {
+        {blogs.slice(0, 2).map((blog) => {
           return (
             <div key={blog.id}>
               <Link to={`/blogs/${blog.id}`} onClick={window.scrollTo(0, 0)}>
